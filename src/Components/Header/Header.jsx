@@ -10,10 +10,9 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import {heart} from 'react-icons-kit/ionicons/heart'
 import {androidPerson} from 'react-icons-kit/ionicons/androidPerson'
-import {ic_shopping_bag} from 'react-icons-kit/md/ic_shopping_bag'
 import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
-
+import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
 export default function Header() {
   return<>
   <div className="container d-flex flex-column justify-content-center mb-3">
@@ -47,7 +46,7 @@ export default function Header() {
             <div className="profileContainer d-flex align-items-center justify-content-center">
               <Icon size={22} icon={androidPerson} className='main-grey-text me-2 cursor-pointer'></Icon>
               <Icon size={22} icon={heart} className='main-grey-text me-2 cursor-pointer'></Icon>
-              <Icon size={22} icon={ic_shopping_bag} className='main-grey-text me-2 cursor-pointer'></Icon>
+              <Icon size={22} icon={ic_local_mall} className='main-grey-text me-2 cursor-pointer'></Icon>
             </div>
           </div>
         </div>

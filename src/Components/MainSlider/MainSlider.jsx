@@ -7,7 +7,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import ApiBaseUrl from '../ApiBaseUrl';
 
-export default function MainSlider() {
+export default function MainSlider({setIsBannerLoading}) {
   let settings = {
     // centerMode: true,
     dots: true,
@@ -41,10 +41,10 @@ export default function MainSlider() {
     return axios.get(ApiBaseUrl + `banners`)
   }
   let {data , isLoading } = useQuery('mainBanner' , getBanners )
-  console.log(data?.data?.data?.data);
+
   return <>
-  <div className="container-fluid position-relative mb-4">
-  <Slider {...settings} className='mx-auto w-100 rounded'>
+  <div className="container position-relative mb-4">
+        <Slider {...settings} className='rounded'>
           <div className='firstSlide'>
             <div className="row">
               <div className="col-6 text-center d-flex align-items-center justify-content-center flex-column">

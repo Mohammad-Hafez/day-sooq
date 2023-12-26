@@ -4,16 +4,16 @@ import { useQuery } from 'react-query'
 import ApiBaseUrl from '../ApiBaseUrl'
 import { IoArrowForwardOutline } from "react-icons/io5";
 
-export default function CategorySlider({setIsLoading}) {
+export default function CategorySlider({setIsFeaturedCategoriesLoading}) {
   const getFeaturedCategories = ()=>{
     return axios.get(ApiBaseUrl + `categories`)
   }
   let { data , isLoading } = useQuery('categorySlider' , getFeaturedCategories ,{
-    cacheTime : 300000
+    cacheTime : 300000  ,
   });
-  if (isLoading) {
-    setIsLoading(!isLoading)
-  }
+  // if (isLoading) {
+  //   setIsFeaturedCategoriesLoading(true); 
+  // }  
   return <>
   <div className="categoriesSec light-grey-bg p-3 mb-4">
     <div className="container">
