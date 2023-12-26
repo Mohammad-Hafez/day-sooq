@@ -196,9 +196,11 @@ border: none;
   color: var(--main-orange) !important;
 }
 .loader-container{
-  background-color: rgba(0, 0, 0, 0.03);
+  background-color: rgba(0, 0, 0, 0.314);
   height: 100%;
-  
+  z-index: 9999!;
+  position: absolute;
+  inset: 0;
 }
 /* *NOTE - bidding slider */
 .biddingSlider{
@@ -344,9 +346,3 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   image-rendering: optimizeQuality;
   object-fit: contain;
 }
-/* *SECTION - featured brands */
-.featuredBrandsContainer{
-  border-radius: 25px;
-border: 1px solid var(--grey-bgColor, #EEF0F4);
-background: var(--White-color, #FFF);
-} /* brdr class */

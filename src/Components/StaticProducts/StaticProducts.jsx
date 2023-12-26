@@ -3,7 +3,7 @@ import img1 from '../../assets/6058a70910ae31c1bbcb06ed5792f274.png'
 import img2 from '../../assets/b96a8f62f6fb6ab9082a364fc4ae74da.png'
 export default function StaticProducts() {
   return <>
-  <div className="container mb-3">
+  <div className="container mb-5">
     <div className="row g-3">
       <div className="col-md-6">
         <div className="staticProductLeft d-flex align-items-center justify-content-around p-2">

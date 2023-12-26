@@ -9,7 +9,6 @@ import ApiBaseUrl from '../ApiBaseUrl';
 
 export default function MainSlider({setIsBannerLoading}) {
   let settings = {
-    // centerMode: true,
     dots: true,
     infinite: true,
     lazyLoad: true,
@@ -19,23 +18,6 @@ export default function MainSlider({setIsBannerLoading}) {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        slidesToScroll: 2,
-        initialSlide: 2
-      }
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        arrows: false,
-        slidesToScroll: 2,
-      }
-    },
-  ]
   };
   const getBanners = ()=>{
     return axios.get(ApiBaseUrl + `banners`)
@@ -43,7 +25,7 @@ export default function MainSlider({setIsBannerLoading}) {
   let {data , isLoading } = useQuery('mainBanner' , getBanners )
 
   return <>
-  <div className="container position-relative mb-4">
+  <div className="container position-relative mb-3">
         <Slider {...settings} className='rounded'>
           <div className='firstSlide'>
             <div className="row">
@@ -59,7 +41,7 @@ export default function MainSlider({setIsBannerLoading}) {
                 </div>
               </div>
               <div className="col-6">
-                <img alt='img1' src={'https://electrobile-souq.onrender.com/' +  data?.data?.data?.data[0].image} className='img-fluid'/>
+                <img alt='img1' src={'https://electrobile-souq.onrender.com/' +  data?.data?.data?.data[0].image} loading='lazy' className='img-fluid'/>
               </div>
             </div>
           </div>
