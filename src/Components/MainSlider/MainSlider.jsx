@@ -1,8 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Slider from "react-slick";
-import img1 from '../../assets/6a6b7790cf6871937e50d56dbf58654a.png'
-import img2 from '../../assets/8cd9c64b5fbf922ff7b8a35def91281b.png'
-import img3 from '../../assets/b96a8f62f6fb6ab9082a364fc4ae74da.png'
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import ApiBaseUrl from '../ApiBaseUrl';
@@ -28,9 +25,12 @@ export default function MainSlider({setIsBannerLoading}) {
     return axios.get(ApiBaseUrl + `banners`)
   }
   let {data , isLoading } = useQuery('mainBanner' , getBanners )
+  useEffect(() => {
+    setIsBannerLoading(isLoading);
+  }, [isLoading, setIsBannerLoading]);
 
   return <>
-  <div className="container position-relative mb-3">
+  <div className="container mainSlider position-relative mb-3">
         <Slider {...settings} className='rounded'>
           <div className='firstSlide'>
             <div className="row">

@@ -11,9 +11,11 @@ export default function CategorySlider({setIsFeaturedCategoriesLoading}) {
   let { data , isLoading } = useQuery('categorySlider' , getFeaturedCategories ,{
     cacheTime : 300000  ,
   });
-  // if (isLoading) {
-  //   setIsFeaturedCategoriesLoading(true); 
-  // }  
+     
+    useEffect(() => {
+      setIsFeaturedCategoriesLoading(isLoading);
+    }, [isLoading, setIsFeaturedCategoriesLoading]);
+  
   return <>
   <div className="categoriesSec light-grey-bg p-3 mb-5">
     <div className="container">
