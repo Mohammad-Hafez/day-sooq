@@ -34,14 +34,14 @@ export default function BestSlider({ setIsBestSliderLoading }) {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          initialSlide: 2
+          slidesToShow: 1,
+          initialSlide: 1
         },
       },
     ],
