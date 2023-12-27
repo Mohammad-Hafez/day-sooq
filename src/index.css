@@ -426,3 +426,6 @@ height: 100% !important;
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
 }
+.before-price{
+  text-decoration: line-through;
+}

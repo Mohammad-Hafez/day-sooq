@@ -7,12 +7,15 @@ import { Icon } from 'react-icons-kit'
 import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import {heart} from 'react-icons-kit/ionicons/heart'
+import { GoGitCompare } from "react-icons/go";
+
 export default function DealsSlider({setIsDealsSliderLoading}) {
-  const getBestSellers = () => {
+  const getBigDeals = () => {
     return axios.get(ApiBaseUrl + `products/bigDeal?limit=10`);
   };
 
-  const { data, isLoading } = useQuery('big-Deal-slider', getBestSellers, { cacheTime: 300000 });
+  const { data, isLoading } = useQuery('big-Deal-slider', getBigDeals, { cacheTime: 300000 });
 
   useEffect(() => {
     setIsDealsSliderLoading(isLoading);
@@ -52,10 +55,25 @@ export default function DealsSlider({setIsDealsSliderLoading}) {
       <div className="BestSlider-container position-relative">
         <Slider {...BestSettings} className='rounded'>
           {data?.data?.data?.data.map((product) => (
-            <div key={product._id} className="slide-item brdr bg-white text-center align-self-stretch px-3 py-2 h-100 d-flex flex-column justify-content-center align-items-center">
-              <h6>{product.name}</h6>
-              {/* <img  className='img-fluid flex-grow-1 mb-2' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} /> */}
-              <button className='go-Btn d-flex align-items-center justify-content-center ms-auto pb-2'><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
+            <div key={product._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between pb-1">
+              <p className='cardCategory me-auto'>Category</p>
+              <div className="card-product-info">
+                <h6 className='cardProductName fw-bolder'>{product.name}</h6>
+                {/* <img  className='img-fluid mb-2' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} /> */}
+              </div>
+              <div className="card-footer d-flex align-items-center justify-content-between w-100">
+                <div className="salePrice">
+                  <h6 className='font-Roboto fw-bold pink-text'>{product.price} JOD</h6>
+                  <h6 className='font-Roboto dark-grey-text before-price'>{product.price - product.priceDiscount.value} JOD</h6>
+                </div>
+                <div className="actionBtns position-relative">
+                  <div className="toggleBtns">
+                    <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1'><GoGitCompare/></button>
+                    <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2'><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
+                  </div>
+                  <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2'><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
+                </div>
+              </div>
             </div>
           ))}
         </Slider>

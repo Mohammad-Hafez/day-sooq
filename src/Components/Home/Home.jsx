@@ -8,6 +8,7 @@ import StaticProducts from '../StaticProducts/StaticProducts'
 import BrandsSlider from '../BrandsSlider/BrandsSlider'
 import BestSlider from '../BestSlider/BestSlider'
 import DealsSlider from '../DealsSlider/DealsSlider'
+import ReviewSlider from '../ReviewSlider/ReviewSlider'
 
 export default function Home() {
   const [IsBannerLoading, setIsBannerLoading] = useState(false);
@@ -16,6 +17,7 @@ export default function Home() {
   const [IsBestSliderLoading, setIsBestSliderLoading] = useState(false);
   const [IsDealsSliderLoading, setIsDealsSliderLoading] = useState(false);
   const [IsFeaturedCategoriesLoading, setIsFeaturedCategoriesLoading] = useState(false);
+  const [IsReviewSliderLoading, setIsReviewSliderLoading] = useState(false);
   
   return <>
     <Helmet>
@@ -28,6 +30,7 @@ export default function Home() {
     <BrandsSlider setIsBrandSliderLoading={setIsBrandSliderLoading}/>
     <BestSlider setIsBestSliderLoading={setIsBestSliderLoading}/>
     <DealsSlider setIsDealsSliderLoading={setIsDealsSliderLoading}/>
-    {  IsBannerLoading || IsBiddingSliderLoading || IsFeaturedCategoriesLoading || IsBrandSliderLoading || IsBestSliderLoading || IsDealsSliderLoading? <Loader/> : <></>}
+    <ReviewSlider setIsReviewSliderLoading={setIsReviewSliderLoading}/>
+    {IsBannerLoading || IsBiddingSliderLoading || IsFeaturedCategoriesLoading || IsBrandSliderLoading || IsBestSliderLoading || IsDealsSliderLoading || IsReviewSliderLoading? <Loader/> : <></>}
     </>
 }

@@ -8,6 +8,7 @@ import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import {heart} from 'react-icons-kit/ionicons/heart'
+import { GoGitCompare } from "react-icons/go";
 
 export default function BestSlider({ setIsBestSliderLoading }) {
   const getBestSellers = () => {
@@ -64,7 +65,7 @@ export default function BestSlider({ setIsBestSliderLoading }) {
                 <h6 className='font-Roboto fw-bold dark-grey-text'>{product.variant.product.price} JOD</h6>
                 <div className="actionBtns position-relative">
                   <div className="toggleBtns">
-                    <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2'><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
+                    <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1'><GoGitCompare/></button>
                     <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2'><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
                   </div>
                   <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2'><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
