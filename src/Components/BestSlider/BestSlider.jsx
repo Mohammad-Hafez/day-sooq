@@ -22,9 +22,10 @@ export default function BestSlider({ setIsBestSliderLoading }) {
     adaptiveHeight: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
+    initialSlide: 0,
+    swipeToSlide: true,
     autoplay: false,
-    arrows: true,
     responsive: [
       {
         breakpoint: 768,
@@ -49,9 +50,9 @@ export default function BestSlider({ setIsBestSliderLoading }) {
       <div className="BestSlider-container p-4">
         <Slider {...settings} className='rounded'>
           {data?.data?.data?.data.map((product) => (
-            <div key={product.variant._id} className="slide-item">
+            <div key={product.variant._id} className="slide-item bg-danger p-2 m-2">
               <h6>{product.variant.product.name}</h6>
-              <img src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+              <img  className='object-fit-contain img-fluid' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
             </div>
           ))}
         </Slider>

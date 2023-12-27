@@ -17,6 +17,11 @@ export default function MainSlider({setIsBannerLoading}) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+    // afterChange: function(index) {
+    //   console.log(
+    //     `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+    //   );
+    // }, for change bg-color dynamic
     autoplaySpeed: 2000,
   };
   const getBanners = ()=>{
