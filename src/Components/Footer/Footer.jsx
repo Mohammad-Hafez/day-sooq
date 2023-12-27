@@ -5,10 +5,66 @@ import {facebook_1} from 'react-icons-kit/ikons/facebook_1';
 import {youtube} from 'react-icons-kit/ikons/youtube'
 import {instagram} from 'react-icons-kit/entypo/instagram'
 import { Link } from 'react-router-dom';
-
+import { IoShieldCheckmark } from "react-icons/io5";
+import { FaCreditCard } from "react-icons/fa";
+import { FaTruck } from "react-icons/fa";
+import { BiShieldQuarter } from "react-icons/bi";
+import { MdLabel } from "react-icons/md";
 export default function Footer() {
   return <>
-  <div className="footer">
+  <div className="fixed-features">
+    <div className="container">
+      <div className="row">
+          <div className="col-3 col-md-2 offset-md-1 brdr rounded-0 ">
+            <div className="featuer p-3 d-flex align-items-center justify-content-center">
+              <span className='me-2'><IoShieldCheckmark className='main-orange-text fs-3'/></span>
+              <span className="text">
+                <h6 className='dark-grey-text'>Guarantee</h6>
+                <span className='dark-grey-text fs-6'>24 Months</span>
+              </span>
+            </div>
+          </div>
+          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="featuer p-3 d-flex align-items-center justify-content-center">
+              <span className='me-2'><FaCreditCard className='main-orange-text fs-3 rotate'/></span>
+              <span className="text">
+                <h6 className='dark-grey-text'>Rate Paying</h6>
+                <span className='dark-grey-text fs-6'>4 - 12 Months</span>
+              </span>
+            </div>
+          </div>
+          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="featuer p-3 d-flex align-items-center justify-content-center">
+              <span className='me-2'><BiShieldQuarter className='main-orange-text fs-3'/></span>
+              <span className="text">
+                <h6 className='dark-grey-text'>Payments</h6>
+                <span className='dark-grey-text fs-6'>Secured</span>
+              </span>
+            </div>
+          </div>
+          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="featuer p-3 d-flex align-items-center justify-content-center">
+              <span className='me-2'><FaTruck className='main-orange-text fs-3'/></span>
+              <span className="text">
+                <h6 className='dark-grey-text'>Free Delivery</h6>
+                <span className='dark-grey-text fs-6'>from JOD 100</span>
+              </span>
+            </div>
+          </div>
+          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="featuer p-3 d-flex align-items-center justify-content-center">
+              <span className='me-2'><MdLabel className='main-orange-text fs-3 rotate'/></span>
+              <span className="text">
+                <h6 className='dark-grey-text'>Brands</h6>
+                <span className='dark-grey-text fs-6'>Only Top</span>
+              </span>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  <div className="footer rounded-top">
     <div className="container ">
       <div className="row">
         <div className="col-12 col-md-6">

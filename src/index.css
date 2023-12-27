@@ -33,10 +33,14 @@ code {
   --red-color : #FF3333 ;
   --red-colorIcons : #FF0000 ;
 }
-.brdr{
-border-radius: 25px;
-border: 1px solid var(--grey-bgColor, #EEF0F4);
-background: var(--White-color , #FFF);
+.brdr{ 
+  border-radius: 25px; 
+  border: 1px solid var(--grey-bgColor, #EEF0F4); 
+  background: var(--White-color , #FFF);
+   -webkit-border-radius: 25px;
+    -moz-border-radius: 25px; 
+    -ms-border-radius: 25px; 
+    -o-border-radius: 25px;
 }
 .brdr-blue{
   border: 1px solid var(--dark-blue);
@@ -432,6 +436,5 @@ height: 100% !important;
 
 /* *NOTE - Footer style */
 .footer{
-  border-radius: 17px;
 background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4, 0.01) 98.64%);
 }
