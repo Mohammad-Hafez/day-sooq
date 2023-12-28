@@ -9,8 +9,8 @@ import {login} from 'react-icons-kit/entypo/login'
 import axios from 'axios';
 import ApiBaseUrl from '../ApiBaseUrl';
 import {alertCircle} from 'react-icons-kit/feather/alertCircle'
-// import { FcGoogle } from "react-icons/fc";
-export default function Login() {
+import { FcGoogle } from "react-icons/fc";
+export default function Login({saveUserData}) {
   const[isLoading,setIsLoading]=useState(false)
   const [passwordShown, setPasswordShown] = useState(false);
   const [ErrMsg, setErrMsg] = useState()
@@ -24,10 +24,11 @@ export default function Login() {
     setErrMsg(null)
     try {
       let {data} = await axios.post(ApiBaseUrl + `auth/login` , values);
+      console.log(data);
       setIsLoading(false)
       formik.resetForm();
-      localStorage.setItem("DaySooqUser",data.token)
-      // saveData()
+      localStorage.setItem("DaySooqUser", data.token)
+      saveUserData()
       navigate("/")
     } catch (error) {
       console.error(error);

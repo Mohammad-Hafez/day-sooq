@@ -12,7 +12,7 @@ import { BiShieldQuarter } from "react-icons/bi";
 import { MdLabel } from "react-icons/md";
 export default function Footer() {
   return <>
-  <div className="fixed-features">
+  <div className="fixed-features mb-3">
     <div className="container">
       <div className="row">
           <div className="col-3 col-md-2 offset-md-1 brdr rounded-0 ">
@@ -127,7 +127,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="copyright w-100 text-center pb-2">
-        <span className='main-grey-text my-0'>© Electrobile Souq - ALL Rights Reserved </span>
+        <span className='main-grey-text my-0'>© Electrobile Souq 2024 - ALL Rights Reserved </span>
       </div>
     </div>
   </div>

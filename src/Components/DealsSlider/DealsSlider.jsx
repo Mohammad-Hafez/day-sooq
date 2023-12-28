@@ -21,15 +21,15 @@ export default function DealsSlider({setIsDealsSliderLoading}) {
     setIsDealsSliderLoading(isLoading);
   }, [isLoading, setIsDealsSliderLoading]);
 
-  let BestSettings = {
-    Infinity : false ,
+  let DealsSettings = {
+    infinite: false,
     lazyLoad: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    nextArrow : <MdKeyboardArrowRight/> ,
-    prevArrow : <MdKeyboardArrowLeft /> ,
+    // nextArrow: <MdKeyboardArrowRight />,
+    // prevArrow: <MdKeyboardArrowLeft />,
     responsive: [
       {
         breakpoint: 768,
@@ -41,7 +41,7 @@ export default function DealsSlider({setIsDealsSliderLoading}) {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          initialSlide: 2
+          initialSlide: 2,
         },
       },
     ],
@@ -53,18 +53,18 @@ export default function DealsSlider({setIsDealsSliderLoading}) {
         <h4>Big Deals</h4>
       </div>
       <div className="BestSlider-container position-relative">
-        <Slider {...BestSettings} className='rounded'>
+        <Slider {...DealsSettings} className='rounded'>
           {data?.data?.data?.data.map((product) => (
             <div key={product._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between pb-1">
               <p className='cardCategory me-auto'>Category</p>
               <div className="card-product-info">
-                <h6 className='cardProductName fw-bolder'>{product.name}</h6>
-                {/* <img  className='img-fluid mb-2' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} /> */}
+                <h6 className='cardProductName fw-bolder'>{product?.name}</h6>
+                <img  className='img-fluid mb-2' src={'https://electrobile-souq.onrender.com/' + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
               </div>
               <div className="card-footer d-flex align-items-center justify-content-between w-100">
                 <div className="salePrice">
-                  <h6 className='font-Roboto fw-bold pink-text'>{product.price} JOD</h6>
-                  <h6 className='font-Roboto dark-grey-text before-price'>{product.price - product.priceDiscount.value} JOD</h6>
+                  <h6 className='font-Roboto fw-bold pink-text'>{product?.price} JOD</h6>
+                  <h6 className='font-Roboto dark-grey-text before-price'>{product?.price - product?.priceDiscount.value} JOD</h6>
                 </div>
                 <div className="actionBtns position-relative">
                   <div className="toggleBtns">

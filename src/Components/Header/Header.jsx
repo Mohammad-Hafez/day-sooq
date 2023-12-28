@@ -11,9 +11,18 @@ import { Button } from 'primereact/button';
 import {heart} from 'react-icons-kit/ionicons/heart'
 import {androidPerson} from 'react-icons-kit/ionicons/androidPerson'
 import Navbar from '../Navbar/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
-export default function Header() {
+import { FiLogOut } from "react-icons/fi";
+export default function Header({UserToken}) {
+  let navigate = useNavigate()
+  const handleProfileClick = ()=>{
+    if (UserToken) {
+      console.log("hiiii");
+    }else{
+      navigate('/Authorization')
+    }
+  }
   return<>
   <div className="container d-flex flex-column justify-content-center mb-3">
       <div className="topHeader d-flex align-items-center justify-content-between position-relative mt-1 mb-3 pb-2">
@@ -44,9 +53,13 @@ export default function Header() {
           </div>
           <div className="col-sm-3">
             <div className="profileContainer d-flex align-items-center justify-content-center">
-              <Icon size={22} icon={androidPerson} className='main-grey-text me-2 cursor-pointer'></Icon>
+              <Icon size={22} icon={androidPerson} className='main-grey-text me-2 cursor-pointer' onClick={handleProfileClick}></Icon>
               <Icon size={22} icon={heart} className='main-grey-text me-2 cursor-pointer'></Icon>
-              <Icon size={22} icon={ic_local_mall} className='main-grey-text me-2 cursor-pointer'></Icon>
+              <span className='cart-icon position-relative me-2 main-grey-text d-flex align-items-center'>
+                <Icon size={22} icon={ic_local_mall} className='me-1 cursor-pointer'></Icon>
+                <span className='cart-budget'>0.00 JOD</span>
+              </span>
+              {UserToken ? <FiLogOut className='dark-red-text fs-4 cursor-pointer'/> : null}
             </div>
           </div>
         </div>

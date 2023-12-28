@@ -13,6 +13,7 @@
     "formik": "^2.4.5",
     "generate-react-cli": "^8.4.0",
     "helmet": "^7.1.0",
+    "jwt-decode": "^4.0.0",
     "primeicons": "^6.0.1",
     "primereact": "^10.2.1",
     "react": "^18.2.0",

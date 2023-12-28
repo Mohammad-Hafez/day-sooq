@@ -303,6 +303,10 @@ border: none;
  width: 50px !important;
  height: 50px !important;
 }
+/* *SECTION - Bidding slider */
+.biddingSlider{
+  background: linear-gradient(91deg, rgba(0, 53, 102, 0.09) 9.23%, rgba(255, 96, 0, 0.09) 95.06%);
+}
 /* *SECTION - Categories style */
 .allCategoriesContainer{
   width: 90%;

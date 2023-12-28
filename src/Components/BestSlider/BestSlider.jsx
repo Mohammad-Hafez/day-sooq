@@ -28,6 +28,8 @@ export default function BestSlider({ setIsBestSliderLoading }) {
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
+    // adaptiveHeight: true,
+    autoplay: false,
     nextArrow : <MdKeyboardArrowRight/> ,
     prevArrow : <MdKeyboardArrowLeft /> ,
     responsive: [
@@ -53,13 +55,13 @@ export default function BestSlider({ setIsBestSliderLoading }) {
         <h4>Bestsellers</h4>
       </div>
       <div className="BestSlider-container position-relative">
-        <Slider {...BestSettings} className='rounded'>
+        <Slider {...BestSettings} className='rounded '>
           {data?.data?.data?.data.map((product) => (
-            <div key={product.variant._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between">
+            <div key={product.variant._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between ">
               <p className='cardCategory me-auto'>Category</p>
-              <div className="card-product-info">
-                <h6 className='cardProductName fw-bolder'>{product.variant.product.name}</h6>
-                <img  className='img-fluid mb-2' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+              <div className="card-product-info d-flex flex-column justify-content-between flex-grow-1">
+                <h6 className='cardProductName fw-bolder h-25'>{product.variant.product.name}</h6>
+                <img  className='img-fluid mb-2 flex-grow-1' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
               </div>
               <div className="card-footer d-flex align-items-center justify-content-between w-100">
                 <h6 className='font-Roboto fw-bold dark-grey-text'>{product.variant.product.price} JOD</h6>
