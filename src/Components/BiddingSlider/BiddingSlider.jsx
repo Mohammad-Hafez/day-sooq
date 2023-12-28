@@ -57,7 +57,7 @@ export default function BiddingSlider({setIsBiddingSliderLoading}) {
       <div className="BestSlider-container position-relative">
         <Slider {...BiddingSettings} className='rounded '>
           {data?.data?.data?.data.map((product) => (
-            <div key={product._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between ">
+            <div key={product._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-2">
               <p className='cardCategory me-auto'>Category</p>
               <div className="card-product-info d-flex flex-column justify-content-between flex-grow-1">
                 <h6 className='cardProductName fw-bolder h-25'>{product.name}</h6>
@@ -65,7 +65,14 @@ export default function BiddingSlider({setIsBiddingSliderLoading}) {
               </div>
               <div className="card-footer d-flex align-items-center justify-content-between w-100">
                 <div className="prices">
-                  <h5 className='font-Roboto fw-bold dark-grey-text'>{product.price} JOD</h5>
+                  <h5 className='font-Roboto fw-bold dark-grey-text'>                          
+                    {product.priceDiscount.value > 0
+                            ? product.priceDiscount.type === 'percentage'
+                              ? product.price *
+                                (product.priceDiscount.value / 100)
+                              : product.price - product.priceDiscount.value
+                            : product.price} JOD
+                  </h5>
                   <h6 className='font-Roboto fw-bold main-orange-text'>{product.price - product.biddingGap} JOD</h6>
                 </div>
                 <div className="actionBtns position-relative">

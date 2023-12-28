@@ -22,14 +22,12 @@ export default function BestSlider({ setIsBestSliderLoading }) {
   }, [isLoading, setIsBestSliderLoading]);
 
   let BestSettings = {
-    Infinity : false ,
     lazyLoad: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
     // adaptiveHeight: true,
-    autoplay: false,
     nextArrow : <MdKeyboardArrowRight/> ,
     prevArrow : <MdKeyboardArrowLeft /> ,
     responsive: [
@@ -57,14 +55,24 @@ export default function BestSlider({ setIsBestSliderLoading }) {
       <div className="BestSlider-container position-relative">
         <Slider {...BestSettings} className='rounded '>
           {data?.data?.data?.data.map((product) => (
-            <div key={product.variant._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between ">
+            <div key={product.variant._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-3">
               <p className='cardCategory me-auto'>Category</p>
-              <div className="card-product-info d-flex flex-column justify-content-between flex-grow-1">
+              <div className="card-product-info">
                 <h6 className='cardProductName fw-bolder h-25'>{product.variant.product.name}</h6>
-                <img  className='img-fluid mb-2 flex-grow-1' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+                <div className="slide-img over-flow-hidden">
+                  <img  className='img-fluid mb-2 flex-grow-1' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+                </div>
               </div>
               <div className="card-footer d-flex align-items-center justify-content-between w-100">
-                <h6 className='font-Roboto fw-bold dark-grey-text'>{product.variant.product.price} JOD</h6>
+
+                <h6 className='font-Roboto fw-bold dark-grey-text'>
+                  {product.variant.product.priceDiscount.value > 0
+                            ? product.variant.product.priceDiscount.type === 'percentage'
+                              ? product.variant.product.price *
+                                (product.variant.product.priceDiscount.value / 100)
+                              : product.variant.product.price - product.variant.product.priceDiscount.value
+                  : product.variant.product.price} JOD
+                </h6>
                 <div className="actionBtns position-relative">
                   <div className="toggleBtns">
                     <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1'><GoGitCompare/></button>
