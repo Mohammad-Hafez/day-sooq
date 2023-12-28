@@ -11,13 +11,15 @@ import { FiLogOut } from "react-icons/fi";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ApiBaseUrl from '../ApiBaseUrl';
-import { useQuery } from 'react-query';
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 export default function HeaderSearch({UserToken}) {
   let navigate = useNavigate();
 
   const [AllCategoriesName, setAllCategoriesName] = useState([]);
-  const [SelectedCategory, setSelectedCategory] = useState('')
+  const [SelectedCategory, setSelectedCategory] = useState(null);
+  const [SearchVal, setSearchVal] = useState()
+  const [SearchResult, setSearchResult] = useState()
   const getAllCategories = async ()=>{
     let {data} = await axios.get(ApiBaseUrl + `categories`);
     setAllCategoriesName(data?.data?.data?.map((category)=>{return category.name}))
@@ -31,9 +33,10 @@ export default function HeaderSearch({UserToken}) {
       navigate('/Authorization')
     }
   }
-  const handleNavSearch = (e)=>{
-    let searchVal = e.target.value
-    return axios.get(ApiBaseUrl + ``)
+
+  const handleNavSearch =async (e)=>{
+    let {data} =await axios.get(ApiBaseUrl + `products${SelectedCategory ? `/${SelectedCategory}/category` : ''}?limit=5&name=${SearchVal}`)
+    setSearchResult(data?.data.data);
   }
 
   return <>
@@ -48,10 +51,31 @@ export default function HeaderSearch({UserToken}) {
           <div className="col-sm-6">
             <div className="headerSearchInput">
               <div className="p-inputgroup brdr-blue rounded-pill">
-                <InputText placeholder="Search for Products" className='nav-search position-relative border-0 ms-3' onChange={(e)=>{handleNavSearch(e)}}/>
+                <InputText placeholder="Search for Products" className='nav-search position-relative border-0 ms-3' onChange={(e)=>{setSearchVal(e.target.value)}}/>
                 <Dropdown value={SelectedCategory} onChange={(e) => setSelectedCategory(e.value)} showClear placeholder="All Categories" options={AllCategoriesName} className='border-0 main-orange-text'/>
-                <Button  icon="pi pi-search" className='main-orange-bg border-0 rounded-end-pill text-light'/>
+                <Button  icon="pi pi-search" className='main-orange-bg border-0 rounded-end-pill text-light' onClick={handleNavSearch}/>
               </div>
+              {SearchResult ? <> 
+              <div className="search-results w-75 ms-4 bg-light rounded-bottom p-2 pt-4 position-relative">
+                  <IoIosCloseCircleOutline className='close-btn' onClick={()=>{setSearchResult()}}/>
+                  {SearchResult.map((product) => <div key={product._id} className="search-result-item rounded bg-white w-100 d-flex align-items-center justify-content-between p-2">
+                      <img className='object-fit-contain' src={`https://electrobile-souq.onrender.com/${product.variants[0].imageCover}`} alt={product.name+ ' image'} />
+                      <h6 className="m-0 main-grey-text">{product.name}</h6>
+                      <p className="font-Roboto fw-bold dark-blue-text m-0">
+                        {product.priceDiscount.value > 0 ?
+                          product.priceDiscount.type === 'percentage' ? product.price * (product.priceDiscount.value / 100) : product.price - product.priceDiscount.value
+                          :
+                          product.price
+                        }
+                        JOD
+                      </p>
+                    </div>
+                  )}
+                  </div>
+                    </> 
+                    : 
+                    null
+              }
             </div>
           </div>
           <div className="col-sm-3">

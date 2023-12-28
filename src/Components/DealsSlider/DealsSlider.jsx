@@ -28,8 +28,8 @@ export default function DealsSlider({setIsDealsSliderLoading}) {
     slidesToShow: 4,
     slidesToScroll: 1,
     initialSlide: 0,
-    // nextArrow: <MdKeyboardArrowRight />,
-    // prevArrow: <MdKeyboardArrowLeft />,
+    nextArrow: <MdKeyboardArrowRight />,
+    prevArrow: <MdKeyboardArrowLeft />,
     responsive: [
       {
         breakpoint: 768,
