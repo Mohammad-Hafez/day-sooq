@@ -5,13 +5,14 @@ import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
 import {heart} from 'react-icons-kit/ionicons/heart'
 import { GoGitCompare } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
-
+        
 export default function ProductCard({product , category}) {
   let navigate = useNavigate()
 
   const handleCardClick = ()=>{
-    if (category === 'big-deals' || category ===  'bidding') {
+    if (category === 'big-deals' || category ===  'bidding' || category ===  'similar') {
       navigate(`/ProductDetails/${product._id}`)
+      console.log();
     }else{
       navigate(`/ProductDetails/${product.variant.product._id}`)
     }
@@ -21,44 +22,56 @@ export default function ProductCard({product , category}) {
               <div key={product._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-3" onClick={handleCardClick}>
               <p className='cardCategory me-auto'>Category</p>
               <div className="card-product-info mb-2">
-                <h6 className='cardProductName fw-bolder'>{product?.name}</h6>
+                <h6 className='cardProductName fw-bolder '>{product?.name}</h6>
                 <div className="slide-img over-flow-hidden">
-                  {category === 'big-deals' || category ===  'bidding' ? <>
+                  {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
                     <img  className='img-fluid h-100 w-100' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
                   </> : <>
-                  <img  className='img-fluid mb-2 flex-grow-1' src={ImgBaseURL + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+                    <img  className='img-fluid mb-2 flex-grow-1' src={ImgBaseURL + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
                   </>}
                 </div>
               </div>
               <div className="card-footer d-flex align-items-center justify-content-between w-100">
-                {category === 'big-deals' || category ===  'bidding' ? <>
-                  {category === 'big-deals'? <>
-                  <div className="salePrice">
-                  <h6 className='font-Roboto  dark-grey-text before-price'>
-                    {product?.price} JOD</h6>
-                  <h6 className='font-Roboto fw-bold pink-text'>
-                    {product.priceDiscount.value > 0
-                            ? product.priceDiscount.type === 'percentage'
-                              ? product.price *
-                                (product.priceDiscount.value / 100)
-                              : product.price - product.priceDiscount.value
-                            : product.price} JOD
-                  </h6>
-                </div>
-                  </>:<>
-                  <div className="prices">
-                  <h6 className='font-Roboto fw-bold dark-grey-text'>                          
-                    {product.priceDiscount.value > 0
-                            ? product.priceDiscount.type === 'percentage'
-                              ? product.price *
-                                (product.priceDiscount.value / 100)
-                              : product.price - product.priceDiscount.value
-                            : product.price} JOD
-                  </h6>
-                  <h6 className='font-Roboto fw-bold main-orange-text'>{product.price - product.biddingGap} JOD</h6>
-                </div>
-
-                  </>}
+                {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
+                    {category === 'similar' && 
+                      <div className="salePrice">
+                        <h6 className='font-Roboto fw-bold dark-grey-text'>
+                          {product.priceDiscount.value > 0
+                                    ? product.priceDiscount.type === 'percentage'
+                                      ? product.price *
+                                        (product.priceDiscount.value / 100)
+                                      : product.price - product.priceDiscount.value
+                          : product.price} JOD
+                        </h6>
+                      </div>
+                    }
+                    {category === 'big-deals' && 
+                      <div className="salePrice">
+                        <h6 className='font-Roboto  dark-grey-text before-price'>
+                          {product?.price} JOD</h6>
+                        <h6 className='font-Roboto fw-bold pink-text'>
+                          {product.priceDiscount.value > 0
+                                  ? product.priceDiscount.type === 'percentage'
+                                    ? product.price *
+                                      (product.priceDiscount.value / 100)
+                                    : product.price - product.priceDiscount.value
+                                  : product.price} JOD
+                        </h6>
+                      </div>
+                    }
+                    {category ===  'bidding' && 
+                      <div className="prices">
+                        <h6 className='font-Roboto fw-bold dark-grey-text'>                          
+                          {product.priceDiscount.value > 0
+                                  ? product.priceDiscount.type === 'percentage'
+                                    ? product.price *
+                                      (product.priceDiscount.value / 100)
+                                    : product.price - product.priceDiscount.value
+                                  : product.price} JOD
+                        </h6>
+                        <h6 className='font-Roboto fw-bold main-orange-text'>{product.price - product.biddingGap} JOD</h6>
+                      </div>
+                    }
                 </> : <>
                 <h6 className='font-Roboto fw-bold dark-grey-text'>
                   {product.variant.product.priceDiscount.value > 0

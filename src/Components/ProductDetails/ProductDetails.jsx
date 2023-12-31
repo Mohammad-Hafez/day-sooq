@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { MdOutlineStarOutline } from "react-icons/md";
 import SimilarProduct from '../SimilarProduct/SimilarProduct'
+import { TabView, TabPanel } from 'primereact/tabview';
 
 export default function ProductDetails() {
   let settings = {
@@ -23,7 +24,7 @@ export default function ProductDetails() {
 
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
-  let {data , isLoading} = useQuery('product-details' , getProduct);
+  let {data , isLoading} = useQuery('product-details' , getProduct , {cacheTime : 0});
 
   let product = (data?.data?.data?.data);
 
@@ -41,13 +42,13 @@ export default function ProductDetails() {
         <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name} / {product?.name}</p>
       </div>
       </>}
-      <div className="row">
+      <div className="row mb-3">
         <div className="col-8">
           <div className="row">
             <div className="col-md-4">
               <div className="product-images p-2 pt-4">
                 <Slider {...settings}>
-                  {product?.variants[0].images?.map((img , index)=><img className='w-100 rounded' key={index}  src={'https://electrobile-souq.onrender.com/' + img}  loading='lazy' alt={product.name + ' image'} />)}
+                  {product?.variants[0].images?.map((img , index)=><img className='img-fluid rounded' key={index}  src={'https://electrobile-souq.onrender.com/' + img}  loading='lazy' alt={product.name + ' image'} />)}
                 </Slider>  
               </div>
             </div>
@@ -91,7 +92,16 @@ export default function ProductDetails() {
           {/* *NOTE - Product Summary */}
         </div>
       </div>
-      <SimilarProduct product={product}/>
+      <div className="px-4">
+        <h6 className='main-orange-text mb-0'>Similar Products :</h6>
+        {product && <SimilarProduct subCategory={product?.subCategory._id}/>}
+      </div>
+      <div className="reviews">
+        <TabView className='brdr p-2'>
+          <TabPanel header="Description" className='dark-grey-text'></TabPanel>
+          <TabPanel header="Reviews"></TabPanel>
+        </TabView>
+      </div>
     </div>
     </>
 }
