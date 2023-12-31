@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import ApiBaseUrl from '../ApiBaseUrl';
+import {ApiBaseUrl} from '../ApiBaseUrl'
 import * as Yup from 'yup';
 import { Icon } from 'react-icons-kit'
 import { useNavigate } from 'react-router-dom';

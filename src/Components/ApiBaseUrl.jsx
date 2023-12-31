@@ -1,2 +1,3 @@
 const ApiBaseUrl = 'https://electrobile-souq.onrender.com/api/v1/';
-export default ApiBaseUrl;
+const ImgBaseURL = 'https://electrobile-souq.onrender.com/'
+export  {ApiBaseUrl , ImgBaseURL};

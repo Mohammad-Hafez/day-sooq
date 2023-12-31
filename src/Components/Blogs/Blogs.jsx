@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useQuery } from 'react-query'
-import ApiBaseUrl from '../ApiBaseUrl'
+import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
 import Slider from 'react-slick';
 
 export default function Blogs({setIsBlogsLoading}) {
@@ -37,7 +37,7 @@ export default function Blogs({setIsBlogsLoading}) {
     setIsBlogsLoading(isLoading)},
     [isLoading , setIsBlogsLoading])
   return <>
-  <div className="review-slider-Container light-grey-bg mb-5">
+  <div className="blogs-slider-Container light-grey-bg mb-5">
     <div className="container">
 
     </div>

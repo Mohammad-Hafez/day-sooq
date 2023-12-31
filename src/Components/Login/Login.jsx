@@ -7,9 +7,8 @@ import {eye} from 'react-icons-kit/feather/eye';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff'
 import {login} from 'react-icons-kit/entypo/login'
 import axios from 'axios';
-import ApiBaseUrl from '../ApiBaseUrl';
+import {ApiBaseUrl } from '../ApiBaseUrl'
 import {alertCircle} from 'react-icons-kit/feather/alertCircle'
-import { FcGoogle } from "react-icons/fc";
 export default function Login({saveUserData}) {
   const[isLoading,setIsLoading]=useState(false)
   const [passwordShown, setPasswordShown] = useState(false);

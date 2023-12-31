@@ -1,14 +1,10 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import ApiBaseUrl from '../ApiBaseUrl';
+import {ApiBaseUrl} from '../ApiBaseUrl'
 import { useQuery } from 'react-query';
-import Slider from 'react-slick';
-import { Icon } from 'react-icons-kit'
-import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
-import {heart} from 'react-icons-kit/ionicons/heart'
-import { GoGitCompare } from "react-icons/go";
+import ProductsSlider from '../ProductsSlider/ProductsSlider';
 
 export default function BestSlider({ setIsBestSliderLoading }) {
   const getBestSellers = () => {
@@ -22,30 +18,32 @@ export default function BestSlider({ setIsBestSliderLoading }) {
   }, [isLoading, setIsBestSliderLoading]);
 
   let BestSettings = {
+    infinite: false,
     lazyLoad: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     initialSlide: 0,
-    // adaptiveHeight: true,
-    nextArrow : <MdKeyboardArrowRight/> ,
-    prevArrow : <MdKeyboardArrowLeft /> ,
+    nextArrow: <MdKeyboardArrowRight />,
+    prevArrow: <MdKeyboardArrowLeft />,
     responsive: [
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          initialSlide: 1
+          slidesToShow: 2,
+          initialSlide: 0,
         },
       },
     ],
   };
+
+  let products = data?.data?.data?.data ;
 
   return (
     <div className="container mb-5">
@@ -53,37 +51,7 @@ export default function BestSlider({ setIsBestSliderLoading }) {
         <h4>Bestsellers</h4>
       </div>
       <div className="BestSlider-container position-relative">
-        <Slider {...BestSettings} className='rounded '>
-          {data?.data?.data?.data.map((product) => (
-            <div key={product.variant._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-3">
-              <p className='cardCategory me-auto'>Category</p>
-              <div className="card-product-info">
-                <h6 className='cardProductName fw-bolder h-25'>{product.variant.product.name}</h6>
-                <div className="slide-img over-flow-hidden">
-                  <img  className='img-fluid mb-2 flex-grow-1' src={'https://electrobile-souq.onrender.com/' + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
-                </div>
-              </div>
-              <div className="card-footer d-flex align-items-center justify-content-between w-100">
-
-                <h6 className='font-Roboto fw-bold dark-grey-text'>
-                  {product.variant.product.priceDiscount.value > 0
-                            ? product.variant.product.priceDiscount.type === 'percentage'
-                              ? product.variant.product.price *
-                                (product.variant.product.priceDiscount.value / 100)
-                              : product.variant.product.price - product.variant.product.priceDiscount.value
-                  : product.variant.product.price} JOD
-                </h6>
-                <div className="actionBtns position-relative">
-                  <div className="toggleBtns">
-                    <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1'><GoGitCompare/></button>
-                    <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2'><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
-                  </div>
-                  <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2'><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
+        <ProductsSlider products={products} settings={BestSettings} slider={'best-selling'}/>
       </div>
     </div>
   );

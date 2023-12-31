@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Slider from "react-slick";
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import ApiBaseUrl from '../ApiBaseUrl';
+import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
 
 export default function MainSlider({setIsBannerLoading}) {
   let settings = {
@@ -46,7 +46,7 @@ export default function MainSlider({setIsBannerLoading}) {
                 </div>
               </div>
               <div className="col-6">
-                <img alt='img1' src={'https://electrobile-souq.onrender.com/' +  data?.data?.data?.data[0].image} loading='lazy' className='img-fluid'/>
+                <img alt='img1' src={ImgBaseURL +  data?.data?.data?.data[0].image} loading='lazy' className='img-fluid'/>
               </div>
             </div>
           </div>
@@ -61,7 +61,7 @@ export default function MainSlider({setIsBannerLoading}) {
                 </div>
               </div>
               <div className="col-6">
-                <img alt='img2' src={'https://electrobile-souq.onrender.com/' +  data?.data?.data?.data[1].image} className='img-fluid'/>
+                <img alt='img2' src={ImgBaseURL +  data?.data?.data?.data[1].image} className='img-fluid'/>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@ export default function MainSlider({setIsBannerLoading}) {
                 </div>
               </div>
               <div className="col-6">
-              <img alt='img3' src={'https://electrobile-souq.onrender.com/' +  data?.data?.data?.data[2].image} className='img-fluid py-3'/>
+              <img alt='img3' src={ImgBaseURL +  data?.data?.data?.data[2].image} className='img-fluid py-3'/>
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@ import { ic_local_mall } from 'react-icons-kit/md/ic_local_mall';
 import { FiLogOut } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import ApiBaseUrl from '../ApiBaseUrl';
+import {ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 
 export default function HeaderSearch({ UserToken }) {
@@ -74,7 +74,7 @@ export default function HeaderSearch({ UserToken }) {
             </div>
           </div>
           <div className="col-sm-6">
-            <div className="headerSearchInput">
+            <div className="headerSearchInput position-relative">
               <div className="p-inputgroup brdr-blue rounded-pill">
                 <InputText
                   placeholder="Search for Products"
@@ -101,7 +101,7 @@ export default function HeaderSearch({ UserToken }) {
               </div>
               {SearchResult ? (
                 <>
-                  <div className="search-results w-75 ms-4 bg-light rounded-bottom p-2 pt-4 position-relative">
+                  <div className="search-results w-75 ms-4 bg-light rounded-bottom p-2 pt-4">
                     <IoIosCloseCircleOutline
                       className="close-btn"
                       onClick={handleCloseClick}
@@ -109,11 +109,11 @@ export default function HeaderSearch({ UserToken }) {
                     {SearchResult.map((product) => (
                       <div
                         key={product._id}
-                        className="search-result-item rounded bg-white w-100 d-flex align-items-center justify-content-between p-2"
+                        className="search-result-item rounded bg-white w-100 d-flex align-items-center justify-content-between p-2 mb-1 cursor-pointer"
                       >
                         <img
                           className="object-fit-contain"
-                          src={`https://electrobile-souq.onrender.com/${product.variants[0].imageCover}`}
+                          src={ImgBaseURL + product.variants[0].imageCover}
                           alt={product.name + ' image'}
                         />
                         <h6 className="m-0 main-grey-text">{product.name}</h6>

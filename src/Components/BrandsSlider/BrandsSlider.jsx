@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React , {useEffect} from 'react'
 import { useQuery } from 'react-query'
-import ApiBaseUrl from '../ApiBaseUrl'
+import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
 export default function BrandsSlider({setIsBrandSliderLoading}) {
   const getFeaturedBrands = ()=>{
     return axios.get(ApiBaseUrl + `brands`)  
@@ -22,7 +22,7 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
       <div className="row g-3">
         {data?.data?.data?.data.map((brand)=> <div key={brand._id} className="col-4 col-md-3 col-lg-2">
             <div className='brand-container p-2 h-100 cursor-pointer'>
-              <img src={ `https://electrobile-souq.onrender.com/`+brand.image} alt={brand.name} className='w-100 h-100 object-fit-contain'/>
+              <img src={ ImgBaseURL+brand.image} alt={brand.name} className='w-100 h-100 object-fit-contain'/>
             </div>
           </div>
         )}
