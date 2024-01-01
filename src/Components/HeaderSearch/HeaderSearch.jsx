@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useState } from 'react';
 import { Icon } from 'react-icons-kit';
 import { text_justify } from 'react-icons-kit/ikons/text_justify';
 import { Dropdown } from 'primereact/dropdown';
@@ -12,23 +12,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
+import { useQuery } from 'react-query';
+import { cartContext } from '../../context/CartContext';
 
 export default function HeaderSearch({ UserToken }) {
   let navigate = useNavigate();
 
-  const [AllCategoriesName, setAllCategoriesName] = useState([]);
+  let {numbOfCartItems} = useContext(cartContext)
+
   const [SelectedCategory, setSelectedCategory] = useState(null);
   const [SearchVal, setSearchVal] = useState('');
   const [SearchResult, setSearchResult] = useState(null);
 
-  const getAllCategories = async () => {
-    let { data } = await axios.get(ApiBaseUrl + `categories`);
-    setAllCategoriesName(data?.data?.data?.map((category) => category.name));
-  };
+  const getAllCategories =  () =>axios.get(ApiBaseUrl + `categories`);
 
-  useEffect(() => {
-    getAllCategories();
-  }, []);
+  let {data} = useQuery('categories-name' , getAllCategories , {cacheTime : 30000})
 
   const handleProfileClick = () => {
     if (UserToken) {
@@ -89,7 +87,7 @@ export default function HeaderSearch({ UserToken }) {
                   onChange={(e) => setSelectedCategory(e.value)}
                   showClear
                   placeholder="All Categories"
-                  options={AllCategoriesName}
+                  options={data?.data?.data?.data.map((category) => category.name)}
                   className="border-0 main-orange-text"
                 />
                 <Button
@@ -151,8 +149,8 @@ export default function HeaderSearch({ UserToken }) {
                   size={22}
                   icon={ic_local_mall}
                   className="me-1 cursor-pointer"
-                ></Icon>
-                <span className="cart-budget">0.00 JOD</span>
+                ></Icon>  <span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span>
+                <span className="ms-2 cart-budget"> 0.00 JOD</span>
               </span>
               {UserToken ? (
                 <FiLogOut className="dark-red-text fs-4 cursor-pointer" />

@@ -8,6 +8,7 @@ import ProductDetails from './Components/ProductDetails/ProductDetails';
 import { jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
+import { CartContextProvider } from './context/CartContext';
 
 function App() {
   const [UserData, setUserData] = useState(null);
@@ -33,17 +34,19 @@ function App() {
   
   return (
     <PrimeReactProvider>
-      <Router>
-        <Routes>
-          <Route path="" element={<Layout UserToken={UserToken}/>} >
-            <Route index element={<Home />} />
-            <Route path="AllCategories" element={<AllCategories />} />
-            <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
-            <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
-            <Route path="*" element={<NotFound/>} /> 
-          </Route>
-        </Routes>
-      </Router>
+      <CartContextProvider>
+        <Router>
+          <Routes>
+            <Route path="" element={<Layout UserToken={UserToken}/>} >
+              <Route index element={<Home />} />
+              <Route path="AllCategories" element={<AllCategories />} />
+              <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
+              <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
+              <Route path="*" element={<NotFound/>} /> 
+            </Route>
+          </Routes>
+        </Router>
+      </CartContextProvider>
     </PrimeReactProvider>
   );
 }

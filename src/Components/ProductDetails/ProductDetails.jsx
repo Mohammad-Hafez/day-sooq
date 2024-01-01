@@ -10,6 +10,7 @@ import { MdOutlineStarPurple500 } from "react-icons/md";
 import { MdOutlineStarOutline } from "react-icons/md";
 import SimilarProduct from '../SimilarProduct/SimilarProduct'
 import { TabView, TabPanel } from 'primereact/tabview';
+import ProductSummary from '../ProductSummary/ProductSummary'
 
 export default function ProductDetails() {
   let settings = {
@@ -90,13 +91,15 @@ export default function ProductDetails() {
         </div>
         <div className="col-4">
           {/* *NOTE - Product Summary */}
+          {product && <ProductSummary product={product}/>}
+          
         </div>
       </div>
       <div className="px-4">
         <h6 className='main-orange-text mb-0'>Similar Products :</h6>
         {product && <SimilarProduct subCategory={product?.subCategory._id}/>}
       </div>
-      <div className="reviews">
+      <div className="reviews px-5">
         <TabView className='brdr p-2'>
           <TabPanel header="Description" className='dark-grey-text'></TabPanel>
           <TabPanel header="Reviews"></TabPanel>

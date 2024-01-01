@@ -6,7 +6,7 @@ import {heart} from 'react-icons-kit/ionicons/heart'
 import { GoGitCompare } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
         
-export default function ProductCard({product , category}) {
+export default function ProductCard({product , category }) {
   let navigate = useNavigate()
 
   const handleCardClick = ()=>{
@@ -19,7 +19,7 @@ export default function ProductCard({product , category}) {
   }
 
   return <>
-              <div key={product._id} className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-3" onClick={handleCardClick}>
+              <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-3" onClick={handleCardClick}>
               <p className='cardCategory me-auto'>Category</p>
               <div className="card-product-info mb-2">
                 <h6 className='cardProductName fw-bolder '>{product?.name}</h6>
