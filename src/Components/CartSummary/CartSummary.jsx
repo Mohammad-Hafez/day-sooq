@@ -1,5 +1,8 @@
 import React from 'react'
-export default function CartSummary() {
+export default function CartSummary({cartItems}) {
+
+  let totalPrice = cartItems
+
   return <>
   <div className="cartSummary">
     <div className="brdr p-3 d-flex flex-column align-items-start justify-content-start">
@@ -28,7 +31,7 @@ export default function CartSummary() {
               JOD
             </span>
           </p>
-          <hr />
+          <hr/>
           <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between'>
             Total : 
             <span className='ms-1 fw-bold'>

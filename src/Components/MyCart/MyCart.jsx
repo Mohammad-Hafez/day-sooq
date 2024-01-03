@@ -6,35 +6,47 @@ import Loader from '../Loader/Loader';
 import { ImgBaseURL } from '../ApiBaseUrl';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import CartSummary from '../CartSummary/CartSummary';
+import { FaTrashAlt } from "react-icons/fa";
 
 export default function MyCart() {
 
-  let {getLoggedUserCart} = useContext(cartContext);
+  let {getLoggedUserCart , updateProductCount , removeItem , setNumbOfCartItems} = useContext(cartContext);
 
-  let {data , isLoading} = useQuery('get-my-cart' ,getLoggedUserCart );
+  let {data , isLoading ,isFetching , refetch} = useQuery('get-my-cart' , getLoggedUserCart );
 
   let cartItems = data?.data.data.data;
-  console.log(data?.data.data.data);
+
+  if (data) {
+    setNumbOfCartItems(data?.data?.data.data.length);
+  }
 
   const [productCounts, setProductCounts] = useState({});
 
   const incrementCount = (item) => {
-    const currentCount = productCounts[item._id] || 1;
+    const currentCount = productCounts[item._id] || item.quantity;
     const newCount = currentCount + 1;
     if (newCount <= item.variant.quantity) {
       setProductCounts({ ...productCounts, [item._id]: newCount });
+      updateProductCount(item._id , item.variant._id , newCount)
     }
   };
 
-  const decrementCount = (itemId) => {
-    const currentCount = productCounts[itemId] || 1;
+  const decrementCount = (item) => {
+    const currentCount = productCounts[item._id] || item.quantity;
+    const newCount = currentCount - 1;
     if (currentCount > 0) {
-      setProductCounts({ ...productCounts, [itemId]: currentCount - 1 });
+      setProductCounts({ ...productCounts, [item._id]: newCount});
+      updateProductCount(item._id , item.variant._id , newCount)
     }
   };
 
-  const deleteItem = (itemId) => {
-    // Implement your logic to remove the item from the cart
+  const deleteItem = async (itemId) => {
+    try {
+      await removeItem(itemId);
+      refetch();
+    } catch (error) {
+      console.error('Error deleting item:', error);
+    }
   };
 
   return <>
@@ -42,6 +54,7 @@ export default function MyCart() {
       <title>SHOPPING CART</title>
     </Helmet>
     {isLoading ? <Loader/>: <>
+    
     <div className="container mt-2 mb-4">
       <p className='main-grey-text'>Cart</p>
       <div className="row">
@@ -63,18 +76,18 @@ export default function MyCart() {
                         <p className='m-0'>Color : {item.variant.color}</p>
                       </div>
                       <div className="deleteItem">
-                        <span className='text-danger cursor-pointer' onClick={() => deleteItem(item._id)}>delete</span>
+                        <span className='dark-red-text cursor-pointer' onClick={() => deleteItem(item._id)}><FaTrashAlt/></span>
                       </div>
                     </div>
                     <div className="itemPrice d-flex align-items-start justify-content-between">
-                      <h6 className='m-0 dark-grey-text'> {(item.price + item.variant.extraPrice) * (productCounts[item._id] || 1) } JOD</h6>
+                      <h6 className='m-0 dark-grey-text'> {(item.price + item.variant.extraPrice) * (productCounts[item._id] || item.quantity) } JOD</h6>
                       <button
                         className='brdr d-flex align-items-center justify-content-between px-3 py-1 light-grey-bg '
                         disabled={productCounts[item._id] >= item.variant.quantity}
                       >
                         <span><FaPlus onClick={() => incrementCount(item)} size={15}/></span>
-                        <span className='mx-4'>{productCounts[item._id] || 1}</span>
-                        <span><FaMinus onClick={() => decrementCount(item._id)} size={15} /></span>
+                        <span className='mx-4'>{productCounts[item._id] || item.quantity}</span>
+                        <span><FaMinus onClick={() => decrementCount(item)} size={15} /></span>
                       </button>
 
                     </div>
@@ -85,10 +98,11 @@ export default function MyCart() {
           </div>
         </div>
         <div className="col-md-4">
-          {cartItems && <CartSummary/> }
+          {cartItems && <CartSummary cartItems={cartItems}/> }
         </div>
       </div>
     </div>
     </>}
+    {isFetching && <Loader />}
     </>
 }

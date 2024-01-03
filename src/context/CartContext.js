@@ -25,7 +25,6 @@ export function CartContextProvider(props) {
         let response = await getLoggedUserCart()
         if (response?.data?.status === 'success') {
             setNumbOfCartItems(response.data.data.data.length);
-            console.log(response.data.data.data.length);
         }
     }
 
@@ -49,7 +48,7 @@ export function CartContextProvider(props) {
     }
         
     function removeItem(productId){
-        return axios.delete(ApiBaseUrl + `/api/v1/cart/${productId}` ,
+        return axios.delete(ApiBaseUrl + `cards/${productId}` ,
         {
             headers
         }
@@ -57,11 +56,13 @@ export function CartContextProvider(props) {
         .catch((erorr) => erorr)
     }
 
-    function updateProductCount(productId , count){
-        return axios.put(ApiBaseUrl + `/api/v1/cart/${productId}` ,
-        {
-            count
-        },
+    function updateProductCount(cartId ,variantId , quantity ){
+        const cartItem = {
+            variant: variantId,
+            quantity: quantity,
+        };
+        return axios.patch(ApiBaseUrl + `cards/${cartId}` ,
+            cartItem ,
         {
             headers
         }
