@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState } from 'react';
+import React, {useContext,useState } from 'react';
 import { Icon } from 'react-icons-kit';
 import { text_justify } from 'react-icons-kit/ikons/text_justify';
 import { Dropdown } from 'primereact/dropdown';
@@ -12,10 +12,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
-import { useQuery } from 'react-query';
 import { cartContext } from '../../context/CartContext';
- 
-export default function HeaderSearch({ UserToken }) {
+
+export default function HeaderSearch({ UserToken , categories}) {
   let navigate = useNavigate();
 
   let {numbOfCartItems} = useContext(cartContext)
@@ -23,10 +22,6 @@ export default function HeaderSearch({ UserToken }) {
   const [SelectedCategory, setSelectedCategory] = useState(null);
   const [SearchVal, setSearchVal] = useState('');
   const [SearchResult, setSearchResult] = useState(null);
-
-  const getAllCategories =  () =>axios.get(ApiBaseUrl + `categories`);
-
-  let {data} = useQuery('categories-name' , getAllCategories , {cacheTime : 30000})
 
   const handleProfileClick = () => {
     if (UserToken) {
@@ -49,7 +44,6 @@ export default function HeaderSearch({ UserToken }) {
     setSearchVal('');
   };
 
-  // useEffect(()=>{numbOfCartItems},[numbOfCartItems])
   return (
     <>
       <div className="search-header">
@@ -88,7 +82,7 @@ export default function HeaderSearch({ UserToken }) {
                   onChange={(e) => setSelectedCategory(e.value)}
                   showClear
                   placeholder="All Categories"
-                  options={data?.data?.data?.data.map((category) => category.name)}
+                  options={categories?.map((category) => category.name)}
                   className="border-0 main-orange-text"
                 />
                 <Button
@@ -140,6 +134,7 @@ export default function HeaderSearch({ UserToken }) {
                 className="main-grey-text me-2 cursor-pointer"
                 onClick={handleProfileClick}
               ></Icon>
+              {UserToken ? <>
               <Icon
                 size={22}
                 icon={heart}
@@ -154,9 +149,9 @@ export default function HeaderSearch({ UserToken }) {
                 ></Icon> {numbOfCartItems > 0 &&<span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span> } 
                 <span className="ms-2 cart-budget"> 0.00 JOD</span>
               </span>
-              {UserToken ? (
+              
                 <FiLogOut className="dark-red-text fs-4 cursor-pointer" />
-              ) : null}
+                </> : null}
             </div>
           </div>
         </div>

@@ -81,15 +81,11 @@ export default function MyCart() {
                     </div>
                     <div className="itemPrice d-flex align-items-start justify-content-between">
                       <h6 className='m-0 dark-grey-text'> {(item.price + item.variant.extraPrice) * (productCounts[item._id] || item.quantity) } JOD</h6>
-                      <button
-                        className='brdr d-flex align-items-center justify-content-between px-3 py-1 light-grey-bg '
-                        disabled={productCounts[item._id] >= item.variant.quantity}
-                      >
-                        <span><FaPlus onClick={() => incrementCount(item)} size={15}/></span>
+                      <div className='brdr d-flex align-items-center justify-content-between px-3 py-1 light-grey-bg'>
+                        <span className='cursor-pointer'><FaPlus onClick={() => incrementCount(item)} size={15}/></span>
                         <span className='mx-4'>{productCounts[item._id] || item.quantity}</span>
-                        <span><FaMinus onClick={() => decrementCount(item)} size={15} /></span>
-                      </button>
-
+                        <span className='cursor-pointer'><FaMinus onClick={() => decrementCount(item)} size={15} /></span>
+                      </div>
                     </div>
                   </div>
                 </div>

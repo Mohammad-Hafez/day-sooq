@@ -9,6 +9,7 @@ import BrandsSlider from '../BrandsSlider/BrandsSlider'
 import BestSlider from '../BestSlider/BestSlider'
 import DealsSlider from '../DealsSlider/DealsSlider'
 import Blogs from '../Blogs/Blogs'
+import EmailTab from '../EmailTab/EmailTab'
 
 export default function Home() {
   const [IsBannerLoading, setIsBannerLoading] = useState(false);
@@ -31,6 +32,7 @@ export default function Home() {
     <BestSlider setIsBestSliderLoading={setIsBestSliderLoading}/>
     <DealsSlider setIsDealsSliderLoading={setIsDealsSliderLoading}/>
     <Blogs setIsBlogsLoading={setIsBlogsLoading}/>
+    <EmailTab/>
     {IsBannerLoading || IsBiddingSliderLoading || IsFeaturedCategoriesLoading || IsBrandSliderLoading || IsBestSliderLoading || IsDealsSliderLoading || IsBlogsLoading ? <Loader/> : <></>}
     </>
 }
