@@ -1,4 +1,4 @@
-import React, {useContext, useState } from 'react';
+import React, {useContext, useEffect, useState } from 'react';
 import { Icon } from 'react-icons-kit';
 import { text_justify } from 'react-icons-kit/ikons/text_justify';
 import { Dropdown } from 'primereact/dropdown';
@@ -14,7 +14,7 @@ import {ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { useQuery } from 'react-query';
 import { cartContext } from '../../context/CartContext';
-
+ 
 export default function HeaderSearch({ UserToken }) {
   let navigate = useNavigate();
 
@@ -49,6 +49,7 @@ export default function HeaderSearch({ UserToken }) {
     setSearchVal('');
   };
 
+  // useEffect(()=>{numbOfCartItems},[numbOfCartItems])
   return (
     <>
       <div className="search-header">
@@ -146,10 +147,11 @@ export default function HeaderSearch({ UserToken }) {
               ></Icon>
               <span className="cart-icon position-relative me-2 main-grey-text d-flex align-items-center">
                 <Icon
+                  onClick={()=> navigate('/MyCart')}
                   size={22}
                   icon={ic_local_mall}
                   className="me-1 cursor-pointer"
-                ></Icon>  <span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span>
+                ></Icon> {numbOfCartItems > 0 &&<span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span> } 
                 <span className="ms-2 cart-budget"> 0.00 JOD</span>
               </span>
               {UserToken ? (

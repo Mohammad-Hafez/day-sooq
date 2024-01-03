@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
@@ -13,6 +13,7 @@ import { TabView, TabPanel } from 'primereact/tabview';
 import ProductSummary from '../ProductSummary/ProductSummary'
 
 export default function ProductDetails() {
+
   let settings = {
     dots: true,
     infinite: true,
@@ -23,15 +24,30 @@ export default function ProductDetails() {
 
   let {id} = useParams();
 
+  
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
   let {data , isLoading} = useQuery('product-details' , getProduct , {cacheTime : 0});
 
   let product = (data?.data?.data?.data);
 
+  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+
+
   const splitDescription = product?.description?.split(',').map((item, index) => <li className='mb-1' key={index}>{item.trim()}</li> )
 
-  const colors = product?.variants.map((product , index)=> <div key={index} className='color rounded me-1' style={{ background: `linear-gradient(182deg, #F2FFF7 0%, ${product?.color} 100%)` }}> </div>);
+  const colors = product?.variants.map((product , index)=>  <div
+                                                                  key={index}
+                                                                  onClick={() => setSelectedVariant(product)}
+                                                                  className={`color rounded me-1 ${selectedVariant?._id === product._id ? 'selected' : ''}`}
+                                                                  style={{
+                                                                    background: `linear-gradient(182deg, #F2FFF7 0%, ${product?.color} 100%)`,
+                                                                    border: selectedVariant?._id === product._id ? '2px solid #000' : 'none',
+                                                                  }}
+                                                              >
+                                                            </div>
+                                                          );
+  
   return <>
     <Helmet>
       <title>{product?.name?.split(' ').slice(0, 2).join(' ')}</title>
@@ -81,7 +97,6 @@ export default function ProductDetails() {
                     <h6 className='dark-grey-text'>colors</h6>
                     <div className="p-colors d-flex">
                       {colors}
-
                     </div>
                   </div>
                 </div>
@@ -90,9 +105,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="col-4">
-          {/* *NOTE - Product Summary */}
-          {product && <ProductSummary product={product}/>}
-          
+          {product && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
         </div>
       </div>
       <div className="px-4">

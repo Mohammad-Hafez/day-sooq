@@ -10,13 +10,11 @@ export default function SimilarProduct({subCategory}) {
   return <>
   <div className="similar">
     <div className="row">
-      {similarProducts?.map((product)=> <>
-      <div className="col-6 col-md-3">
+      {similarProducts?.map((product , index)=> <div key={product._id} className="col-6 col-md-3">
         <div className="similar-container p-3">
           <ProductCard product={product} category={'similar'}/>
         </div>
       </div>
-      </>
       )}
     </div>
   </div>

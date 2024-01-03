@@ -9,6 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 import { CartContextProvider } from './context/CartContext';
+import MyCart from './Components/MyCart/MyCart';
 
 function App() {
   const [UserData, setUserData] = useState(null);
@@ -42,6 +43,7 @@ function App() {
               <Route path="AllCategories" element={<AllCategories />} />
               <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
+              <Route path="MyCart" element={<MyCart UserToken={UserToken}/>} /> 
               <Route path="*" element={<NotFound/>} /> 
             </Route>
           </Routes>
