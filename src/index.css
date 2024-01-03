@@ -20,11 +20,13 @@ code {
   --dark-blue : #003566 ;
   --light-blue : #0077E4 ;
   --light-blueBtns : #319DFF ;
+  --normal-blue-text : #1B5A7D ;
   --main-orange : #FF6000 ;
   --light-grey-txt : #7D8FA9;
   --grey-color : #586A84 ;
   --dark-grey-color : #1D232C ;
   --grey-bgColor : #EEF0F4 ;
+  --grey-border-color : #D4D4D4 ;
   --White-color : #FFFFFF ;
   --light-bgGreen : #CF0 ;
   --light-txtGreen : #8CE744 ;
@@ -43,6 +45,9 @@ code {
     -ms-border-radius: 25px; 
     -o-border-radius: 25px;
 }
+.grey-brdr{
+  border: 1px solid var(--grey-border-color);
+}
 .star{
   color: var(--star-color);
 }
@@ -51,6 +56,9 @@ code {
 }
 .dark-blue-text{
   color: var(--dark-blue);
+}
+.normal-blue-text{
+  color: var(--normal-blue-text);
 }
 .light-blue-text{
   color: var(--light-blue);
@@ -548,10 +556,26 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
 .before-price{
   text-decoration: line-through;
 }
-
+/* *NOTE - Blogs Syle */
+.blogImage img{
+  /* max-width: 300px; */
+  height: 100% !important;
+  object-fit:fill;
+  aspect-ratio: 16 / 9;
+}
+.blogDate{
+  width: fit-content;
+}
 /* *NOTE - Footer style */
 .email-tab{
   background: linear-gradient(270deg, #003566 6.75%, #FF6000 99.3%);
+}
+.send-email{
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  -moz-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  -o-transform: translateX(100%);
 }
 .footer{
 background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4, 0.01) 98.64%);
