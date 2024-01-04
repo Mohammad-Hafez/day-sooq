@@ -63,7 +63,8 @@ const [Cities, setCities] = useState();
     <div className="container my-4">
       <div className="row">
         <div className="col-8">
-          <form onSubmit={shippingFormik.handleSubmit} className=''>
+          <h4 className='main-orange-text font-Poppins fw-bold'>Shipping Information</h4>
+          <form onSubmit={shippingFormik.handleSubmit} className='font-Poppins'>
             <div className="row gy-3">
               <div className="col-sm-6">
                 <label className='ms-2' htmlFor="firstName">First Name</label>
