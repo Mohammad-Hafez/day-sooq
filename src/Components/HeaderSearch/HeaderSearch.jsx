@@ -18,7 +18,7 @@ import { AiOutlineLogin } from "react-icons/ai";
 export default function HeaderSearch({ UserToken , categories}) {
   let navigate = useNavigate();
 
-  let {numbOfCartItems} = useContext(cartContext)
+  let {numbOfCartItems , TotalPrice} = useContext(cartContext)
 
   const [SelectedCategory, setSelectedCategory] = useState(null);
   const [SearchVal, setSearchVal] = useState('');
@@ -149,7 +149,7 @@ export default function HeaderSearch({ UserToken , categories}) {
                   icon={ic_local_mall}
                   className="me-1 cursor-pointer"
                 ></Icon> {numbOfCartItems > 0 &&<span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span> } 
-                <span className="ms-2 cart-budget"> 0.00 JOD</span>
+                <span className="ms-2 cart-budget"> {TotalPrice} JOD</span>
               </span>
               
                 <FiLogOut className="dark-red-text fs-4 cursor-pointer" />
