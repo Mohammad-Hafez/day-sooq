@@ -13,6 +13,7 @@ import axios from 'axios';
 import {ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { cartContext } from '../../context/CartContext';
+import { AiOutlineLogin } from "react-icons/ai";
 
 export default function HeaderSearch({ UserToken , categories}) {
   let navigate = useNavigate();
@@ -128,13 +129,13 @@ export default function HeaderSearch({ UserToken , categories}) {
           </div>
           <div className="col-sm-3">
             <div className="profileContainer d-flex align-items-center justify-content-center">
-              <Icon
+              {UserToken ? <>
+                <Icon
                 size={22}
                 icon={androidPerson}
                 className="main-grey-text me-2 cursor-pointer"
                 onClick={handleProfileClick}
               ></Icon>
-              {UserToken ? <>
               <Icon
                 size={22}
                 icon={heart}
@@ -152,7 +153,13 @@ export default function HeaderSearch({ UserToken , categories}) {
               </span>
               
                 <FiLogOut className="dark-red-text fs-4 cursor-pointer" />
-                </> : null}
+                </> : <span className='dark-blue-text cursor-pointer text-uppercase' onClick={handleProfileClick}>Have an Acount ?
+                  <AiOutlineLogin
+                    size={22}
+                    icon={androidPerson}
+                    className="ms-1"
+                  />
+                    </span>}
             </div>
           </div>
         </div>
