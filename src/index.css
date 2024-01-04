@@ -45,6 +45,9 @@ code {
     -ms-border-radius: 25px; 
     -o-border-radius: 25px;
 }
+.blue-brdr{
+  border: 1px solid rgba(0, 53, 102, 0.50);
+}
 .grey-brdr{
   border: 1px solid var(--grey-border-color);
 }

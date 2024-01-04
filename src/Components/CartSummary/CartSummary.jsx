@@ -13,8 +13,8 @@ export default function CartSummary() {
 
   return <>
   <div className="cartSummary">
-    <div className="brdr p-3 d-flex flex-column align-items-start justify-content-start">
-      <h5 className='main-orange-text mb-3'>Order Summary</h5>
+    <div className="brdr p-3 d-flex flex-column align-items-start justify-content-start font-Poppins">
+      <h5 className='main-orange-text mb-3 font-Poppins fw-bolder'>Cart Summary</h5>
           <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between'>
             Subtotal : 
             <span className='ms-1 fw-bold'>

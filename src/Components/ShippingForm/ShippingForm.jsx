@@ -6,6 +6,7 @@ import { ApiBaseUrl } from '../ApiBaseUrl'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Dropdown } from 'primereact/dropdown';
+import OrderSummary from '../OrderSummary/OrderSummary'
 
 export default function ShippingForm() {
 const [Cities, setCities] = useState();
@@ -54,7 +55,7 @@ const [Cities, setCities] = useState();
     const countryIsoCode = data?.data?.data?.countries?.find(country => country.name === selectedCountry)?.isoCode;
     getCities(countryIsoCode)
   };
-  
+
   return <>
     <Helmet>
       <title>Checkout</title>
@@ -106,19 +107,19 @@ const [Cities, setCities] = useState();
               </div>
               <div className="col-sm-6">
                 <label className='ms-2' htmlFor="email">Email</label>
-                <input type="text" placeholder='First Name' className="form-control mb-2 AuthForm-inputs" id="email" name="email" value={shippingFormik.values.email} onChange={shippingFormik.handleChange} onBlur={shippingFormik.handleBlur} />
+                <input type="text" placeholder='Email Address' className="form-control mb-2 AuthForm-inputs" id="email" name="email" value={shippingFormik.values.email} onChange={shippingFormik.handleChange} onBlur={shippingFormik.handleBlur} />
                 {shippingFormik.errors.email && shippingFormik.touched.email ? <div className="alert alert-danger">{shippingFormik.errors.email}</div>: null}
               </div>
               <div className="col-sm-6">
                 <label className='ms-2' htmlFor="phone">Phone</label>
-                <input type="text" placeholder='First Name' className="form-control mb-2 AuthForm-inputs" id="phone" name="phone" value={shippingFormik.values.phone} onChange={shippingFormik.handleChange} onBlur={shippingFormik.handleBlur} />
+                <input type="text" placeholder='Your Phone Number' className="form-control mb-2 AuthForm-inputs" id="phone" name="phone" value={shippingFormik.values.phone} onChange={shippingFormik.handleChange} onBlur={shippingFormik.handleBlur} />
                 {shippingFormik.errors.phone && shippingFormik.touched.phone ? <div className="alert alert-danger">{shippingFormik.errors.phone}</div>: null}
               </div>
             </div>
           </form>
         </div>
         <div className="col-4">
-
+          <OrderSummary/>
         </div>
       </div>
     </div>

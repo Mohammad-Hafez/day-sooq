@@ -22,7 +22,7 @@ export default function ProductSummary({ product, quantity , SelectedVariant }) 
   return (
     <>
       <div className="p-summary">
-        <div className="brdr p-3 d-flex flex-column align-items-start justify-content-start">
+        <div className="brdr p-3 d-flex flex-column align-items-start justify-content-start font-Poppins">
           <div className="delivery d-flex align-items-center justify-content-between w-100 mb-3">
             <p className='m-0 light-grey-text'>Delivery :</p>
             <div className="free-badge light-gtreen-bg px-2 rounded-pill">
