@@ -5,8 +5,8 @@ import { ApiBaseUrl } from "../Components/ApiBaseUrl";
 export let cartContext = createContext();
 export function CartContextProvider(props) {
 
-    const [cartId, setCartId] = useState();
     const [numbOfCartItems, setNumbOfCartItems] = useState();
+    const [TotalPrice, setTotalPrice] = useState()
 
     let headers = {
         'Authorization': `Bearer ${localStorage.getItem("DaySooqUser")}` 
@@ -25,6 +25,10 @@ export function CartContextProvider(props) {
         let response = await getLoggedUserCart()
         if (response?.data?.status === 'success') {
             setNumbOfCartItems(response.data.data.data.length);
+            setTotalPrice(response.data.data.data.reduce((sum, product) => {
+                const productPrice = (product.price + product.variant.extraPrice) * product.quantity;
+                return sum + productPrice;
+            }, 0))
         }
     }
 
@@ -52,7 +56,11 @@ export function CartContextProvider(props) {
         {
             headers
         }
-        ).then((response) => response)
+        ).then((response) => {           
+            getCart()
+            return response
+            }
+        )
         .catch((erorr) => erorr)
     }
 
@@ -66,7 +74,10 @@ export function CartContextProvider(props) {
         {
             headers
         }
-        ).then((response) => response)
+        ).then((response) => {           
+            getCart()
+            return response
+            })
         .catch((erorr) => erorr)
     }
 
@@ -81,8 +92,24 @@ export function CartContextProvider(props) {
         ).then((response) => response)
         .catch((erorr) => erorr)
     }
+
+    function applyPromoCode (promoCode , totalPrice){
+        return axios.post(ApiBaseUrl + 'coupons/applyCoupon' , 
+        {
+            promoCode :promoCode , 
+            totalPrice :totalPrice ,
+        },
+        {
+            headers
+        }).then((response) => {           
+            // getCart()
+            return response
+            })
+        .catch((erorr) => erorr)
+    }
+
     return <>
-    <cartContext.Provider value={{setNumbOfCartItems , numbOfCartItems , onlinePayment, addToCart , getLoggedUserCart , removeItem , updateProductCount }}>
+    <cartContext.Provider value={{setNumbOfCartItems, numbOfCartItems, TotalPrice, applyPromoCode, onlinePayment, addToCart, getLoggedUserCart, removeItem, updateProductCount }}>
         {props.children}
     </cartContext.Provider>
     </>

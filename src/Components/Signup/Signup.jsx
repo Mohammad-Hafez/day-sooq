@@ -7,7 +7,7 @@ import { Icon } from 'react-icons-kit'
 import { useNavigate } from 'react-router-dom';
 import {eye} from 'react-icons-kit/feather/eye';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff'
-import {google} from 'react-icons-kit/icomoon/google'
+
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
@@ -109,7 +109,7 @@ const Register = () => {
                   {/* password input */}
                   <label className='ms-1' htmlFor="password">Password</label>
                   <input type={passwordShown ? 'text' : 'password'} className="mb-2 form-control AuthForm-inputs" placeholder='Password' name="password" id="password" current-password = "true" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                  <span onClick={togglePassword} className='togglePassword position-absolute top-0 end-0 me-3 mt-3 cursor-pointer'>{passwordShown ? <Icon className='text-danger' icon={eye}></Icon>:<Icon className='text-main' icon={eyeOff}></Icon>}</span>
+                  <span onClick={togglePassword} className='togglePassword position-absolute top-0 end-0 me-3 mt-4 cursor-pointer'>{passwordShown ? <Icon className='text-danger' icon={eye}></Icon>:<Icon className='text-main' icon={eyeOff}></Icon>}</span>
                 </div>
                 {formik.errors.password && formik.touched.password ? <div className="alert alert-danger">{formik.errors.password}</div> : null}
               </div>
@@ -118,7 +118,7 @@ const Register = () => {
                   {/* Re-password input */}
                   <label className='ms-1' htmlFor="passwordConfirm">Re-Password</label>
                   <input type={passwordConfirmShown ? 'text' : 'Password'} className="mb-2 form-control AuthForm-inputs" placeholder='Password' name="passwordConfirm" id="passwordConfirm" current-password = "true" value={formik.values.passwordConfirm} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                  <span onClick={togglepasswordConfirm} className='togglePassword position-absolute top-0 end-0 me-3 mt-3 cursor-pointer'>{passwordConfirmShown ? <Icon className='text-danger' icon={eye}></Icon>:<Icon className='text-main' icon={eyeOff}></Icon>}</span>
+                  <span onClick={togglepasswordConfirm} className='togglePassword position-absolute top-0 end-0 me-3 mt-4 cursor-pointer'>{passwordConfirmShown ? <Icon className='text-danger' icon={eye}></Icon>:<Icon className='text-main' icon={eyeOff}></Icon>}</span>
                 </div>
                 {formik.errors.passwordConfirm && formik.touched.passwordConfirm ? <div className="alert alert-danger">{formik.errors.passwordConfirm}</div> : null}
               </div>
@@ -130,8 +130,6 @@ const Register = () => {
              : 
               <button type="submit" disabled={!(formik.isValid && formik.dirty)} className="btn btn-orange rounded-pill  text-light">SIGN UP</button>
             }
-            <span className='mx-3'>or</span>
-            <button className='btn rounded-pill border shadow-sm'><Icon icon={google} size={23} className='google-icon'></Icon> Google</button>
           </div>
         </div>
       </form>

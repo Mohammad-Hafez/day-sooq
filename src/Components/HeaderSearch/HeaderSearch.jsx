@@ -139,6 +139,7 @@ export default function HeaderSearch({ UserToken , categories}) {
                 size={22}
                 icon={heart}
                 className="main-grey-text me-2 cursor-pointer"
+                onClick={()=>navigate('/WishList')}
               ></Icon>
               <span className="cart-icon position-relative me-2 main-grey-text d-flex align-items-center">
                 <Icon

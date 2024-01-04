@@ -94,7 +94,7 @@ export default function MyCart() {
           </div>
         </div>
         <div className="col-md-4">
-          {cartItems && <CartSummary cartItems={cartItems}/> }
+          {cartItems && <CartSummary/> }
         </div>
       </div>
     </div>
