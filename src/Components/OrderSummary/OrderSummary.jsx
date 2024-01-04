@@ -1,9 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { cartContext } from '../../context/CartContext';
-import { IoBagCheck } from "react-icons/io5";
+import { IoBagCheck } from 'react-icons/io5';
+import { RadioButton } from 'primereact/radiobutton';
 
 export default function OrderSummary() {
   let {TotalPrice} = useContext(cartContext);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('cash');
+
+  const handlePaymentMethodChange = (e) => {
+    setSelectedPaymentMethod(e.value);
+  };
 
   return <>
   <div className="orderSummary blue-brdr rounded-4 mt-3 p-3 d-flex flex-column align-items-start justify-content-start font-Poppins">
@@ -27,6 +33,30 @@ export default function OrderSummary() {
       </h5>
     </p>
     <h5 className='dark-grey-text fw-bolder'>Payment Method</h5>
+    <div className="payment-method-radio">
+          <div className="p-field-radiobutton mb-2">
+            <RadioButton
+              inputId="cash"
+              name="paymentMethod"
+              value="cash"
+              onChange={handlePaymentMethodChange}
+              checked={selectedPaymentMethod === 'cash'}
+              className='me-1'
+            />
+            <label htmlFor="cash">Cash on Delivery</label>
+          </div>
+          <div className="p-field-radiobutton mb-3">
+            <RadioButton
+              inputId="online"
+              name="paymentMethod"
+              value="online"
+              onChange={handlePaymentMethodChange}
+              checked={selectedPaymentMethod === 'online'}
+              className='me-1'
+            />
+            <label htmlFor="online">Credit or Debit Card</label>
+          </div>
+        </div>
     <button className='btn-orange rounded-pill w-100 py-2'>Place Order <IoBagCheck className='pb-1 fs-4'/></button>
   </div>
     </>
