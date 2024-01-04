@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../context/CartContext';
+import { IoBagCheck } from "react-icons/io5";
+
 export default function OrderSummary() {
   let {TotalPrice} = useContext(cartContext);
 
@@ -24,6 +26,8 @@ export default function OrderSummary() {
         {TotalPrice} JOD
       </h5>
     </p>
+    <h5 className='dark-grey-text fw-bolder'>Payment Method</h5>
+    <button className='btn-orange rounded-pill w-100 py-2'>Place Order <IoBagCheck className='pb-1 fs-4'/></button>
   </div>
     </>
 }
