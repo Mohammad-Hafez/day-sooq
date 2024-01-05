@@ -30,8 +30,8 @@ export default function ProductCard({product , category }) {
 
   }
   return <>
-              <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between my-3" >
-              <p className='cardCategory me-auto'>Category</p>
+              <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100" >
+              <p className='cardCategory me-auto mt-2'>Category</p>
               <div className="card-product-info mb-2" onClick={handleCardClick}>
                 <h6 className='cardProductName fw-bolder '>{product?.name}</h6>
                 <div className="slide-img over-flow-hidden">
