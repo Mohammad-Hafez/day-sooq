@@ -256,6 +256,14 @@ padding-left: 0 !important;
   cursor: pointer;
   font-size: 20px;
 }
+.navbar{
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+}
+
 .navbar-toggler-icon{
   color: var(--White-color);
   background-image: none !important;

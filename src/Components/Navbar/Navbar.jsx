@@ -21,7 +21,7 @@ export default function Navbar({categories}) {
 
   return <>
   <div className="container-fluid">
-    <nav className="navbar navbar-expand-lg py-0 dark-blue-bg rounded-pill text-light">
+    <nav className="navbar navbar-expand-lg py-0 dark-blue-bg text-light">
       <div className="container w-75 mx-auto">
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"><CiMenuBurger/></span>
