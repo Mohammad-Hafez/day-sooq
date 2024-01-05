@@ -3,8 +3,9 @@ import { createContext, useEffect, useState } from "react";
 import { ApiBaseUrl } from "../Components/ApiBaseUrl";
 
 export let cartContext = createContext();
-export function CartContextProvider(props) {
 
+export function CartContextProvider(props) {
+    
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
     const [AllCartsId, setAllCartsId] = useState()
@@ -33,9 +34,9 @@ export function CartContextProvider(props) {
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getCart();
-    },[numbOfCartItems]);
+    }, []);
 
     function addToCart(productId, quantity) {
         const cartItem = {
@@ -82,15 +83,24 @@ export function CartContextProvider(props) {
         .catch((erorr) => erorr)
     }
 
-    function onlinePayment(cartId , shippingAddress){
-        return axios.post(ApiBaseUrl + `/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000` ,
+    function placeOrder(paymentMethod , values){
+        return axios.post(ApiBaseUrl + `checkOut/${paymentMethod}` ,
         {
-            shippingAddress : shippingAddress
+            cards: values.cards ,
+            country: values.country ,
+            city: values.city ,
+            phone: values.phone ,
+            strAddress: values.strAddress ,
+            coupon: values.coupon 
         },
         {
             headers
         }
-        ).then((response) => response)
+        ).then((response) => {
+            console.log(response.data.session.url)
+            const stripeUrl = response.data.session.url;
+            // Redirect to Stripe URL
+            window.location.href = stripeUrl;})
         .catch((erorr) => erorr)
     }
 
@@ -110,7 +120,7 @@ export function CartContextProvider(props) {
     }
 
     return <>
-    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, onlinePayment, addToCart, getLoggedUserCart, removeItem, updateProductCount }}>
+    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, placeOrder, addToCart, getLoggedUserCart, removeItem, updateProductCount }}>
         {props.children}
     </cartContext.Provider>
     </>

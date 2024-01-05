@@ -36,9 +36,10 @@ function App() {
   }, []);
   
   return (
+    
     <PrimeReactProvider>
       <CartContextProvider>
-        <Router>
+      <Router>
           <Routes>
             <Route path="" element={<Layout UserToken={UserToken}/>} >
               <Route index element={<Home />} />
@@ -51,9 +52,10 @@ function App() {
               <Route path="*" element={<NotFound/>} /> 
             </Route>
           </Routes>
-        </Router>
+          </Router>
       </CartContextProvider>
     </PrimeReactProvider>
+     
   );
 }
 

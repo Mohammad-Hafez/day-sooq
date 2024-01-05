@@ -5,12 +5,15 @@ import { RadioButton } from 'primereact/radiobutton';
 
 export default function OrderSummary({handleFormSubmit , setPaymentMethod}) {
   let {TotalPrice} = useContext(cartContext);
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('cash');
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
   const handlePaymentMethodChange = (e) => {
     setSelectedPaymentMethod(e.value);
     setPaymentMethod(e.value);
+    console.log(e.value);
   };
+
+  const isPlaceOrderDisabled = !selectedPaymentMethod; 
 
   return <>
   <div className="orderSummary blue-brdr rounded-4 mt-3 p-3 d-flex flex-column align-items-start justify-content-start font-Poppins">
@@ -48,17 +51,23 @@ export default function OrderSummary({handleFormSubmit , setPaymentMethod}) {
           </div>
           <div className="p-field-radiobutton mb-3">
             <RadioButton
-              inputId="online"
+              inputId="card"
               name="paymentMethod"
-              value="online"
+              value="card"
               onChange={handlePaymentMethodChange}
-              checked={selectedPaymentMethod === 'online'}
+              checked={selectedPaymentMethod === 'card'}
               className='me-1'
             />
-            <label htmlFor="online">Credit or Debit Card</label>
+            <label htmlFor="card">Credit or Debit Card</label>
           </div>
         </div>
-    <button type='submit' className='btn-orange rounded-pill w-100 py-2' onClick={handleFormSubmit}>Place Order <IoBagCheck className='pb-1 fs-4'/></button>
-  </div>
+        <button
+          type='submit'
+          className='btn-orange rounded-pill w-100 py-2'
+          onClick={handleFormSubmit}
+          disabled={isPlaceOrderDisabled}
+        >
+          Place Order <IoBagCheck className='pb-1 fs-4' />
+        </button>  </div>
     </>
 }

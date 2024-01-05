@@ -8,17 +8,17 @@ import * as Yup from 'yup'
 import { Dropdown } from 'primereact/dropdown';
 import OrderSummary from '../OrderSummary/OrderSummary'
 import { cartContext } from '../../context/CartContext'
+import Loader from '../Loader/Loader'
 
 export default function ShippingForm() {
 
-  let {AllCartsId} = useContext(cartContext);
-  
+  let { AllCartsId, placeOrder } = useContext(cartContext);  
   const [PaymentMethod, setPaymentMethod] = useState()
   const [Cities, setCities] = useState();
   const [PhoneCode, setPhoneCode] = useState();
 
   let shippinValues = {
-      cards : AllCartsId,
+      cards : AllCartsId || [],
       country:'',
       city:'',
       strAddress:'',
@@ -42,8 +42,9 @@ export default function ShippingForm() {
   let shippingFormik = useFormik({
     initialValues : shippinValues ,
     validationSchema : shippingSchema , 
-    onSubmit:(values) =>{console.log(values)}
-  })
+    onSubmit:(values) => placeOrder(PaymentMethod , values)
+  });
+
   const getCountries = ()=>{
     return axios.get(ApiBaseUrl + 'countries')
   };
@@ -70,13 +71,11 @@ export default function ShippingForm() {
     shippingFormik.handleSubmit();
   };
 
-  const placeOrder = async()=>{
-    
-  }
   return <>
     <Helmet>
       <title>Checkout</title>
     </Helmet>
+    {AllCartsId ? <>
     <div className="container my-4">
       <div className="row">
         <div className="col-8">
@@ -155,5 +154,6 @@ export default function ShippingForm() {
         </div>
       </div>
     </div>
+    </> : <Loader/>}
     </>
 }
