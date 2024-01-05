@@ -6,7 +6,7 @@ export default function ProductsSlider({ products, slider }) {
   const responsiveOptions = [
     {
       breakpoint: '1199px',
-      numVisible: 1,
+      numVisible: 3,
       numScroll: 1,
     },
     {
@@ -16,7 +16,7 @@ export default function ProductsSlider({ products, slider }) {
     },
     {
       breakpoint: '767px',
-      numVisible: 1,
+      numVisible: 2,
       numScroll: 1,
     },
   ];
