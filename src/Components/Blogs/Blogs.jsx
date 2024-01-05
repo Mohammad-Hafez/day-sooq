@@ -14,8 +14,6 @@ export default function Blogs({setIsBlogsLoading}) {
 
   let allBlogs = data?.data?.data?.data;
 
-  console.log(data?.data.data.data);
-
   useEffect(()=>{
     setIsBlogsLoading(isLoading)},
     [isLoading , setIsBlogsLoading]);

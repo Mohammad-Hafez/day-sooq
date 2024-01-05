@@ -24,7 +24,7 @@ export default function CartSummary() {
           <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between'>
             Discount : 
             <span className='ms-1 fw-bold light-red-text'>
-             0.00 JOD
+            0.00 JOD
             </span>
           </p>
           <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between'>

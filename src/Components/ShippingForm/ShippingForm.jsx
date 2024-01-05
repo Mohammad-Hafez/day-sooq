@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useQuery } from 'react-query'
 import { ApiBaseUrl } from '../ApiBaseUrl'
@@ -7,16 +7,22 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { Dropdown } from 'primereact/dropdown';
 import OrderSummary from '../OrderSummary/OrderSummary'
+import { cartContext } from '../../context/CartContext'
 
 export default function ShippingForm() {
-const [Cities, setCities] = useState();
+
+  let {AllCartsId} = useContext(cartContext);
+  
+  const [PaymentMethod, setPaymentMethod] = useState()
+  const [Cities, setCities] = useState();
+  const [PhoneCode, setPhoneCode] = useState();
 
   let shippinValues = {
-      cards : [''],
+      cards : AllCartsId,
       country:'',
       city:'',
       strAddress:'',
-      phone:'',
+      phone: PhoneCode ? PhoneCode +  '' : '',
       email:'',
       coupon:'',
       firstName:'',
@@ -24,12 +30,13 @@ const [Cities, setCities] = useState();
   };
 
   let shippingSchema = Yup.object({
-    cards : Yup.string().required("User Name is required"),
-    country:Yup.string().required("User Name is required"),
-    city:Yup.string().required("User Name is required"),
-    strAddress:Yup.string().required("User Name is required"),
-    phone:Yup.string().required("User Name is required"),
-    coupon:Yup.string().required("User Name is required")
+    country:Yup.string().required("Select Your Country"),
+    city:Yup.string().required("Select Your City"),
+    strAddress:Yup.string().required("Write Your Address In Details"),
+    phone:Yup.string().required("Phoe Number is required").matches(/^\d{6,20}$/, 'Invalid phone number. It should be between 6 and 20 digits.'),
+    firstName:Yup.string().required("First Name is required"),
+    lastName:Yup.string().required("Last Name is required"),
+    email:Yup.string().required("email is required").email("Invalid email address"),
   });
 
   let shippingFormik = useFormik({
@@ -53,9 +60,19 @@ const [Cities, setCities] = useState();
 
   const handleCountrySelect =(selectedCountry)=>{
     const countryIsoCode = data?.data?.data?.countries?.find(country => country.name === selectedCountry)?.isoCode;
+    const countryPhoneCode = data?.data?.data?.countries?.find(country => country.name === selectedCountry)?.phonecode;
+    setPhoneCode(countryPhoneCode)
     getCities(countryIsoCode)
   };
 
+  const handleFormSubmit = () => {
+    shippingFormik.values.phone = PhoneCode + shippingFormik.values.phone
+    shippingFormik.handleSubmit();
+  };
+
+  const placeOrder = async()=>{
+    
+  }
   return <>
     <Helmet>
       <title>Checkout</title>
@@ -64,7 +81,7 @@ const [Cities, setCities] = useState();
       <div className="row">
         <div className="col-8">
           <h4 className='main-orange-text font-Poppins fw-bold'>Shipping Information</h4>
-          <form onSubmit={shippingFormik.handleSubmit} className='font-Poppins'>
+          <form className='font-Poppins'>
             <div className="row gy-3">
               <div className="col-sm-6">
                 <label className='ms-2' htmlFor="firstName">First Name</label>
@@ -113,14 +130,28 @@ const [Cities, setCities] = useState();
               </div>
               <div className="col-sm-6">
                 <label className='ms-2' htmlFor="phone">Phone</label>
-                <input type="text" placeholder='Your Phone Number' className="form-control mb-2 AuthForm-inputs" id="phone" name="phone" value={shippingFormik.values.phone} onChange={shippingFormik.handleChange} onBlur={shippingFormik.handleBlur} />
-                {shippingFormik.errors.phone && shippingFormik.touched.phone ? <div className="alert alert-danger">{shippingFormik.errors.phone}</div>: null}
+                <div className="input-group mb-2">
+                  <span className="input-group-text">{PhoneCode ? PhoneCode : '+'}</span>
+                  <input
+                    type="text"
+                    placeholder='Your Phone Number'
+                    className="form-control AuthForm-inputs"
+                    id="phone"
+                    name="phone"
+                    value={`${shippingFormik.values.phone}`}
+                    onChange={shippingFormik.handleChange}
+                    onBlur={shippingFormik.handleBlur}
+                  />
+                </div>
+                {shippingFormik.errors.phone && shippingFormik.touched.phone ? (
+                  <div className="alert alert-danger">{shippingFormik.errors.phone}</div>
+                ) : null}
               </div>
             </div>
           </form>
         </div>
         <div className="col-4">
-          <OrderSummary/>
+          <OrderSummary handleFormSubmit={handleFormSubmit} setPaymentMethod={setPaymentMethod}/>
         </div>
       </div>
     </div>

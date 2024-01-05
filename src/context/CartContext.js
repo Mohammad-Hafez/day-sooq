@@ -7,7 +7,7 @@ export function CartContextProvider(props) {
 
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
-
+    const [AllCartsId, setAllCartsId] = useState()
     let headers = {
         'Authorization': `Bearer ${localStorage.getItem("DaySooqUser")}` 
     }
@@ -29,6 +29,7 @@ export function CartContextProvider(props) {
                 const productPrice = (product.price + product.variant.extraPrice) * product.quantity;
                 return sum + productPrice;
             }, 0))
+            setAllCartsId(response.data.data.data.map((cart)=>cart._id))
         }
     }
 
@@ -109,7 +110,7 @@ export function CartContextProvider(props) {
     }
 
     return <>
-    <cartContext.Provider value={{setNumbOfCartItems, numbOfCartItems, TotalPrice, applyPromoCode, onlinePayment, addToCart, getLoggedUserCart, removeItem, updateProductCount }}>
+    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, onlinePayment, addToCart, getLoggedUserCart, removeItem, updateProductCount }}>
         {props.children}
     </cartContext.Provider>
     </>

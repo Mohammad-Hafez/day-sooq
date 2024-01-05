@@ -41,7 +41,6 @@ export default function MainSlider({setIsBannerLoading}) {
                   <br />
                   
                 </p>
-                <button className='btn btn-orange align-self-start rounded-pill'>Find Out</button>
 
                 </div>
               </div>
@@ -57,7 +56,6 @@ export default function MainSlider({setIsBannerLoading}) {
                 <p className='fs-1 fw-light'>
                 {data?.data?.data?.data[1].description}
                 </p>
-                <button className='btn btn-primary align-self-start rounded-pill'>Find Out More</button>
                 </div>
               </div>
               <div className="col-6">
@@ -72,7 +70,6 @@ export default function MainSlider({setIsBannerLoading}) {
                 <p className='fs-1 fw-light'>
                 {data?.data?.data?.data[2].description}
                 </p>
-                <button className='btn btn-primary align-self-start rounded-pill'>Find Out More</button>
                 </div>
               </div>
               <div className="col-6">

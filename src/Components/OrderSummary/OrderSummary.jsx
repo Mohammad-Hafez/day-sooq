@@ -3,12 +3,13 @@ import { cartContext } from '../../context/CartContext';
 import { IoBagCheck } from 'react-icons/io5';
 import { RadioButton } from 'primereact/radiobutton';
 
-export default function OrderSummary() {
+export default function OrderSummary({handleFormSubmit , setPaymentMethod}) {
   let {TotalPrice} = useContext(cartContext);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('cash');
 
   const handlePaymentMethodChange = (e) => {
     setSelectedPaymentMethod(e.value);
+    setPaymentMethod(e.value);
   };
 
   return <>
@@ -57,7 +58,7 @@ export default function OrderSummary() {
             <label htmlFor="online">Credit or Debit Card</label>
           </div>
         </div>
-    <button className='btn-orange rounded-pill w-100 py-2'>Place Order <IoBagCheck className='pb-1 fs-4'/></button>
+    <button type='submit' className='btn-orange rounded-pill w-100 py-2' onClick={handleFormSubmit}>Place Order <IoBagCheck className='pb-1 fs-4'/></button>
   </div>
     </>
 }
