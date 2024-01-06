@@ -8,11 +8,18 @@ import Loader from '../Loader/Loader';
 import ProductCard from '../ProductCard/ProductCard';
 
 export default function CategoryProducts() {
-  let {category} = useParams();
+  let { category } = useParams();
+  category = decodeURIComponent(category);
+  
   const getCategoryProducts = ()=>{
     return axios.get(ApiBaseUrl + `products/${category}/category`)
   }
-  let {data , isLoading , isFetching} = useQuery('get-category-products' , getCategoryProducts , {cacheTime : 3000});
+  const { data, isLoading, isFetching } = useQuery(
+    ['get-category-products', category],
+    getCategoryProducts ,
+    {cacheTime : 3000}
+  );
+  
   let allProducts = data?.data.data.data;
   return <>
     <Helmet>
