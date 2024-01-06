@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { PrimeReactProvider} from 'primereact/api';
 import Layout from './Components/Layout/Layout';
 import Home from './Components/Home/Home';
-import AllCategories from './Components/AllCategories/AllCategories';
 import Authorization from './Components/Authorization/Authorization';
 import ProductDetails from './Components/ProductDetails/ProductDetails';
 import { jwtDecode } from 'jwt-decode';
@@ -43,7 +42,6 @@ function App() {
           <Routes>
             <Route path="" element={<Layout UserToken={UserToken}/>} >
               <Route index element={<Home />} />
-              <Route path="AllCategories" element={<AllCategories />} />
               <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
               <Route path="MyCart" element={<MyCart UserToken={UserToken}/>} /> 
@@ -55,7 +53,6 @@ function App() {
           </Router>
       </CartContextProvider>
     </PrimeReactProvider>
-     
   );
 }
 
