@@ -13,7 +13,7 @@ export default function ProductCard({product , category }) {
   const { addToCart } = useContext(cartContext);
 
   const handleCardClick = ()=>{
-    if (category === 'big-deals' || category ===  'bidding' || category ===  'similar') {
+    if (category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any') {
       navigate(`/ProductDetails/${product._id}`)
       console.log();
     }else{
@@ -22,7 +22,7 @@ export default function ProductCard({product , category }) {
   }
 
   const addToCartFromCard = ()=>{
-    if (category === 'big-deals' || category ===  'bidding' || category ===  'similar') {
+    if (category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any') {
       addToCart(product?.variants[0]?._id , 1)
     }else{
       addToCart(product?.variant?._id , 1)
@@ -32,6 +32,7 @@ export default function ProductCard({product , category }) {
   return <>
     <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100" >
       <p className='cardCategory me-auto mt-2'>
+      { category === 'any' && product?.subCategory.category.name}
       {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
       {product?.subCategory.name}
           </> : <>
@@ -39,13 +40,13 @@ export default function ProductCard({product , category }) {
           </>}
       </p>
       <div className="card-product-info mb-2" onClick={handleCardClick}>
-        {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
+        {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
             <h6 className='cardProductName fw-bolder '>{product?.name}</h6>
             </> : <>
             <h6 className='cardProductName fw-bolder '>{product?.variant.product.name}</h6>
             </>}
           <div className="slide-img over-flow-hidden">
-            {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
+            {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any'? <>
               <img  className='img-fluid h-100 w-100 rounded' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
             </> : <>
               <img  className='img-fluid mb-2 rounded' src={ImgBaseURL + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
@@ -53,8 +54,8 @@ export default function ProductCard({product , category }) {
           </div>
       </div>
       <div className="card-footer d-flex align-items-center justify-content-between w-100">
-        {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
-            {category === 'similar' && 
+        {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
+            {category === 'similar' || category ===  'any' && 
               <div className="salePrice">
                 <h6 className='font-Roboto fw-bold dark-grey-text'>
                   {product.priceDiscount.value > 0
