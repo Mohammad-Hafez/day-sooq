@@ -11,6 +11,7 @@ import { MdOutlineStarOutline } from "react-icons/md";
 import SimilarProduct from '../SimilarProduct/SimilarProduct'
 import { TabView, TabPanel } from 'primereact/tabview';
 import ProductSummary from '../ProductSummary/ProductSummary'
+import BiddingSummary from '../BiddingSummary/BiddingSummary'
 
 export default function ProductDetails() {
 
@@ -31,6 +32,7 @@ export default function ProductDetails() {
 
   let product = (data?.data?.data?.data);
 
+
   const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
 
 
@@ -49,16 +51,15 @@ export default function ProductDetails() {
                                                           );
   
   return <>
+  {isLoading && <Loader/>}
+  {product && <>
     <Helmet>
-      <title>{product?.name?.split(' ').slice(0, 2).join(' ')}</title>
+      <title>{product.name?.split(' ').slice(0, 3).join(' ')}</title>
     </Helmet>
     <div className="container my-4">
-      {isLoading ? <Loader/> :
-      <>
       <div className="product-path mb-5">
         <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name} / {product?.name}</p>
       </div>
-      </>}
       <div className="row mb-3">
         <div className="col-8">
           <div className="row">
@@ -105,7 +106,8 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="col-4">
-          {product && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
+          {product?.isAction && <BiddingSummary/>}
+          {product?.isAction === false && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
         </div>
       </div>
       <div className="px-4">
@@ -119,5 +121,6 @@ export default function ProductDetails() {
         </TabView>
       </div>
     </div>
+  </>}
     </>
 }

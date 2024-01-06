@@ -2,7 +2,10 @@ import axios from 'axios'
 import React , {useEffect} from 'react'
 import { useQuery } from 'react-query'
 import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
+import { useNavigate } from 'react-router-dom'
+
 export default function BrandsSlider({setIsBrandSliderLoading}) {
+  let navigate = useNavigate()
   const getFeaturedBrands = ()=>{
     return axios.get(ApiBaseUrl + `brands`)  
   }
@@ -13,6 +16,10 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
     setIsBrandSliderLoading(isLoading);
   }, [isLoading, setIsBrandSliderLoading]);
   
+  const handleSelectBrand = (brand) =>{
+    navigate(`BrandProducts/${brand}`)
+  }
+
   return <>
   <div className="brandSliderContainer pt-2 mb-5 position-relative">
     <div className="title text-center">
@@ -21,7 +28,7 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
     <div className="container brdr featuredBrandsContainer p-3">
       <div className="row g-3">
         {data?.data?.data?.data.map((brand)=> <div key={brand._id} className="col-4 col-md-3 col-lg-2">
-            <div className='brand-container p-2 h-100 cursor-pointer'>
+            <div className='brand-container p-2 h-100 cursor-pointer' onClick={()=> handleSelectBrand(brand._id)}>
               <img src={ ImgBaseURL+brand.image} alt={brand.name} className='w-100 h-100 object-fit-contain'/>
             </div>
           </div>

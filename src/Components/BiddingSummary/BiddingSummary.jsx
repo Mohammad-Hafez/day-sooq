@@ -5,5 +5,8 @@ export default function BiddingSummary() {
     <Helmet>
       <title>title</title>
     </Helmet>
+    <div className="brdr">
+      
+    </div>
     </>
 }

@@ -12,6 +12,7 @@ import MyCart from './Components/MyCart/MyCart';
 import WishList from './Components/WishList/WishList';
 import ShippingForm from './Components/ShippingForm/ShippingForm';
 import CategoryProducts from './Components/CategoryProducts/CategoryProducts';
+import BrandProducts from './Components/BrandProducts/BrandProducts';
 
 function App() {
   const [UserData, setUserData] = useState(null);
@@ -48,6 +49,7 @@ function App() {
               <Route path="MyCart" element={<MyCart UserToken={UserToken}/>} /> 
               <Route path="WishList" element={<WishList UserToken={UserToken}/>} /> 
               <Route path="CategoryProducts/:category" element={<CategoryProducts UserToken={UserToken}/>} /> 
+              <Route path="BrandProducts/:brand" element={<BrandProducts UserToken={UserToken}/>} /> 
               <Route path="ShippingForm" element={<ShippingForm UserToken={UserToken}/>} /> 
               <Route path="*" element={<NotFound/>} /> 
             </Route>
