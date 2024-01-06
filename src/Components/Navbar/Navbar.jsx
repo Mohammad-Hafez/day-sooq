@@ -9,7 +9,11 @@ export default function Navbar({categories}) {
 
   const NavItem = ({ to, activeLink, onClick }) => (
     <li className="nav-item">
-      <Link to={`CategoryProducts/${encodeURIComponent(to)}`} className={`nav-link px-3 text-light ${activeLink === to ? 'active' : ''}`} onClick={() => onClick(to)}>
+      <Link
+        to={`CategoryProducts/${encodeURIComponent(to)}`}
+        className={`nav-link px-3 text-light ${activeLink === to ? 'active' : ''}`}
+        onClick={() => onClick(to)}
+      >
         {to}
       </Link>
     </li>
@@ -30,7 +34,7 @@ export default function Navbar({categories}) {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex align-items-center justify-content-around w-100">
-            {categories?.map((category) => <NavItem to={category.name} activeLink={activeLink} onClick={setActiveLink} />)}
+            {categories?.map((category , index) => <NavItem key={index} to={category.name} activeLink={activeLink} onClick={setActiveLink}/>)}
           </ul>
         </div>
       </div>

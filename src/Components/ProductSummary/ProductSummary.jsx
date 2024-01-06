@@ -37,7 +37,7 @@ export default function ProductSummary({ product, quantity , SelectedVariant }) 
                 ? product?.priceDiscount.type === 'percentage'
                   ? (product.price + SelectedVariant?.extraPrice - product.price * (product.priceDiscount.value / 100)) * productCount
                   : (product.price + SelectedVariant?.extraPrice - product.priceDiscount.value) * productCount
-                : product.price + SelectedVariant?.extraPrice  * productCount}  JOD
+                : (product.price + SelectedVariant?.extraPrice)  * productCount}  JOD
             </span>
           </h4>
           <div className="quantity-control w-75 mb-4">
