@@ -46,11 +46,11 @@ export default function BestSlider({ setIsBestSliderLoading }) {
   let products = data?.data?.data?.data ;
 
   return (
-    <div className="container mb-5">
+    <div className="container mb-5 position-relative">
       <div className="header">
         <h4>Bestsellers</h4>
       </div>
-      <div className="BestSlider-container position-relative">
+      <div className="BestSlider-container">
         <ProductsSlider products={products} settings={BestSettings} slider={'best-selling'}/>
       </div>
     </div>

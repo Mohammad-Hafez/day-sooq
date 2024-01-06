@@ -47,12 +47,12 @@ export default function BiddingSlider({setIsBiddingSliderLoading}) {
   let products = data?.data?.data?.data
   return <>
   <div className="biddingSlider py-4 mb-5">
-    <div className="container">
+    <div className="container position-relative">
       <div className="header d-flex align-items-center justify-content-between">
         <h4>Bidding Products</h4>
         {/* <h5 className='view-all main-blue-text'>View All</h5> */}
       </div>
-      <div className="BestSlider-container position-relative">
+      <div className="BestSlider-container">
         <ProductsSlider products={products} settings={BiddingSettings} slider={'bidding'}/>
       </div>
     </div>

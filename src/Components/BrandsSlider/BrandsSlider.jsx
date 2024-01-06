@@ -14,7 +14,7 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
   }, [isLoading, setIsBrandSliderLoading]);
   
   return <>
-  <div className="brandSliderContainer pt-2 mb-5">
+  <div className="brandSliderContainer pt-2 mb-5 position-relative">
     <div className="title text-center">
       <h4 className='font-Poppins main-orange-text'>Popular <span className='fw-bolder font-Rowdies'>Brands</span></h4>
     </div>

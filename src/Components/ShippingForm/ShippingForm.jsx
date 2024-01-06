@@ -78,7 +78,7 @@ export default function ShippingForm() {
     {AllCartsId ? <>
     <div className="container my-4">
       <div className="row">
-        <div className="col-8">
+        <div className="col-md-8">
           <h4 className='main-orange-text font-Poppins fw-bold'>Shipping Information</h4>
           <form className='font-Poppins'>
             <div className="row gy-3">
@@ -149,7 +149,7 @@ export default function ShippingForm() {
             </div>
           </form>
         </div>
-        <div className="col-4">
+        <div className="col-md-4">
           <OrderSummary handleFormSubmit={handleFormSubmit} setPaymentMethod={setPaymentMethod}/>
         </div>
       </div>

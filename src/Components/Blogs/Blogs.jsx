@@ -39,9 +39,9 @@ export default function Blogs({setIsBlogsLoading}) {
     return(
       <div key={blog._id} className='my-2 d-flex justify-content-center align-item-center p-3 normal-blue-text h-100'>
        <div className="blogImage">
-         <img src={ImgBaseURL + blog.image} className='img-fluid rounded' alt={blog.title + 'image'} />
+         <img src={ImgBaseURL + blog.image} className='w-100 object-fit-contain rounded-start' alt={blog.title + 'image'} />
        </div>
-       <div className="blogInfo grey-brdr my-4 rounded-end p-4 border-start-0 d-flex flex-column">
+       <div className="blogInfo grey-brdr my-4 rounded p-4 d-flex flex-column">
          <span className="blogDate grey-brdr px-4 py-1 rounded-pill mb-3">
            {blog.createdAt.slice(0, 10)}
          </span>
@@ -55,8 +55,8 @@ export default function Blogs({setIsBlogsLoading}) {
     )
   }
   return <>
-  <div className="blogs-slider-Container light-grey-bg mb-5">
-    <div className="container">
+  <div className="blogs-slider-Container light-grey-bg mb-5 py-3">
+    <div className="container  position-relative pt-3">
       {allBlogs &&
         <Carousel value={allBlogs} numVisible={3} numScroll={3} responsiveOptions={responsiveOptions} itemTemplate={blogTemplate} />
       }

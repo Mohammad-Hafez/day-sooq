@@ -45,11 +45,11 @@ export default function DealsSlider({setIsDealsSliderLoading}) {
 
   let products = data?.data?.data?.data
   return (
-    <div className="container mb-5">
+    <div className="container mb-5 position-relative">
       <div className="header">
         <h4>Big Deals</h4>
       </div>
-      <div className="BestSlider-container position-relative">
+      <div className="BestSlider-container">
           <ProductsSlider products={products} settings={DealsSettings} slider={'big-deals'}/>
       </div>
     </div>
