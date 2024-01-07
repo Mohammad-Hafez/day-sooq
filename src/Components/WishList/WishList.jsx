@@ -8,9 +8,16 @@ import { FaTrashAlt } from "react-icons/fa";
 
 export default function WishList() {
 
-  let {getLoggedUserCart , updateProductCount , removeItem , setNumbOfCartItems} = useContext(cartContext);
+  let { setNumbOfCartItems} = useContext(cartContext);
 
-  let {data , isLoading ,isFetching , refetch} = useQuery('get-my-cart' , getLoggedUserCart );
+  const getMyWishList = async ()=>{
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+  let {data , isLoading ,isFetching , refetch} = useQuery('get-my-cart' , getMyWishList );
 
   let cartItems = data?.data.data.data;
 
@@ -18,12 +25,12 @@ export default function WishList() {
     setNumbOfCartItems(data?.data?.data.data.length);
   }
   const deleteItem = async (itemId) => {
-    try {
-      await removeItem(itemId);
-      refetch();
-    } catch (error) {
-      console.error('Error deleting item:', error);
-    }
+    // try {
+    //   await removeItem(itemId);
+    //   refetch();
+    // } catch (error) {
+    //   console.error('Error deleting item:', error);
+    // }
   };
 
   return <>

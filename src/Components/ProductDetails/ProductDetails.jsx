@@ -12,6 +12,7 @@ import SimilarProduct from '../SimilarProduct/SimilarProduct'
 import { TabView, TabPanel } from 'primereact/tabview';
 import ProductSummary from '../ProductSummary/ProductSummary'
 import BiddingSummary from '../BiddingSummary/BiddingSummary'
+import { RiAuctionLine } from "react-icons/ri";
 
 export default function ProductDetails() {
 
@@ -25,16 +26,15 @@ export default function ProductDetails() {
 
   let {id} = useParams();
 
-  
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
   let {data , isLoading} = useQuery('product-details' , getProduct , {cacheTime : 0});
 
   let product = (data?.data?.data?.data);
 
+  const isBiddingEnded = new Date(product?.endDate) < new Date();
 
   const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
-
 
   const splitDescription = product?.description?.split(',').map((item, index) => <li className='mb-1' key={index}>{item.trim()}</li> )
 
@@ -74,6 +74,9 @@ export default function ProductDetails() {
               <div className="product-details ps-5">
                 <div className="product-category mb-4">
                   <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name}</p>
+                  <h5>{isBiddingEnded? <span className='badge dark-red-bg'>Biding End <RiAuctionLine/></span> :
+                  <span className='badge badge-success'>available</span>
+                  }</h5>
                 </div>
                 <div className="product-data">
                   <div className="p-name">
@@ -106,7 +109,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="col-4">
-          {product?.isAction && <BiddingSummary/>}
+          {product?.isAction && <BiddingSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
           {product?.isAction === false && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
         </div>
       </div>

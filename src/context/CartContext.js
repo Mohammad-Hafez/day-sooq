@@ -36,7 +36,7 @@ export function CartContextProvider(props) {
 
     useEffect(() => {
         getCart();
-    }, []);
+    },[]);
 
     function addToCart(productId, quantity) {
         const cartItem = {
