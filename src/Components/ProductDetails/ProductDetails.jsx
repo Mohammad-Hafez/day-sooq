@@ -74,8 +74,8 @@ export default function ProductDetails() {
               <div className="product-details ps-5">
                 <div className="product-category mb-4">
                   <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name}</p>
-                  <h5>{isBiddingEnded? <span className='badge dark-red-bg'>Biding End <RiAuctionLine/></span> :
-                  <span className='badge badge-success'>available</span>
+                  <h5>{isBiddingEnded? <span className='badge dark-red-bg'>Biding End <RiAuctionLine className='fs-6'/></span> :
+                  <span className='badge dark-green-bg'>Biding Available <RiAuctionLine className='fs-6'/></span>
                   }</h5>
                 </div>
                 <div className="product-data">
@@ -109,7 +109,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="col-4">
-          {product?.isAction && <BiddingSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
+          {product?.isAction && <BiddingSummary RiAuctionLine={RiAuctionLine} product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
           {product?.isAction === false && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
         </div>
       </div>

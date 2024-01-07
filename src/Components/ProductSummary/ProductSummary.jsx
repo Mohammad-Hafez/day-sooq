@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { cartContext } from '../../context/CartContext';
+import { IoBagAddSharp } from "react-icons/io5";
 
 export default function ProductSummary({ product, quantity , SelectedVariant }) {
   const { addToCart } = useContext(cartContext);
@@ -47,7 +48,7 @@ export default function ProductSummary({ product, quantity , SelectedVariant }) 
               <span><FaMinus onClick={decrementCount} size={15} /></span>
             </button>
           </div>
-          <button className='btn-orange rounded-pill w-100 py-2 fs-5' onClick={()=>addToCart(SelectedVariant._id , productCount)}>Add to Cart</button>
+          <button className='btn-orange rounded-pill w-100 py-2 fs-5' onClick={()=>addToCart(SelectedVariant._id , productCount)}>Add to Cart <IoBagAddSharp/></button>
         </div>
       </div>
     </>

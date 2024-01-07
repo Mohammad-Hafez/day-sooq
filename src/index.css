@@ -6,7 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-transform: capitalize !important;
+  text-transform: capitalize ;
   scroll-behavior: smooth;
 }
 code {
@@ -125,9 +125,20 @@ code {
 .btn-orange:disabled , 
 .btn-orange:focus-visible , 
 .btn-orange:active  {
-  background-color: var(--light-blueBtns) !important;
+  background-color: var(--light-blueBtns) ;
   border: 1px solid var(--light-blueBtns);
-  color: var(--White-color) !important;
+  color: var(--White-color) ;
+}
+.dark-blue-btn {
+  background-color: var(--dark-blue);
+  color: var(--White-color);
+  border: 1px solid var(--dark-blue);
+}
+.dark-blue-btn:visited ,
+.dark-blue-btn:hover ,
+.dark-blue-btn:active,
+.dark-blue-btn:disabled{
+  background-color:#003566d1 ;
 }
 .btm-primary{
   background: var(--light-blueBtns) !;
@@ -190,10 +201,10 @@ code {
   font-size: 14px;
 }
 .font-quest{
-  font-family: 'Questrial', sans-serif !important;
+  font-family: 'Questrial', sans-serif ;
 }
 .font-Rowdies{
-  font-family: 'Rowdies', sans-serif !important;
+  font-family: 'Rowdies', sans-serif ;
 }
 .font-roboto{
   font-family: 'Roboto', sans-serif;
@@ -227,10 +238,10 @@ border: none;
   top: 50%;
   background-color: var(--grey-bgColor);
   border: none;
-  z-index: 3 !important;
+  z-index: 3 ;
 }
 ul.p-dropdown-items{
-padding-left: 0 !important;
+padding-left: 0 ;
 }
 
 .nav-dropDown{
@@ -242,7 +253,7 @@ padding-left: 0 !important;
 }
 .headerSearchInput .p-dropdown-items li,
 .headerSearchInput .p-dropdown-label{
-  color: var(--main-orange) !important;
+  color: var(--main-orange) ;
 }
 .search-result-item img{
   width: 50px;
@@ -266,13 +277,13 @@ padding-left: 0 !important;
 
 .navbar-toggler-icon{
   color: var(--White-color);
-  background-image: none !important;
+  background-image: none ;
   font-size: 20px;
 }
 .navbar-toggler,
 .navbar-toggler:focus:not(:focus-visible){
-  border: none !important;
-  box-shadow: none !important;
+  border: none ;
+  box-shadow: none ;
 
 }
 .loader-container{
@@ -352,7 +363,7 @@ padding-left: 0 !important;
   -o-border-radius: 5px ;
 }
 .AuthForm-inputs{
-  border:1px solid var(--dark-blue) !important;
+  border:1px solid var(--dark-blue) ;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -423,9 +434,9 @@ padding-left: 0 !important;
   bottom: 20px;
 }
 .mainSlider .slick-dots li button::before{
- color: var(--main-orange) !important; 
- width: 50px !important;
- height: 50px !important;
+ color: var(--main-orange) ; 
+ width: 50px ;
+ height: 50px ;
 }
 /* *SECTION - Bidding slider */
 .biddingSlider{
@@ -470,11 +481,11 @@ margin-bottom: 10px;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   font-size: 20px;
-  transition: all .5s ease-in-out !important;
-  -webkit-transition: all .5s ease-in-out !important;
-  -moz-transition: all .5s ease-in-out !important;
-  -ms-transition: all .5s ease-in-out !important;
-  -o-transition: all .5s ease-in-out !important;
+  transition: all .5s ease-in-out ;
+  -webkit-transition: all .5s ease-in-out ;
+  -moz-transition: all .5s ease-in-out ;
+  -ms-transition: all .5s ease-in-out ;
+  -o-transition: all .5s ease-in-out ;
 }
 .go-Btn:hover , .go-Btn:active{
   background-color: var(--light-blue);
@@ -511,8 +522,8 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   -o-border-radius: 50%;
 }
 .BestSlider-container .slick-prev {
-  right: 75px !important;
-  left: auto !important;
+  right: 75px ;
+  left: auto ;
 }
 .BestSlider-container .slick-track {
   position: relative;
@@ -579,8 +590,7 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
 }
 /* *NOTE - Blogs Syle */
 .blogImage img{
-  /* max-width: 300px; */
-  height: 100% !important;
+  height: 100% ;
   aspect-ratio: 3;
 }
 .blogDate{
@@ -602,8 +612,8 @@ background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4
 }
 /* *NOTE - Product Details */
 .color{
-  width: 20px !important;
-  height: 20px !important;
+  width: 20px ;
+  height: 20px ;
 }
 .p-unselectable-text a{
   color: var(--grey-color);
