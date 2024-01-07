@@ -17,7 +17,7 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
   }, [isLoading, setIsBrandSliderLoading]);
   
   const handleSelectBrand = (brand) =>{
-    navigate(`BrandProducts/${brand}`)
+    navigate(`BrandProducts/${brand._id}/${brand.name}`)
   }
 
   return <>
@@ -28,7 +28,7 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
     <div className="container brdr featuredBrandsContainer p-3">
       <div className="row g-3">
         {data?.data?.data?.data.map((brand)=> <div key={brand._id} className="col-4 col-md-3 col-lg-2">
-            <div className='brand-container p-2 h-100 cursor-pointer' onClick={()=> handleSelectBrand(brand._id)}>
+            <div className='brand-container p-2 h-100 cursor-pointer' onClick={()=> handleSelectBrand(brand)}>
               <img src={ ImgBaseURL+brand.image} alt={brand.name} className='w-100 h-100 object-fit-contain'/>
             </div>
           </div>

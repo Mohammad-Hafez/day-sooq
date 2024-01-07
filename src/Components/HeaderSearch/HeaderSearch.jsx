@@ -52,7 +52,7 @@ export default function HeaderSearch({ UserToken , categories}) {
           <div className="col-sm-3">
             <div className="logo d-flex align-items-center justify-content-around">
               <span>
-                <Icon icon={text_justify} className="main-grey-text"></Icon>
+                <Icon icon={text_justify} className="main-grey-text cursor-pointer zoom" onClick={()=>navigate('/AllProducts')}></Icon>
               </span>
               <span>
                 <h3 className="p-0 m-0">

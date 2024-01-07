@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Checkbox } from 'primereact/checkbox';
 import { InputNumber } from 'primereact/inputnumber';
 
-export default function PricesMenu() {
+export default function PricesMenu({setFilterMethod , FilterMethod}) {
   const [selectedPrices, setSelectedPrices] = useState([]);
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(100);
-
   const handlePriceCheckboxChange = (price) => {
     const updatedPrices = selectedPrices.includes(price)
       ? selectedPrices.filter((selectedPrice) => selectedPrice !== price)
       : [...selectedPrices, price];
     setSelectedPrices(updatedPrices);
+    setFilterMethod('price')
   };
 
   const handleMinPriceChange = (event) => {
     const value = event.value || 0;
     setMinPrice(value);
+    setFilterMethod('price')
   };
 
   const handleMaxPriceChange = (event) => {
     const value = event.value || 100;
     setMaxPrice(value);
+    setFilterMethod('price')
   };
+
+  // useEffect(()=>{
+  //   if (FilterMethod === 'price' || FilterMethod ==='category') {
+  //     setSelectedPrices([]);
+  //   }
+  // },[FilterMethod])
+
 
   return (
     <div className="priceFilter brdr p-3 rounded">

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Checkbox } from 'primereact/checkbox';
 
-export default function BrandsMenu({ ApiBaseUrl, useQuery, axios }) {
+export default function BrandsMenu({ ApiBaseUrl, useQuery, axios , setFilterMethod , FilterMethod }) {
   const getFeaturedBrands = () => axios.get(ApiBaseUrl + `brands`);
 
   const { data } = useQuery('brands-for-menu', getFeaturedBrands, { cacheTime: 300000 });
@@ -13,7 +13,13 @@ export default function BrandsMenu({ ApiBaseUrl, useQuery, axios }) {
       ? selectedBrands.filter((selectedBrand) => selectedBrand !== brand)
       : [...selectedBrands, brand];
     setSelectedBrands(updatedBrands);
+    setFilterMethod('brand')
   };
+  useEffect(()=>{
+    if (FilterMethod ==='category') {
+      setSelectedBrands([])
+    }
+  },[FilterMethod])
 
   return (
     <>
