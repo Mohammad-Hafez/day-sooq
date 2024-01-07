@@ -21,14 +21,14 @@ export default function BrandsMenu({ ApiBaseUrl, useQuery, axios }) {
         <h5 className="fw-bolder mb-4"> Brand </h5>
         <div>
           {data?.data?.data?.data.map((brand) => (
-            <div key={brand?._id} className="p-field-checkbox">
+            <div key={brand?._id} className="p-field-checkbox my-2">
               <Checkbox
                 inputId={brand?._id}
                 value={brand?.name}
                 onChange={() => handleBrandCheckboxChange(brand?.name)}
                 checked={selectedBrands.includes(brand?.name)}
               />
-              <label htmlFor={brand?._id} className="p-checkbox-label">
+              <label htmlFor={brand?._id} className="p-checkbox-label ms-2">
                 {brand?.name}
               </label>
             </div>
