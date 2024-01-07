@@ -10,7 +10,7 @@ export default function Header({UserToken}) {
 
   const getAllCategories =  () =>axios.get(ApiBaseUrl + `categories`);
 
-  let {data} = useQuery('categories-name' , getAllCategories , {cacheTime : 30000})
+  let {data} = useQuery('categories-for-header' , getAllCategories , {cacheTime : 30000})
 
   return<>
   <div className="container d-flex flex-column justify-content-center">
@@ -19,7 +19,6 @@ export default function Header({UserToken}) {
   <div className="container mb-3 position-sticky top-0 z-3 bg-white py-2 rounded-bottom">
     <HeaderSearch UserToken={UserToken} categories={data?.data?.data?.data}/>
   </div>
-
   <Navbar  categories={data?.data?.data?.data}/>
   </>
 }

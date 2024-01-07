@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { ApiBaseUrl } from '../ApiBaseUrl';
 import Loader from '../Loader/Loader';
 import ProductCard from '../ProductCard/ProductCard';
+import SideMenu from '../SideMenu/SideMenu';
 
 export default function BrandProducts() {
   let { brand } = useParams();
@@ -26,10 +27,15 @@ export default function BrandProducts() {
     <div className="container">
     {isLoading && <Loader/>}
     {data && <div className="row mt-3 mb-4 gy-3">
-        {allProducts.map((product) => <div key={product._id} className="col-6 col-sm-4 col-md-3">
-          <ProductCard product={product} category={'any'}/>
-          </div>
-          )}
+      <div className="col-3"><SideMenu/></div>
+      <div className="col-9">
+        <div className="row">
+          {allProducts.map((product) => <div key={product._id} className="col-6 col-sm-4 col-md-3">
+            <ProductCard product={product} category={'any'}/>
+            </div>
+            )}
+        </div>
+      </div>
     </div>
     }
     {isFetching && <Loader/>}
