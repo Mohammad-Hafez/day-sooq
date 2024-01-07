@@ -4,13 +4,14 @@ import { useQuery } from 'react-query';
 import { ApiBaseUrl } from '../ApiBaseUrl';
 import CategoriesMenu from '../CategoriesMenu/CategoriesMenu';
 import BrandsMenu from '../BrandsMenu/BrandsMenu';
+import PricesMenu from '../PricesMenu/PricesMenu';
 
 export default function SideMenu() {
-
   return <>
   <div className="sideMenu font-roboto">
     <CategoriesMenu axios={axios} useQuery={useQuery} ApiBaseUrl={ApiBaseUrl}/>
     <BrandsMenu axios={axios} useQuery={useQuery} ApiBaseUrl={ApiBaseUrl}/>
+    <PricesMenu/>
   </div>
     </>
 }

@@ -32,9 +32,10 @@ export default function ProductCard({product , category }) {
   return <>
     <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100" >
       <p className='cardCategory me-auto mt-2'>
-      { category === 'any' && product?.subCategory.category.name}
-      {category === 'big-deals' || category ===  'bidding' || category ===  'similar'? <>
-      {product?.subCategory.name}
+      {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any'? <>
+        { category === 'any' ? product?.subCategory.category.name :
+          product?.subCategory.name
+        }
           </> : <>
           Category
           </>}
