@@ -104,6 +104,7 @@ export default function HeaderSearch({ UserToken , categories}) {
                       <div
                         key={product._id}
                         className="search-result-item rounded bg-white w-100 d-flex align-items-center justify-content-between p-2 mb-1 cursor-pointer"
+                        onClick={()=>navigate(`/ProductDetails/${product._id}`)}
                       >
                         <img
                           className="object-fit-contain"

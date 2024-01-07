@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
@@ -28,7 +28,7 @@ export default function ProductDetails() {
 
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
-  let {data , isLoading} = useQuery('product-details' , getProduct , {cacheTime : 0});
+  let {data , isLoading , refetch} = useQuery('product-details' , getProduct , {cacheTime : 0});
 
   let product = (data?.data?.data?.data);
 
@@ -49,7 +49,7 @@ export default function ProductDetails() {
                                                               >
                                                             </div>
                                                           );
-  
+  useEffect(()=>{refetch()},[id])
   return <>
   {isLoading && <Loader/>}
   {product && <>
@@ -63,20 +63,26 @@ export default function ProductDetails() {
       <div className="row mb-3">
         <div className="col-8">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <div className="product-images p-2 pt-4">
                 <Slider {...settings}>
                   {product?.variants[0].images?.map((img , index)=><img className='img-fluid rounded' key={index}  src={'https://electrobile-souq.onrender.com/' + img}  loading='lazy' alt={product.name + ' image'} />)}
                 </Slider>  
               </div>
             </div>
-            <div className="col-md-8">
-              <div className="product-details ps-5">
+            <div className="col-md-7">
+              <div className="product-details ps-2">
                 <div className="product-category mb-4">
                   <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name}</p>
-                  <h5>{isBiddingEnded? <span className='badge dark-red-bg'>Biding End <RiAuctionLine className='fs-6'/></span> :
-                  <span className='badge dark-green-bg'>Biding Available <RiAuctionLine className='fs-6'/></span>
-                  }</h5>
+                  {product?.isAction &&
+                    <h5>
+                      {isBiddingEnded ?
+                        <span className='badge dark-red-bg'>Biding End <RiAuctionLine className='fs-6'/></span>
+                        :
+                        <span className='badge dark-green-bg'>Biding Available <RiAuctionLine className='fs-6'/></span>
+                      }
+                    </h5>
+                  }
                 </div>
                 <div className="product-data">
                   <div className="p-name">
