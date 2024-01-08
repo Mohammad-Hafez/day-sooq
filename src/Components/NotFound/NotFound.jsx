@@ -6,7 +6,7 @@ export default function NotFound() {
       <title>DAY SOOQ | Not-Found</title>
     </Helmet>
     <div className="container not-found">
-        not foundeddddd
+        
     </div>
     </>
 }

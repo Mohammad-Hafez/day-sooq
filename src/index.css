@@ -215,6 +215,15 @@ code {
 label{
   color: var(--Gray-Scale-Gray-900, #1A1A1A);
 }
+/* *SECTION - Not found */
+.not-found{
+  background-image: url('./assets/error.svg');
+  width: 100%;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 0;
+}
 /* *NOTE -  Header style */
 .topHeader::after{
 content: "";
