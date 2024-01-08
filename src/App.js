@@ -17,28 +17,28 @@ import AllProducts from './Components/AllProducts/AllProducts';
 import { WishListContextProvider } from './context/WishListContext';
 
 function App() {
-  const [UserData, setUserData] = useState(null);
   const [UserToken, setUserToken] = useState(null);
 
   function saveUserData(){
     let encodedPharmacistToken = localStorage.getItem("DaySooqUser");
-    let decodedPharmacistToken = jwtDecode(encodedPharmacistToken);
-    setUserData(decodedPharmacistToken);
     setUserToken(encodedPharmacistToken)
   }
-  const Logout = ()=>{
+  const Logout = () => {
     localStorage.removeItem("DaySooqUser");
-    setUserData(null);
-    setUserToken(null)
-  }
+    setUserToken(null);
+  };
+  
   useEffect(() => {
-    if (UserToken) {
-      if (UserData.exp * 1000 < Date.now()) {
+    const storedUserToken = localStorage.getItem('DaySooqUser');
+    if (storedUserToken) {
+      const decodedUserToken = jwtDecode(storedUserToken);
+      if (decodedUserToken.exp * 1000 < Date.now()) {
         Logout();
-      } 
+      } else {
+        setUserToken(storedUserToken);
+      }
     }
-  }, []);
-    
+  }, []);        
   return (
     
     <PrimeReactProvider>
