@@ -5,6 +5,8 @@ import { ApiBaseUrl } from "../Components/ApiBaseUrl";
 export let cartContext = createContext();
 
 export function CartContextProvider(props) {
+
+
     const user = localStorage.getItem("DaySooqUser") ;
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
@@ -97,10 +99,13 @@ export function CartContextProvider(props) {
             headers
         }
         ).then((response) => {
-            console.log(response.data.session.url)
-            const stripeUrl = response.data.session.url;
-            // Redirect to Stripe URL
-            window.location.href = stripeUrl;})
+            if (paymentMethod === 'cash' && response.data.status === 'success' ) {
+                window.location.href = '/SuccessOrder'
+            }else if (paymentMethod === 'card' && response.data.status === 'success' ) {
+                const stripeUrl = response.data.session.url;
+                window.location.href = stripeUrl;
+            }
+        })
         .catch((erorr) => erorr)
     }
 

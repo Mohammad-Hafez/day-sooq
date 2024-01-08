@@ -14,8 +14,9 @@ import ShippingForm from './Components/ShippingForm/ShippingForm';
 import CategoryProducts from './Components/CategoryProducts/CategoryProducts';
 import BrandProducts from './Components/BrandProducts/BrandProducts';
 import AllProducts from './Components/AllProducts/AllProducts';
+import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes';
 import { WishListContextProvider } from './context/WishListContext';
-
+import SuccessOrder from './Components/SuccessOrder/SuccessOrder';
 function App() {
   const [UserToken, setUserToken] = useState(null);
 
@@ -50,11 +51,12 @@ function App() {
               <Route index element={<Home />} />
               <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
-              <Route path="MyCart" element={<MyCart UserToken={UserToken}/>} /> 
-              <Route path="WishList" element={<WishList UserToken={UserToken}/>} /> 
+              <Route path="MyCart" element={<ProtectedRoutes> <MyCart UserToken={UserToken}/> </ProtectedRoutes> } /> 
+              <Route path="WishList" element={<ProtectedRoutes> <WishList UserToken={UserToken}/> </ProtectedRoutes>} /> 
               <Route path="CategoryProducts/:category" element={<CategoryProducts UserToken={UserToken}/>} /> 
               <Route path="BrandProducts/:brand/:name" element={<BrandProducts UserToken={UserToken}/>} /> 
-              <Route path="ShippingForm" element={<ShippingForm UserToken={UserToken}/>} /> 
+              <Route path="ShippingForm" element={<ProtectedRoutes><ShippingForm UserToken={UserToken}/> </ProtectedRoutes> } /> 
+              <Route path="SuccessOrder" element={<ProtectedRoutes><SuccessOrder UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="AllProducts" element={<AllProducts UserToken={UserToken}/>} /> 
               <Route path="*" element={<NotFound/>} /> 
             </Route>

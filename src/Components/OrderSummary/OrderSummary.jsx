@@ -32,9 +32,9 @@ export default function OrderSummary({handleFormSubmit , setPaymentMethod}) {
     <hr className='w-100 my-3'/>
     <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between fs-5'>
       Total : 
-      <h5 className='ms-1 fw-bolder '>
+      <span className='ms-1 fw-bolder fs-5'>
         {TotalPrice} JOD
-      </h5>
+      </span>
     </p>
     <h5 className='dark-grey-text fw-bolder'>Payment Method</h5>
     <div className="payment-method-radio">
