@@ -243,7 +243,16 @@ border: none;
 ul.p-dropdown-items{
 padding-left: 0 ;
 }
-
+.profile-dropdown::after{
+  display: none;
+}
+.dropdown-menu.profile-menu{
+  left : 0
+}
+.profile-menu .dropdown-item:active ,.profile-menu .dropdown-item.active {
+  background-color: var(--grey-bgColor);
+  color: var(--main-orange);
+}
 .nav-dropDown{
   border: none;
   border-right: 1px solid var(--main-orange) ;

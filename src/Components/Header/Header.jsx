@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import { ApiBaseUrl } from '../ApiBaseUrl';
 
-export default function Header({UserToken}) {
+export default function Header({UserToken , Logout}) {
 
   const getAllCategories =  () =>axios.get(ApiBaseUrl + `categories`);
 
@@ -17,7 +17,7 @@ export default function Header({UserToken}) {
     <TopHeaderInfo/>
   </div>
   <div className="container mb-3 position-sticky top-0 z-3 bg-white py-2 rounded-bottom">
-    <HeaderSearch UserToken={UserToken} categories={data?.data?.data?.data}/>
+    <HeaderSearch UserToken={UserToken} categories={data?.data?.data?.data} Logout={Logout}/>
   </div>
   <Navbar  categories={data?.data?.data?.data}/>
   </>

@@ -23,7 +23,7 @@ let {data , isFetching , isLoading , refetch } = useQuery('get-products' , getAl
       <title>All Products</title>
     </Helmet>
     <div className="container">
-      {isLoading ? <Loader/> : <>
+      {isLoading && <Loader/> }
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-3">
           <SideMenu setFilterMethod={setFilterMethod} FilterMethod={FilterMethod}/>
@@ -37,7 +37,6 @@ let {data , isFetching , isLoading , refetch } = useQuery('get-products' , getAl
           </div>
         </div>
       </div>
-      </> }
       {isFetching && <Loader/>}
     </div>
     </>

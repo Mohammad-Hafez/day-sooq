@@ -25,25 +25,33 @@ function App() {
     setUserData(decodedPharmacistToken);
     setUserToken(encodedPharmacistToken)
   }
+  const Logout = ()=>{
+    localStorage.removeItem("DaySooqUser");
+    setUserData(null);
+    setUserToken(null)
+  }
   useEffect(() => {
-    if (localStorage.getItem('DaySooqUser')) {
-      const expDate = UserData?.exp * 1000; 
-      if (expDate < Date.now()) {
-        localStorage.removeItem('DaySooqUser');
-        setUserData(null);
-        setUserToken(null);
-      }
-      saveUserData();
-    }  
-  }, []);
+    const storedUserToken = localStorage.getItem('DaySooqUser');
   
+    if (storedUserToken) {
+      const decodedUserToken = jwtDecode(storedUserToken);
+  
+      if (decodedUserToken.exp * 1000 < Date.now()) {
+        Logout();
+      } else {
+        setUserData(decodedUserToken);
+        setUserToken(storedUserToken);
+      }
+    }
+  }, []);
+    
   return (
     
     <PrimeReactProvider>
       <CartContextProvider>
       <Router>
           <Routes>
-            <Route path="" element={<Layout UserToken={UserToken}/>} >
+            <Route path="" element={<Layout UserToken={UserToken} Logout={Logout}/>} >
               <Route index element={<Home />} />
               <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 

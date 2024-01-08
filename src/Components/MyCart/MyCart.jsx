@@ -16,9 +16,9 @@ export default function MyCart() {
 
   let cartItems = data?.data.data.data;
 
-  if (data) {
-    setNumbOfCartItems(data?.data?.data.data.length);
-  }
+  // if (data) {
+  //   setNumbOfCartItems(data?.data?.data.data.length);
+  // }
 
   const [productCounts, setProductCounts] = useState({});
 

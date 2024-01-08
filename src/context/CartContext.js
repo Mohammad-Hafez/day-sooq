@@ -5,7 +5,6 @@ import { ApiBaseUrl } from "../Components/ApiBaseUrl";
 export let cartContext = createContext();
 
 export function CartContextProvider(props) {
-    
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
     const [AllCartsId, setAllCartsId] = useState()
@@ -120,7 +119,7 @@ export function CartContextProvider(props) {
     }
 
     return <>
-    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, placeOrder, addToCart, getLoggedUserCart, removeItem, updateProductCount }}>
+    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, placeOrder, addToCart, getLoggedUserCart, removeItem, updateProductCount , getCart }}>
         {props.children}
     </cartContext.Provider>
     </>

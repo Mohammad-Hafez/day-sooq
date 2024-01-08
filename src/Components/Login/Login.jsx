@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import * as Yup from 'yup'
 import {  useFormik } from 'formik'
 import {  useNavigate} from 'react-router-dom'
@@ -9,7 +9,10 @@ import {login} from 'react-icons-kit/entypo/login'
 import axios from 'axios';
 import {ApiBaseUrl } from '../ApiBaseUrl'
 import {alertCircle} from 'react-icons-kit/feather/alertCircle'
+import { cartContext } from '../../context/CartContext';
+
 export default function Login({saveUserData}) {
+  let {getCart} = useContext(cartContext);
   const[isLoading,setIsLoading]=useState(false)
   const [passwordShown, setPasswordShown] = useState(false);
   const [ErrMsg, setErrMsg] = useState()
@@ -23,12 +26,12 @@ export default function Login({saveUserData}) {
     setErrMsg(null)
     try {
       let {data} = await axios.post(ApiBaseUrl + `auth/login` , values);
-      console.log(data);
-      setIsLoading(false)
-      formik.resetForm();
       localStorage.setItem("DaySooqUser", data.token)
+      setIsLoading(false)
       saveUserData()
+      formik.resetForm();
       navigate("/")
+      getCart()
     } catch (error) {
       console.error(error);
       setIsLoading(false)
