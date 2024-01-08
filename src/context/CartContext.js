@@ -5,11 +5,12 @@ import { ApiBaseUrl } from "../Components/ApiBaseUrl";
 export let cartContext = createContext();
 
 export function CartContextProvider(props) {
+    const user = localStorage.getItem("DaySooqUser") ;
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
     const [AllCartsId, setAllCartsId] = useState()
     let headers = {
-        'Authorization': `Bearer ${localStorage.getItem("DaySooqUser")}` 
+        'Authorization': `Bearer ${user}` 
     }
 
     function getLoggedUserCart(){
@@ -35,7 +36,7 @@ export function CartContextProvider(props) {
 
     useEffect(() => {
         getCart();
-    },[]);
+    },[user]);
 
     function addToCart(productId, quantity) {
         const cartItem = {

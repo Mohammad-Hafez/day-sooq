@@ -14,6 +14,7 @@ import ShippingForm from './Components/ShippingForm/ShippingForm';
 import CategoryProducts from './Components/CategoryProducts/CategoryProducts';
 import BrandProducts from './Components/BrandProducts/BrandProducts';
 import AllProducts from './Components/AllProducts/AllProducts';
+import { WishListContextProvider } from './context/WishListContext';
 
 function App() {
   const [UserData, setUserData] = useState(null);
@@ -31,17 +32,10 @@ function App() {
     setUserToken(null)
   }
   useEffect(() => {
-    const storedUserToken = localStorage.getItem('DaySooqUser');
-  
-    if (storedUserToken) {
-      const decodedUserToken = jwtDecode(storedUserToken);
-  
-      if (decodedUserToken.exp * 1000 < Date.now()) {
+    if (UserToken) {
+      if (UserData.exp * 1000 < Date.now()) {
         Logout();
-      } else {
-        setUserData(decodedUserToken);
-        setUserToken(storedUserToken);
-      }
+      } 
     }
   }, []);
     
@@ -49,6 +43,7 @@ function App() {
     
     <PrimeReactProvider>
       <CartContextProvider>
+        <WishListContextProvider>
       <Router>
           <Routes>
             <Route path="" element={<Layout UserToken={UserToken} Logout={Logout}/>} >
@@ -65,6 +60,7 @@ function App() {
             </Route>
           </Routes>
           </Router>
+          </WishListContextProvider>
       </CartContextProvider>
     </PrimeReactProvider>
   );

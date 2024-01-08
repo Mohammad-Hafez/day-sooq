@@ -7,6 +7,7 @@ import { Icon } from 'react-icons-kit'
 import { useNavigate } from 'react-router-dom';
 import {eye} from 'react-icons-kit/feather/eye';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff'
+import { IoPersonAdd } from "react-icons/io5";
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -124,11 +125,11 @@ const Register = () => {
               </div>
             </div>
           </div>
-          <div className="btns col-8 offset-2">
+          <div className="btns col-6 offset-3 mt-2">
             {/* loading & signup btns */}
-            {isLoading ? <button type="button" className="btn btn-orange rounded-pill  text-light"><i className="fa fa-spin fa-spinner"></i></button>
+            {isLoading ? <button type="button" className="btn btn-orange rounded-pill w-100 text-light"><i className="fa fa-spin fa-spinner"></i></button>
              : 
-              <button type="submit" disabled={!(formik.isValid && formik.dirty)} className="btn btn-orange rounded-pill  text-light">SIGN UP</button>
+              <button type="submit" disabled={!(formik.isValid && formik.dirty)} className="btn btn-orange w-100 rounded-pill d-flex align-items-center justify-content-center text-light">SIGN UP <IoPersonAdd className='ms-2' /></button>
             }
           </div>
         </div>
