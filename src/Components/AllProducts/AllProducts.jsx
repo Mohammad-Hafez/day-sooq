@@ -6,6 +6,7 @@ import axios from 'axios';
 import { ApiBaseUrl } from '../ApiBaseUrl';
 import Loader from '../Loader/Loader'
 import ProductCard from '../ProductCard/ProductCard'
+import { BsGrid3X3GapFill } from "react-icons/bs";
 
 export default function AllProducts() {
 const [FilterMethod, setFilterMethod] = useState();

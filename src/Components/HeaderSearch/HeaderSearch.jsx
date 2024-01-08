@@ -106,7 +106,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                     className="main-grey-text me-2 cursor-pointer"
                   ></Icon>
                 </span>
-                <div className="dropdown-menu profile-menu text-center" aria-labelledby="navbarDropdown">
+                <div className="dropdown-menu profile-menu text-center font-Poppins" aria-labelledby="navbarDropdown">
                   <span className="nav-itemdropdown-menu text-center" aria-labelledby="navbarDropdown">
                     <Link className={`dropdown-item text-main ${activeLink === 'MyOrders' ? ' active' : ''}`} to={`MyOrders`} onClick={() => setActiveLink('MyOrders')} >
                     My Orders

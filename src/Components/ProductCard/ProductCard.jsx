@@ -40,23 +40,23 @@ export default function ProductCard({product , category }) {
           Category
           </>}
       </p>
-      <div className="card-product-info mb-2" onClick={handleCardClick}>
+      <div className="card-product-info mb-2 flex-grow-1 d-flex flex-column justify-content-between" onClick={handleCardClick}>
         {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
             <h6 className='cardProductName fw-bolder '>{product?.name}</h6>
             </> : <>
             <h6 className='cardProductName fw-bolder '>{product?.variant.product.name}</h6>
             </>}
-          <div className="slide-img over-flow-hidden">
+          <div className="slide-img over-flow-hidden flex-grow-1">
             {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any'? <>
-              <img  className='img-fluid h-100 w-100 rounded' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
+              <img  className='img-fluid h-100 w-100 rounded object-fit-contain' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
             </> : <>
-              <img  className='img-fluid mb-2 rounded' src={ImgBaseURL + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+              <img  className='img-fluid mb-2 rounded object-fit-contain' src={ImgBaseURL + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
             </>}
           </div>
       </div>
       <div className="card-footer d-flex align-items-center justify-content-between w-100">
         {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
-            {category === 'similar' || category ===  'any' && 
+            {category === 'similar' || category ===  'any' ? <>
               <div className="salePrice">
                 <h6 className='font-Roboto fw-bold dark-grey-text'>
                   {product.priceDiscount.value > 0
@@ -67,6 +67,8 @@ export default function ProductCard({product , category }) {
                   : product.price} JOD
                 </h6>
               </div>
+              </>
+              : null
             }
             {category === 'big-deals' && 
               <div className="salePrice">
