@@ -16,7 +16,8 @@ const {getLoggedWishlist} = useContext(WishListContext);
 
 let {data , isLoading , isFetching , refetch} = useQuery('get-my-fav' , getLoggedWishlist );
 
-const favorites = data?.data.data.favorites
+const favorites = data?.data.data.favorites;
+
 return <>
     <Helmet>
       <title>WishList</title>
@@ -28,7 +29,7 @@ return <>
       <div className="px-1 w-75 mx-auto">
         <h5 className='main-orange-text ms-2 font-Poppins fw-bolder'>Wishlist</h5>
         {favorites?.map((item)=> <div key={item._id} className="fav-item">
-          <div className="fav-container blue-brdr rounded-4 p-3 font-roboto">
+          <div className="fav-container blue-brdr rounded-4 p-3 font-roboto mb-3">
               <div className="row g-2">
                 <div className="col-sm-2">
                   <div className="cartItemImage brdr p-2 rounded">
@@ -37,11 +38,9 @@ return <>
                 </div>
                 <div className="col-sm-8">
                   <div className="cartItemData d-flex flex-column justify-content-between py-2 h-100">
-                    <div className="itemName d-flex align-items-start justify-content-between">
-                      <div className="name">
-                        <h6 className='m-0 light-blue-text fw-bolder'>{item.product.name }</h6>
-                      </div>
-                    </div>
+                    <h6 className='m-0 light-blue-text fw-bolder'>{item.product.name }</h6>
+                    <h6>Rate</h6>
+                    {item.product?.description?.split(',').map((item, index) => <li className='mb-1 ms-1' key={index}>{item.trim()}</li> )}
                   </div>
                 </div>
                 <div className="col-sm-2  d-flex flex-column align-items-center justify-content-between">

@@ -33,9 +33,9 @@ export default function ProductCard({product , category }) {
 
   const addToFavFromCard = ()=>{
     if (category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any') {
-      addToFav(product?.variants[0]?._id , 1)
+      addToFav(product?._id )
     }else{
-      addToFav(product?.variant?._id , 1)
+      addToFav(product?.variant?._id)
     }
   }
 

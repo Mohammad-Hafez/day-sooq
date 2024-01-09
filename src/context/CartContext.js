@@ -1,6 +1,7 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useLayoutEffect, useState } from "react";
 import { ApiBaseUrl } from "../Components/ApiBaseUrl";
+import { toast } from 'react-hot-toast';
 
 export let cartContext = createContext();
 
@@ -36,7 +37,7 @@ export function CartContextProvider(props) {
         }
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getCart();
     },[user]);
 
@@ -49,10 +50,20 @@ export function CartContextProvider(props) {
         cartItem , 
         { headers }
         ).then((response) => {
+            toast.success('Product Added Successfully.', {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });
             getCart()
             return response
         })
-        .catch((erorr) => (erorr))
+        .catch((erorr) => {
+            toast.error("The product is already in your cart.", {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+              });  
+            return erorr;
+        })
     }
         
     function removeItem(productId){
@@ -60,12 +71,22 @@ export function CartContextProvider(props) {
         {
             headers
         }
-        ).then((response) => {           
+        ).then((response) => {    
+            toast.success('Product Deleted Successfully.', {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });
             getCart()
             return response
             }
         )
-        .catch((erorr) => erorr)
+        .catch((erorr) => {
+            toast.error("An Error Occured", {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });  
+            return erorr
+        })
     }
 
     function updateProductCount(cartId ,variantId , quantity ){
@@ -78,11 +99,22 @@ export function CartContextProvider(props) {
         {
             headers
         }
-        ).then((response) => {           
+        ).then((response) => {   
+            toast.success('count Updated Successfully.', {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });
+        
             getCart()
             return response
             })
-        .catch((erorr) => erorr)
+        .catch((erorr) => {
+            toast.error("An Error Occured", {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });  
+            return erorr
+        })
     }
 
     function placeOrder(paymentMethod , values){

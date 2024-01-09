@@ -17,6 +17,11 @@ import AllProducts from './Components/AllProducts/AllProducts';
 import ProtectedRoutes from './Components/ProtectedRoutes/ProtectedRoutes';
 import { WishListContextProvider } from './context/WishListContext';
 import SuccessOrder from './Components/SuccessOrder/SuccessOrder';
+import { Icon } from 'react-icons-kit';
+import {wifiOff} from 'react-icons-kit/feather/wifiOff'
+import { Offline } from "react-detect-offline";
+import  { Toaster } from 'react-hot-toast';
+
 function App() {
   const [UserToken, setUserToken] = useState(null);
 
@@ -45,6 +50,8 @@ function App() {
     <PrimeReactProvider>
       <CartContextProvider>
         <WishListContextProvider>
+        <Offline> <div className='network p-3 bg-danger text-light rounded align-items-center d-flex position-absolute bottom-0 start-0 m-4'> <Icon icon={wifiOff} className='me-2'></Icon> Faild Network Conection</div> </Offline>
+        <Toaster/>
       <Router>
           <Routes>
             <Route path="" element={<Layout UserToken={UserToken} Logout={Logout}/>} >
