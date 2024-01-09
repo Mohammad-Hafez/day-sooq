@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { ApiBaseUrl } from "../Components/ApiBaseUrl";
+import { toast } from 'react-hot-toast';
 
 export let WishListContext = createContext();
 
@@ -29,8 +30,21 @@ export function WishListContextProvider(props){
 
     function addToFav(productId) {
         return axios.post(ApiBaseUrl + `favorites` ,{product : productId} , {headers})
-        .then((response)=>response)
-        .catch((error)=>error)
+        .then((response)=>{
+            toast.success('Product Added Successfully.', {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });
+            return response;
+        })
+        .catch((error)=>{
+            toast.error("The product is already in your Wishlist.", {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+              });  
+            return error;
+
+        })
     }
 
     return <>

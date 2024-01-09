@@ -3,7 +3,6 @@ import { ImgBaseURL } from '../ApiBaseUrl'
 import { Icon } from 'react-icons-kit'
 import {ic_local_mall} from 'react-icons-kit/md/ic_local_mall'
 import {heart} from 'react-icons-kit/ionicons/heart'
-import { GoGitCompare } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
 import { cartContext } from '../../context/CartContext'
 import { WishListContext } from '../../context/WishListContext'
@@ -119,7 +118,6 @@ export default function ProductCard({product , category }) {
         </>}
         <div className="actionBtns position-relative">
           <div className="toggleBtns">
-            <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1'><GoGitCompare/></button>
             <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
           </div>
           <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2' onClick={addToCartFromCard}><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>

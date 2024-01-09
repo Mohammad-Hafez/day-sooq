@@ -22,7 +22,7 @@ export function CartContextProvider(props) {
             headers
         }
         ).then((response) => response)
-        .catch((erorr) => erorr)
+        .catch((error) => error)
     }
 
     async function getCart(){
@@ -57,12 +57,12 @@ export function CartContextProvider(props) {
             getCart()
             return response
         })
-        .catch((erorr) => {
+        .catch((error) => {
             toast.error("The product is already in your cart.", {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
               });  
-            return erorr;
+            return error;
         })
     }
         
@@ -80,12 +80,12 @@ export function CartContextProvider(props) {
             return response
             }
         )
-        .catch((erorr) => {
+        .catch((error) => {
             toast.error("An Error Occured", {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
             });  
-            return erorr
+            return error
         })
     }
 
@@ -104,16 +104,15 @@ export function CartContextProvider(props) {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
             });
-        
             getCart()
             return response
             })
-        .catch((erorr) => {
+        .catch((error) => {
             toast.error("An Error Occured", {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
             });  
-            return erorr
+            return error
         })
     }
 
@@ -138,7 +137,7 @@ export function CartContextProvider(props) {
                 window.location.href = stripeUrl;
             }
         })
-        .catch((erorr) => erorr)
+        .catch((error) => error)
     }
 
     function applyPromoCode (promoCode , totalPrice){
@@ -149,11 +148,21 @@ export function CartContextProvider(props) {
         },
         {
             headers
-        }).then((response) => {           
+        }).then((response) => {   
+            toast.success('Promocode Added Successfully.', {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+            });        
             // getCart()
             return response
             })
-        .catch((erorr) => erorr)
+        .catch((error) => {
+            toast.error("The Promocode expired.", {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+              });  
+            return error;
+        })
     }
 
     return <>
