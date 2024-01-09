@@ -117,7 +117,7 @@ export default function ProductCard({product , category }) {
         </h6>
         </>}
         <div className="actionBtns position-relative">
-          <div className="toggleBtns">
+          <div className="toggleBtns mb-3">
             <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
           </div>
           <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2' onClick={addToCartFromCard}><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
