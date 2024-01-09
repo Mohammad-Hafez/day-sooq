@@ -34,7 +34,7 @@ export function WishListContextProvider(props){
     }
 
     return <>
-        <WishListContext.Provider value={{NumFavItems , addToFav }}>
+        <WishListContext.Provider value={{NumFavItems , addToFav , getLoggedWishlist }}>
             {props.children}
         </WishListContext.Provider>
     </>

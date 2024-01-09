@@ -6,11 +6,13 @@ import {heart} from 'react-icons-kit/ionicons/heart'
 import { GoGitCompare } from "react-icons/go";
 import { useNavigate } from 'react-router-dom';
 import { cartContext } from '../../context/CartContext'
-     
+import { WishListContext } from '../../context/WishListContext'
+   
 export default function ProductCard({product , category }) {
   let navigate = useNavigate();
 
   const { addToCart } = useContext(cartContext);
+  const {addToFav} = useContext(WishListContext)
 
   const handleCardClick = ()=>{
     if (category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any') {
@@ -27,8 +29,16 @@ export default function ProductCard({product , category }) {
     }else{
       addToCart(product?.variant?._id , 1)
     }
-
   }
+
+  const addToFavFromCard = ()=>{
+    if (category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any') {
+      addToFav(product?.variants[0]?._id , 1)
+    }else{
+      addToFav(product?.variant?._id , 1)
+    }
+  }
+
   return <>
     <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100" >
       <p className='cardCategory me-auto mt-2'>
@@ -110,7 +120,7 @@ export default function ProductCard({product , category }) {
         <div className="actionBtns position-relative">
           <div className="toggleBtns">
             <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1'><GoGitCompare/></button>
-            <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2'><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
+            <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='p-0 m-0' icon={heart} size={22}></Icon></button>
           </div>
           <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2' onClick={addToCartFromCard}><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
         </div>

@@ -10,15 +10,11 @@ import { FaTrashAlt } from "react-icons/fa";
 
 export default function MyCart() {
 
-  let {getLoggedUserCart , updateProductCount , removeItem , setNumbOfCartItems} = useContext(cartContext);
+  let {getLoggedUserCart , updateProductCount , removeItem } = useContext(cartContext);
 
   let {data , isLoading ,isFetching , refetch} = useQuery('get-my-cart' , getLoggedUserCart );
 
   let cartItems = data?.data.data.data;
-
-  // if (data) {
-  //   setNumbOfCartItems(data?.data?.data.data.length);
-  // }
 
   const [productCounts, setProductCounts] = useState({});
 
