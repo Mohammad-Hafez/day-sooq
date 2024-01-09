@@ -54,9 +54,9 @@ export default function MyCart() {
     <div className="container mt-2 mb-4">
       <p className='main-grey-text'>Cart</p>
       <div className="row">
-        <h5 className='main-orange-text ms-2'>YOUR CART</h5>
-        <div className="col-md-8">
-          <div className="cart-container brdr p-3">
+        <h5 className='main-orange-text ms-2 font-Poppins fw-bolder'>YOUR CART</h5>
+        <div className="col-md-8 mb-3">
+          <div className="cart-container brdr p-3 font-roboto">
             {cartItems.map((item)=> <div key={item._id} className="cart-item m-2 mb-3 brdr border-0 border-bottom pb-3 rounded-0">
               <div className="row g-2">
                 <div className="col-sm-2">
@@ -68,7 +68,7 @@ export default function MyCart() {
                   <div className="cartItemData d-flex flex-column justify-content-between py-2 h-100">
                     <div className="itemName d-flex align-items-start justify-content-between">
                       <div className="name">
-                        <h6 className='m-0 dark-grey-text'>{item.variant.product.name}</h6>
+                        <h6 className='m-0 light-blue-text fw-bolder'>{item.variant.product.name}</h6>
                         <p className='m-0'>Color : {item.variant.color}</p>
                       </div>
                       <div className="deleteItem">
