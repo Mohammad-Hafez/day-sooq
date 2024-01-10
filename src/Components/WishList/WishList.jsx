@@ -41,6 +41,9 @@ return <>
     <div className="container my-3">
       <div className="px-1 w-75 mx-auto">
         <h5 className='main-orange-text ms-2 font-Poppins fw-bolder'>Wishlist</h5>
+        {favorites?.length === 0 && <div className="blue-brdr blue-brdr rounded-4 p-3 font-roboto mb-3">
+          <h3 className='light-blue-text'>Explore our products & add items to your WishList.</h3>
+        </div> }
         {favorites?.map((item)=> <div key={item._id} className="fav-item">
           <div className="fav-container blue-brdr rounded-4 p-3 font-roboto mb-3" >
               <div className="row g-2">

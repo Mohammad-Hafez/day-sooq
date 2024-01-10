@@ -60,7 +60,7 @@ export default function MyCart() {
         
         <div className="col-md-8 mb-3">
           <div className="cart-container brdr p-3 font-roboto">
-            {cartItems.length === 0 && <h3 className='light-blue-text'>Explore our products and add items to your cart.</h3>}
+            {cartItems.length === 0 && <h3 className='light-blue-text'>Explore our products & add items to your cart.</h3>}
             {cartItems.map((item)=> <div key={item._id} className="cart-item m-2 mb-3 brdr border-0 border-bottom pb-3 rounded-0">
               <div className="row g-2">
                 <div className="col-sm-2">
@@ -94,7 +94,7 @@ export default function MyCart() {
           </div>
         </div>
         <div className="col-md-4">
-          {cartItems && <CartSummary/> }
+          {cartItems && <CartSummary itemsNum={cartItems.length}/> }
         </div>
       </div>
     </div>
