@@ -8,9 +8,11 @@ import { FaTrashAlt } from "react-icons/fa";
 import { WishListContext } from '../../context/WishListContext';
 import { IoBagAddSharp } from "react-icons/io5";
 import StarRating from '../StarRating/StarRating';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function WishList() {
+  let navigate = useNavigate()
 
 const {addToCart} = useContext(cartContext);
 
@@ -23,7 +25,6 @@ const favorites = data?.data.data.favorites;
 const handleRemoveFav = async (favId, variantId) => {
   try {
     await removeFav(favId, variantId);
-    // Update the local state instead of refetching
     const updatedFavorites = favorites.filter((item) => item._id !== favId);
     refetch(updatedFavorites);
   } catch (error) {
@@ -41,19 +42,19 @@ return <>
       <div className="px-1 w-75 mx-auto">
         <h5 className='main-orange-text ms-2 font-Poppins fw-bolder'>Wishlist</h5>
         {favorites?.map((item)=> <div key={item._id} className="fav-item">
-          <div className="fav-container blue-brdr rounded-4 p-3 font-roboto mb-3">
+          <div className="fav-container blue-brdr rounded-4 p-3 font-roboto mb-3" >
               <div className="row g-2">
                 <div className="col-sm-2">
-                  <div className="cartItemImage brdr p-2 rounded">
-                    <img src={ImgBaseURL + item.product.variants[0].imageCover} alt={item.product.name + 'image'} className='img-fluid rounded' loading='lazy' />
+                  <div className="cartItemImage brdr p-2 rounded" onClick={()=> navigate(`/ProductDetails/${item.product._id}`)}>
+                    <img src={ImgBaseURL + item.product.variants[0].imageCover} alt={item.product.name + 'image'} className='img-fluid cursor-pointer rounded' loading='lazy' />
                   </div>
                 </div>
                 <div className="col-sm-8">
                   <div className="cartItemData d-flex flex-column justify-content-between py-2 h-100">
                     <p className='main-grey-text m-0'>{item.product.subCategory.category.name +' / ' + item.product.subCategory.name}</p>
-                    <h6 className='m-0 light-blue-text fw-bolder'>{item.product.name }</h6>
+                    <h6 className='m-0 light-blue-text fw-bolder cursor-pointer' onClick={()=> navigate(`/ProductDetails/${item.product._id}`)}>{item.product.name }</h6>
                     <h6 className='rate d-flex align-items-center'> <StarRating averageRating={item.product.ratingsAverage} /> <span className='ms-2 main-grey-text'>({item.product.ratingsQuantity})</span></h6>
-                    {item.product?.description?.split(',').map((item, index) => <li className='mb-1 ms-1' key={index}>{item.trim()}</li> )}
+                    {item.product?.description?.split(',').slice(0, 3).map((item, index) =><li className='mb-1 ms-1' key={index}>{item.trim()}</li> )}
                   </div>
                 </div>
                 <div className="col-sm-2  d-flex flex-column align-items-center justify-content-between">

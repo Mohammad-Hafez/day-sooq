@@ -1,9 +1,13 @@
-import React from 'react';
+import React , {useContext}from 'react';
 import { IoBagCheck } from "react-icons/io5";
+import {heart} from 'react-icons-kit/ionicons/heart'
+import { Icon } from 'react-icons-kit'
+import { WishListContext } from '../../context/WishListContext'
 
 export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine }) {
   const isBiddingEnded = new Date(product.endDate) < new Date();
-  console.log(product);
+
+  const {addToFav} = useContext(WishListContext)
 
   return (
     <>
@@ -15,7 +19,7 @@ export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine
               <span className=''>free</span>
             </div>
           </div>
-          <button className='w-100 grey-outline-btn mb-4 py-2 fs-5' disabled={isBiddingEnded}>Wishlist</button>
+          <button onClick={()=> addToFav(product._id)} className='w-100 grey-outline-btn cursor-pointer mb-4 py-2 fs-5 d-flex align-items-center justify-content-center addToFavBtn'>Wishlist <Icon className='heart ms-2' icon={heart} size={22}></Icon></button>
           <h5 className='main-grey-text mb-3'>
             <span className='ms-1 dark-grey-text'>
               Start Bidding : <span className='fw-bolder'>{!isBiddingEnded

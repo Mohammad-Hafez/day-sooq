@@ -7,8 +7,11 @@ import { ImgBaseURL } from '../ApiBaseUrl';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import CartSummary from '../CartSummary/CartSummary';
 import { FaTrashAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 export default function MyCart() {
+
+  let navigate = useNavigate()
 
   let {getLoggedUserCart , updateProductCount , removeItem } = useContext(cartContext);
 
@@ -61,14 +64,14 @@ export default function MyCart() {
               <div className="row g-2">
                 <div className="col-sm-2">
                   <div className="cartItemImage brdr p-2 rounded">
-                    <img src={ImgBaseURL + item.variant.imageCover} alt={item.variant.product.name + 'image'} className='img-fluid rounded' loading='lazy' />
+                    <img onClick={()=> navigate(`/ProductDetails/${item.variant.product._id}`)} src={ImgBaseURL + item.variant.imageCover} alt={item.variant.product.name + 'image'} className='img-fluid rounded cursor-pointer' loading='lazy' />
                   </div>
                 </div>
                 <div className="col-sm-10">
                   <div className="cartItemData d-flex flex-column justify-content-between py-2 h-100">
                     <div className="itemName d-flex align-items-start justify-content-between">
                       <div className="name">
-                        <h6 className='m-0 light-blue-text fw-bolder'>{item.variant.product.name}</h6>
+                        <h6 className='m-0 light-blue-text fw-bolder cursor-pointer' onClick={()=> navigate(`/ProductDetails/${item.variant.product._id}`)} >{item.variant.product.name}</h6>
                         <p className='m-0'>Color : {item.variant.color}</p>
                       </div>
                       <div className="deleteItem">

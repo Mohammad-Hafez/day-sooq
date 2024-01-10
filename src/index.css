@@ -218,6 +218,10 @@ code {
 label{
   color: var(--Gray-Scale-Gray-900, #1A1A1A);
 }
+/* Btn */
+.addToFavBtn:hover .heart{
+ color: var(--pink-color);
+}
 /* *SECTION - Not found */
 .not-found{
   background-image: url('./assets/error.svg');

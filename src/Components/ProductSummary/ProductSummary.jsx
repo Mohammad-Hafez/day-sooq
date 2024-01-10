@@ -2,9 +2,13 @@ import React, { useContext, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import { cartContext } from '../../context/CartContext';
 import { IoBagAddSharp } from "react-icons/io5";
+import {heart} from 'react-icons-kit/ionicons/heart'
+import { Icon } from 'react-icons-kit'
+import { WishListContext } from '../../context/WishListContext'
 
 export default function ProductSummary({ product, quantity , SelectedVariant }) {
   const { addToCart } = useContext(cartContext);
+  const {addToFav} = useContext(WishListContext)
 
   const [productCount, setProductCount] = useState(1);
 
@@ -30,7 +34,7 @@ export default function ProductSummary({ product, quantity , SelectedVariant }) 
               <span className=''>free</span>
             </div>
           </div>
-          <button className='w-100 grey-outline-btn mb-4 py-2 fs-5'>Wishlist</button>
+          <button className='w-100 grey-outline-btn mb-4 py-2 fs-5 d-flex align-items-center justify-content-center addToFavBtn' onClick={()=> addToFav(product._id)}><span>Wishlist</span> <Icon className='ms-2 heart' icon={heart} size={22}></Icon></button>
           <h4 className='main-grey-text mb-3'>
             Total Price : 
             <span className='ms-1 dark-grey-text'>

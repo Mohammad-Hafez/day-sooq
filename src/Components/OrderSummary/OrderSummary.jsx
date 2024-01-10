@@ -10,7 +10,6 @@ export default function OrderSummary({handleFormSubmit , setPaymentMethod}) {
   const handlePaymentMethodChange = (e) => {
     setSelectedPaymentMethod(e.value);
     setPaymentMethod(e.value);
-    console.log(e.value);
   };
 
   const isPlaceOrderDisabled = !selectedPaymentMethod; 
