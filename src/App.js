@@ -21,6 +21,7 @@ import { Icon } from 'react-icons-kit';
 import {wifiOff} from 'react-icons-kit/feather/wifiOff'
 import { Offline } from "react-detect-offline";
 import  { Toaster } from 'react-hot-toast';
+import MyOrders from './Components/MyOrders/MyOrders';
 
 function App() {
   const [UserToken, setUserToken] = useState(null);
@@ -64,6 +65,7 @@ function App() {
               <Route path="BrandProducts/:brand/:name" element={<BrandProducts UserToken={UserToken}/>} /> 
               <Route path="ShippingForm" element={<ProtectedRoutes><ShippingForm UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="SuccessOrder" element={<ProtectedRoutes><SuccessOrder UserToken={UserToken}/> </ProtectedRoutes> } /> 
+              <Route path="MyOrders" element={<ProtectedRoutes><MyOrders UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="AllProducts" element={<AllProducts UserToken={UserToken}/>} /> 
               <Route path="*" element={<NotFound/>} /> 
             </Route>

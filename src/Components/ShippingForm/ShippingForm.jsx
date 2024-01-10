@@ -57,11 +57,11 @@ export default function ShippingForm() {
   let {data} = useQuery('all-countreis' , getCountries , {cacheTime : 50000})
 
   
-  let countriesName = data?.data?.data?.countries?.map((country)=> country.name);
+  let countriesName = data?.data?.data?.myCountries?.map((country)=> country.name);
 
   const handleCountrySelect =(selectedCountry)=>{
-    const countryIsoCode = data?.data?.data?.countries?.find(country => country.name === selectedCountry)?.isoCode;
-    const countryPhoneCode = data?.data?.data?.countries?.find(country => country.name === selectedCountry)?.phonecode;
+    const countryIsoCode = data?.data?.data?.myCountries?.find(country => country.name === selectedCountry)?.isoCode;
+    const countryPhoneCode = data?.data?.data?.myCountries?.find(country => country.name === selectedCountry)?.phonecode;
     setPhoneCode(countryPhoneCode)
     getCities(countryIsoCode)
   };

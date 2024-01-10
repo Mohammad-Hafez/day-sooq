@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
+import { Carousel } from 'primereact/carousel';
 
 export default function MainSlider({setIsBannerLoading}) {
   let settings = {
@@ -14,11 +15,6 @@ export default function MainSlider({setIsBannerLoading}) {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    // afterChange: function(index) {
-    //   console.log(
-    //     `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-    //   );
-    // }, for change bg-color dynamic
     autoplaySpeed: 2000,
   };
   const getBanners = ()=>{
@@ -41,7 +37,6 @@ export default function MainSlider({setIsBannerLoading}) {
                   <br />
                   
                 </p>
-
                 </div>
               </div>
               <div className="col-6">
