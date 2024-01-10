@@ -6,6 +6,7 @@ import {heart} from 'react-icons-kit/ionicons/heart'
 import { useNavigate } from 'react-router-dom';
 import { cartContext } from '../../context/CartContext'
 import { WishListContext } from '../../context/WishListContext'
+import ProductPrice from '../ProductPrice/ProductPrice'
    
 export default function ProductCard({product , category }) {
   let navigate = useNavigate();
@@ -64,58 +65,7 @@ export default function ProductCard({product , category }) {
           </div>
       </div>
       <div className="card-footer d-flex align-items-center justify-content-between w-100">
-        {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
-            {category === 'similar' || category ===  'any' ? <>
-              <div className="salePrice">
-                <h6 className='font-Roboto fw-bold dark-grey-text'>
-                  {product.priceDiscount.value > 0
-                            ? product.priceDiscount.type === 'percentage'
-                              ? product.price *
-                                (product.priceDiscount.value / 100)
-                              : product.price - product.priceDiscount.value
-                  : product.price} JOD
-                </h6>
-              </div>
-              </>
-              : null
-            }
-            {category === 'big-deals' && 
-              <div className="salePrice">
-                <h6 className='font-Roboto  dark-grey-text before-price'>
-                  {product?.price} JOD</h6>
-                <h6 className='font-Roboto fw-bold pink-text'>
-                  {product.priceDiscount.value > 0
-                          ? product.priceDiscount.type === 'percentage'
-                            ? product.price *
-                              (product.priceDiscount.value / 100)
-                            : product.price - product.priceDiscount.value
-                          : product.price} JOD
-                </h6>
-              </div>
-            }
-            {category ===  'bidding' && 
-              <div className="prices">
-                <h6 className='font-Roboto fw-bold dark-grey-text'>                          
-                  {product.priceDiscount.value > 0
-                          ? product.priceDiscount.type === 'percentage'
-                            ? product.price *
-                              (product.priceDiscount.value / 100)
-                            : product.price - product.priceDiscount.value
-                          : product.price} JOD
-                </h6>
-                <h6 className='font-Roboto fw-bold main-orange-text'>{product.price - product.biddingGap} JOD</h6>
-              </div>
-            }
-        </> : <>
-        <h6 className='font-Roboto fw-bold dark-grey-text'>
-          {product.variant.product.priceDiscount.value > 0
-                    ? product.variant.product.priceDiscount.type === 'percentage'
-                      ? product.variant.product.price *
-                        (product.variant.product.priceDiscount.value / 100)
-                      : product.variant.product.price - product.variant.product.priceDiscount.value
-          : product.variant.product.price} JOD
-        </h6>
-        </>}
+        <ProductPrice product={product} category={category}/>
         <div className="actionBtns position-relative">
           <div className="toggleBtns mb-3">
             <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='mt-1' icon={heart} size={22}></Icon></button>
