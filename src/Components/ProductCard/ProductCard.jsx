@@ -74,6 +74,5 @@ export default function ProductCard({product , category }) {
         </div>
       </div>
     </div>
-
     </>
 }
