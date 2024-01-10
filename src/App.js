@@ -60,7 +60,7 @@ function App() {
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
               <Route path="MyCart" element={<ProtectedRoutes> <MyCart UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="WishList" element={<ProtectedRoutes> <WishList UserToken={UserToken}/> </ProtectedRoutes>} /> 
-              <Route path="CategoryProducts/:category" element={<CategoryProducts UserToken={UserToken}/>} /> 
+              <Route path="CategoryProducts/:category/:id" element={<CategoryProducts UserToken={UserToken}/>} /> 
               <Route path="BrandProducts/:brand/:name" element={<BrandProducts UserToken={UserToken}/>} /> 
               <Route path="ShippingForm" element={<ProtectedRoutes><ShippingForm UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="SuccessOrder" element={<ProtectedRoutes><SuccessOrder UserToken={UserToken}/> </ProtectedRoutes> } /> 

@@ -8,10 +8,9 @@ import Loader from '../Loader/Loader';
 import ProductCard from '../ProductCard/ProductCard';
 
 export default function CategoryProducts() {
-  let { category } = useParams();
-  category = decodeURIComponent(category);
+  let { category , id } = useParams();
   const getCategoryProducts = ()=>{
-    return axios.get(ApiBaseUrl + `products/${category}/category`)
+    return axios.get(ApiBaseUrl + `products?category=${id}`)
   }
   const { data, isLoading, isFetching } = useQuery(
     ['get-category-products', category],
@@ -24,7 +23,7 @@ export default function CategoryProducts() {
     <Helmet>
       <title>{category} Products</title>
     </Helmet>
-    <div className="container">
+    <div className="container px-5">
     {isLoading && <Loader/>}
     {data && <div className="row mt-3 mb-4 gy-3">
         {allProducts.map((product) => <div key={product._id} className="col-6 col-sm-4 col-md-3">

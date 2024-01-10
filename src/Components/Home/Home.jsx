@@ -24,7 +24,7 @@ export default function Home() {
     <Helmet>
       <title>DAY SOOQ | HOME</title>
     </Helmet>
-    <MainSlider setIsBannerLoading={setIsBannerLoading}/> 
+    {/* <MainSlider setIsBannerLoading={setIsBannerLoading}/>  */}
     <BiddingSlider setIsBiddingSliderLoading={setIsBiddingSliderLoading}/>
     <CategorySlider setIsFeaturedCategoriesLoading={setIsFeaturedCategoriesLoading}/>
     <StaticProducts/>

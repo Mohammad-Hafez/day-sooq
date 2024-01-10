@@ -629,6 +629,9 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   text-decoration: line-through;
 }
 /* *NOTE - Blogs Syle */
+.blogInfo{
+  height: fit-content;
+}
 .blogImage img{
   height: 100% ;
   aspect-ratio: 3;
@@ -637,15 +640,13 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   width: fit-content;
 }
 /* *NOTE - Footer style */
+
 .email-tab{
   background: linear-gradient(270deg, #003566 6.75%, #FF6000 99.3%);
 }
 .send-email{
-  transform: translateX(100%);
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -ms-transform: translateX(100%);
-  -o-transform: translateX(100%);
+  top: 0;
+  right: 23%;
 }
 .footer{
 background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4, 0.01) 98.64%);

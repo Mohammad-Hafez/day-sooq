@@ -20,13 +20,13 @@ export default function Blogs({setIsBlogsLoading}) {
 
     const responsiveOptions = [
       {
-          breakpoint: '1199px',
+          breakpoint: '1200px',
           numVisible: 1,
           numScroll: 1
       },
       {
           breakpoint: '991px',
-          numVisible: 2,
+          numVisible: 1,
           numScroll: 1
       },
       {
@@ -41,7 +41,7 @@ export default function Blogs({setIsBlogsLoading}) {
        <div className="blogImage">
          <img src={ImgBaseURL + blog.image} className='w-100 object-fit-contain rounded-start' alt={blog.title + 'image'} />
        </div>
-       <div className="blogInfo grey-brdr my-4 rounded p-4 d-flex flex-column">
+       <div className="blogInfo bg-light grey-brdr my-4 rounded p-4 d-flex flex-column">
          <span className="blogDate grey-brdr px-4 py-1 rounded-pill mb-3">
            {blog.createdAt.slice(0, 10)}
          </span>

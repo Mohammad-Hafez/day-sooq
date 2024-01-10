@@ -15,7 +15,7 @@ export default function Footer() {
   <div className="fixed-features mb-3">
     <div className="container">
       <div className="row">
-          <div className="col-3 col-md-2 offset-md-1 brdr rounded-0 ">
+          <div className="col-6  col-lg-3 brdr rounded-0 ">
             <div className="featuer p-3 d-flex align-items-center justify-content-center">
               <span className='me-2'><IoShieldCheckmark className='main-orange-text fs-3'/></span>
               <span className="text">
@@ -24,7 +24,7 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="col-6  col-lg-3 brdr rounded-0">
           <div className="featuer p-3 d-flex align-items-center justify-content-center">
               <span className='me-2'><FaCreditCard className='main-orange-text fs-3 rotate'/></span>
               <span className="text">
@@ -33,7 +33,7 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="col-6  col-lg-3 brdr rounded-0">
           <div className="featuer p-3 d-flex align-items-center justify-content-center">
               <span className='me-2'><BiShieldQuarter className='main-orange-text fs-3'/></span>
               <span className="text">
@@ -42,7 +42,7 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <div className="col-3 col-md-2 brdr rounded-0">
+          <div className="col-6  col-lg-3 brdr rounded-0">
           <div className="featuer p-3 d-flex align-items-center justify-content-center">
               <span className='me-2'><FaTruck className='main-orange-text fs-3'/></span>
               <span className="text">
@@ -51,7 +51,7 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          <div className="col-3 col-md-2 brdr rounded-0">
+          {/* <div className="col-4 col-md-3 col-lg-2 brdr rounded-0">
           <div className="featuer p-3 d-flex align-items-center justify-content-center">
               <span className='me-2'><MdLabel className='main-orange-text fs-3 rotate'/></span>
               <span className="text">
@@ -59,7 +59,7 @@ export default function Footer() {
                 <span className='dark-grey-text fs-6'>Only Top</span>
               </span>
             </div>
-          </div>
+          </div> */}
 
       </div>
     </div>
