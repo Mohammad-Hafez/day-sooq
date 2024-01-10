@@ -39,6 +39,12 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
     setSearchVal('');
   };
 
+  const items = [
+    { label: 'My Orders', value: 'MyOrders' },
+    { label: 'Profile Details', value: 'ProfileDetails' },
+    { label: 'Change Password', value: 'ChangePassword'},
+  ];
+
   return (
     <>
       <div className="search-header">
@@ -99,7 +105,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
           <div className="col-sm-3">
             <div className="profileContainer d-flex align-items-center justify-content-center">
               {UserToken ? <>
-                <span className={`cursor-pointer profile-dropdown dropdown-toggle ${activeLink === '' ? ' active' : ''}`} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {/* <span className={`cursor-pointer profile-dropdown dropdown-toggle ${activeLink === '' ? ' active' : ''}`} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <Icon
                     size={22}
                     icon={androidPerson}
@@ -128,8 +134,31 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                     Logout <FiLogOut className="fs-4 pb-1 cursor-pointer"/>
                     </Link>
                   </span>
-                </div>
-                <Icon size={22} icon={heart} className="main-grey-text me-2 cursor-pointer" onClick={()=>navigate('/WishList')} ></Icon>
+                </div> */}
+ <Dropdown
+      value={activeLink}
+      options={items}
+      onChange={(e) => setActiveLink(e.value)}
+      placeholder={<Icon size={22} icon={androidPerson} className="main-grey-text me-2 cursor-pointer" />}
+      className="font-Poppins"
+    >
+      <div className="dropdown-items-wrapper">
+        {items.map((item) => (
+          <Link
+            key={item.value}
+            to={item.value}
+            className={`dropdown-item text-main ${activeLink === item.value ? ' active' : ''}`}
+            onClick={() => setActiveLink(item.value)}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <div className="divider"></div>
+        <Link to="#" className="dropdown-item text-main" onClick={Logout}>
+          Logout <FiLogOut className="fs-4 pb-1 cursor-pointer" />
+        </Link>
+      </div>
+    </Dropdown>                <Icon size={22} icon={heart} className="main-grey-text me-2 cursor-pointer" onClick={()=>navigate('/WishList')} ></Icon>
                 <span className="cart-icon position-relative me-2 main-grey-text d-flex align-items-center">
                   <Icon onClick={()=> navigate('/MyCart')} size={22} icon={ic_local_mall} className="me-1 cursor-pointer" ></Icon>
                   {numbOfCartItems > 0 &&<span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span> } 
@@ -137,7 +166,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                 </span>
               </> :
                 <span className='dark-blue-text cursor-pointer text-uppercase' onClick={()=> navigate('/Authorization')}>Have an Acount ?
-                  <AiOutlineLogin size={22} icon={androidPerson} className="ms-1" />
+                  <AiOutlineLogin size={22}  className="ms-1" />
                 </span>}
             </div>
           </div>

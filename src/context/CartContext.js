@@ -38,7 +38,9 @@ export function CartContextProvider(props) {
     }
 
     useLayoutEffect(() => {
-        getCart();
+        if (user) {
+            getCart();
+        }
     },[user]);
 
     function addToCart(productId, quantity) {

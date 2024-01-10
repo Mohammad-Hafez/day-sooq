@@ -26,7 +26,11 @@ export function WishListContextProvider(props){
         }
      }
     
-    useEffect(()=>{getWishList()},[user]);
+    useEffect(()=>{
+        if (user) {
+            getWishList()
+        }
+        },[user]);
 
     function addToFav(productId) {
         return axios.post(ApiBaseUrl + `favorites` ,{product : productId} , {headers})
@@ -47,8 +51,32 @@ export function WishListContextProvider(props){
         })
     }
 
-    return <>
-        <WishListContext.Provider value={{NumFavItems , addToFav , getLoggedWishlist }}>
+    function removeFav(favId, productId) {
+        return axios
+          .delete(ApiBaseUrl + `favorites/${favId}`, {
+            headers,
+            data: {
+              product: productId,
+            },
+          })
+          .then((response) => {
+            toast.success('Product Removed Successfully.', {
+              className: 'first-z mt-5 bg-main-light ',
+              duration: 2000,
+            });
+            return response;
+          })
+          .catch((error) => {
+            toast.error('An error occurred. Try Again', {
+              className: 'first-z mt-5 bg-main-light ',
+              duration: 2000,
+            });
+            return error;
+          });
+      }
+        
+        return <>
+        <WishListContext.Provider value={{NumFavItems , addToFav , getLoggedWishlist , removeFav }}>
             {props.children}
         </WishListContext.Provider>
     </>

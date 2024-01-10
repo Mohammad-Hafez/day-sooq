@@ -16,6 +16,9 @@ code {
 .cursor-pointer{
   cursor: pointer;
 }
+.first-z{
+  z-index: 3333;
+}
 :root{
   --dark-blue : #003566 ;
   --light-blue : #0077E4 ;
@@ -249,6 +252,7 @@ border: none;
   border: none;
   z-index: 3 ;
 }
+
 ul.p-dropdown-items{
 padding-left: 0 ;
 }

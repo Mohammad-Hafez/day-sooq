@@ -1,18 +1,17 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, {useState} from 'react'
 import { Helmet } from 'react-helmet'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
 import Loader from '../Loader/Loader'
 import Slider from "react-slick";
-import { MdOutlineStarPurple500 } from "react-icons/md";
-import { MdOutlineStarOutline } from "react-icons/md";
 import SimilarProduct from '../SimilarProduct/SimilarProduct'
 import { TabView, TabPanel } from 'primereact/tabview';
 import ProductSummary from '../ProductSummary/ProductSummary'
 import BiddingSummary from '../BiddingSummary/BiddingSummary'
 import { RiAuctionLine } from "react-icons/ri";
+import StarRating from '../StarRating/StarRating';
 
 export default function ProductDetails() {
 
@@ -28,7 +27,7 @@ export default function ProductDetails() {
 
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
-  let {data , isLoading , refetch} = useQuery('product-details' , getProduct , {cacheTime : 0});
+  let {data , isLoading } = useQuery('product-details' , getProduct , {cacheTime : 0});
 
   let product = (data?.data?.data?.data);
 
@@ -49,7 +48,6 @@ export default function ProductDetails() {
                                                               >
                                                             </div>
                                                           );
-  useEffect(()=>{refetch()},[id])
   return <>
   {isLoading && <Loader/>}
   {product && <>
@@ -90,7 +88,7 @@ export default function ProductDetails() {
                   </div>
                   <div className="p-rate">
                     <p className='fs-5'>
-                    <span className='star'><MdOutlineStarPurple500 /><MdOutlineStarOutline/></span>  {product?.ratingsAverage} <span className='main-grey-text ms-1'>({product?.ratingsQuantity})</span>
+                      <StarRating averageRating={product?.ratingsAverage} />
                     </p>
                   </div>
                   <div className="p-descripton">

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Helmet } from 'react-helmet'
 import { cartContext } from '../../context/CartContext';
 import { useQuery } from 'react-query';
@@ -7,16 +7,29 @@ import { ImgBaseURL } from '../ApiBaseUrl';
 import { FaTrashAlt } from "react-icons/fa";
 import { WishListContext } from '../../context/WishListContext';
 import { IoBagAddSharp } from "react-icons/io5";
+import StarRating from '../StarRating/StarRating';
+
 
 export default function WishList() {
 
 const {addToCart} = useContext(cartContext);
 
-const {getLoggedWishlist} = useContext(WishListContext);
+const {getLoggedWishlist , removeFav} = useContext(WishListContext);
 
 let {data , isLoading , isFetching , refetch} = useQuery('get-my-fav' , getLoggedWishlist );
 
 const favorites = data?.data.data.favorites;
+
+const handleRemoveFav = async (favId, variantId) => {
+  try {
+    await removeFav(favId, variantId);
+    // Update the local state instead of refetching
+    const updatedFavorites = favorites.filter((item) => item._id !== favId);
+    refetch(updatedFavorites);
+  } catch (error) {
+    console.error('Error removing from wishlist:', error);
+  }
+};
 
 return <>
     <Helmet>
@@ -25,7 +38,6 @@ return <>
     {isLoading && <Loader/> }
     {data && 
     <div className="container my-3">
-      <p className='main-grey-text'>Wishlist</p>
       <div className="px-1 w-75 mx-auto">
         <h5 className='main-orange-text ms-2 font-Poppins fw-bolder'>Wishlist</h5>
         {favorites?.map((item)=> <div key={item._id} className="fav-item">
@@ -38,14 +50,15 @@ return <>
                 </div>
                 <div className="col-sm-8">
                   <div className="cartItemData d-flex flex-column justify-content-between py-2 h-100">
+                    <p className='main-grey-text m-0'>{item.product.subCategory.category.name +' / ' + item.product.subCategory.name}</p>
                     <h6 className='m-0 light-blue-text fw-bolder'>{item.product.name }</h6>
-                    <h6>Rate</h6>
+                    <h6 className='rate d-flex align-items-center'> <StarRating averageRating={item.product.ratingsAverage} /> <span className='ms-2 main-grey-text'>({item.product.ratingsQuantity})</span></h6>
                     {item.product?.description?.split(',').map((item, index) => <li className='mb-1 ms-1' key={index}>{item.trim()}</li> )}
                   </div>
                 </div>
                 <div className="col-sm-2  d-flex flex-column align-items-center justify-content-between">
                     <div className="deleteItem text-center">
-                        <span className='dark-red-text cursor-pointer' ><FaTrashAlt/></span>
+                        <span className='dark-red-text cursor-pointer' onClick={()=> {handleRemoveFav(item._id, item.product.variants[0]._id)}} ><FaTrashAlt/></span>
                       </div>
                       <h5 className='m-0 dark-grey-text fw-bolder'>
                       {item.product.priceDiscount.value > 0

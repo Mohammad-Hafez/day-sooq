@@ -4,7 +4,6 @@ import axios from 'axios';
 import {ApiBaseUrl} from '../ApiBaseUrl'
 import * as Yup from 'yup';
 import { Icon } from 'react-icons-kit'
-import { useNavigate } from 'react-router-dom';
 import {eye} from 'react-icons-kit/feather/eye';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff'
 import { IoPersonAdd } from "react-icons/io5";
@@ -13,7 +12,6 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [passwordShown, setPasswordShown] = useState(false);
   const [passwordConfirmShown, setpasswordConfirmShown] = useState(false);
-  const navigate = useNavigate()
 
   const formik = useFormik({
     initialValues: {
