@@ -14,6 +14,7 @@ import {ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl'
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { cartContext } from '../../context/CartContext';
 import { AiOutlineLogin } from "react-icons/ai";
+import { useQuery } from 'react-query';
 
 export default function HeaderSearch({ UserToken , categories , Logout}) {
   let navigate = useNavigate();
@@ -39,11 +40,12 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
     setSearchVal('');
   };
 
-  const items = [
-    { label: 'My Orders', value: 'MyOrders' },
-    { label: 'Profile Details', value: 'ProfileDetails' },
-    { label: 'Change Password', value: 'ChangePassword'},
-  ];
+  const headers = {
+    'Authorization': `Bearer ${localStorage.getItem('DaySooqUser')}`,
+  };
+
+  const getMyProfile = () => axios.get(ApiBaseUrl + `users/profile`, { headers });
+  const { data } = useQuery('my-profile', getMyProfile, { cacheTime: 5000 });
 
   return (
     <>
@@ -105,6 +107,9 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
           <div className="col-6 col-md-5 col-lg-3">
             <div className="profileContainer d-flex align-items-center justify-content-center">
               {UserToken ? <>
+              <span className='fs-6 dark-blue-text font-Rowdies me-3'>
+                Hi, {data?.data.data.data.firstName}
+              </span>
                 <span className={`cursor-pointer profile-dropdown dropdown-toggle ${activeLink === '' ? ' active' : ''}`} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <Icon
                     size={22}
