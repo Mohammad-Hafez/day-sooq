@@ -24,6 +24,9 @@ import  { Toaster } from 'react-hot-toast';
 import MyOrders from './Components/MyOrders/MyOrders';
 import ProfileDetails from './Components/ProfileDetails/ProfileDetails';
 import ChangePassword from './Components/ChangePassword/ChangePassword';
+import ForgetPassword from './Components/ForgetPassword/ForgetPassword';
+import PasswordOtp from './Components/PasswordOtp/PasswordOtp';
+import ResetPassword from './Components/ResetPassword/ResetPassword';
 
 
 function App() {
@@ -61,17 +64,20 @@ function App() {
             <Route path="" element={<Layout UserToken={UserToken} Logout={Logout}/>} >
               <Route index element={<Home />} />
               <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
+              <Route path="ForgetPassword" element={<ForgetPassword saveUserData={saveUserData}/>} /> 
+              <Route path="PasswordOtp" element={<PasswordOtp saveUserData={saveUserData}/>} /> 
+              <Route path="ResetPassword" element={<ResetPassword saveUserData={saveUserData}/>} /> 
+              <Route path="AllProducts" element={<AllProducts UserToken={UserToken}/>} /> 
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
-              <Route path="MyCart" element={<ProtectedRoutes> <MyCart UserToken={UserToken}/> </ProtectedRoutes> } /> 
-              <Route path="WishList" element={<ProtectedRoutes> <WishList UserToken={UserToken}/> </ProtectedRoutes>} /> 
               <Route path="CategoryProducts/:category/:id" element={<CategoryProducts UserToken={UserToken}/>} /> 
               <Route path="BrandProducts/:brand/:name" element={<BrandProducts UserToken={UserToken}/>} /> 
+              <Route path="MyCart" element={<ProtectedRoutes> <MyCart UserToken={UserToken}/> </ProtectedRoutes> } /> 
+              <Route path="WishList" element={<ProtectedRoutes> <WishList UserToken={UserToken}/> </ProtectedRoutes>} /> 
               <Route path="ShippingForm" element={<ProtectedRoutes><ShippingForm UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="SuccessOrder" element={<ProtectedRoutes><SuccessOrder UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="MyOrders" element={<ProtectedRoutes><MyOrders UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="ProfileDetails" element={<ProtectedRoutes><ProfileDetails UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="ChangePassword" element={<ProtectedRoutes><ChangePassword Logout={Logout} UserToken={UserToken}/> </ProtectedRoutes> } /> 
-              <Route path="AllProducts" element={<AllProducts UserToken={UserToken}/>} /> 
               <Route path="*" element={<NotFound/>} /> 
             </Route>
           </Routes>

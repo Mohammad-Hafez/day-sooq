@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import * as Yup from 'yup'
 import {  useFormik } from 'formik'
-import {  useNavigate} from 'react-router-dom'
+import {  useNavigate , Link} from 'react-router-dom'
 import { Icon } from 'react-icons-kit';
 import {eye} from 'react-icons-kit/feather/eye';
 import {eyeOff} from 'react-icons-kit/feather/eyeOff'
@@ -10,6 +10,7 @@ import axios from 'axios';
 import {ApiBaseUrl } from '../ApiBaseUrl'
 import {alertCircle} from 'react-icons-kit/feather/alertCircle'
 import { cartContext } from '../../context/CartContext';
+import toast from 'react-hot-toast';
 
 export default function Login({saveUserData}) {
   let {getCart} = useContext(cartContext);
@@ -26,13 +27,21 @@ export default function Login({saveUserData}) {
     setErrMsg(null)
     try {
       let {data} = await axios.post(ApiBaseUrl + `auth/login` , values);
+      toast.success(`Login Successfully. Enjoy Your Journey`, {
+        className: 'first-z mt-5 bg-main-light ',
+        duration: 2000,
+    });
       localStorage.setItem("DaySooqUser", data.token)
-      setIsLoading(false)
       saveUserData()
-      formik.resetForm();
-      navigate("/")
       getCart()
+      formik.resetForm();
+      setIsLoading(false)
+      navigate("/")
     } catch (error) {
+      toast.error("An Error Occured. Please Try again", {
+        className: 'first-z mt-5 bg-main-light ',
+        duration: 2000,
+      });  
       console.error(error);
       setIsLoading(false)
       setErrMsg(`Login Failed: Your email or password is incorrect`)
@@ -72,6 +81,9 @@ export default function Login({saveUserData}) {
         <div className="col-12">
         {ErrMsg ? <div className="Err alert alert-danger"><Icon size={20} icon={alertCircle}> </Icon> {ErrMsg}</div> : null }
         </div>
+        <div className="col-12 text-start">
+        <Link className='dark-blue-text ms-3' to={'/ForgetPassword'}>forget Yor Password ?</Link>
+        </div>
         <div className="btns col-12 my-2">
           {isLoading?
           <button type="button" className='btn btn-orange rounded-pill text-light me-2 w-100'><i className=' fa fa-spin fa-spinner'></i></button>
@@ -80,9 +92,6 @@ export default function Login({saveUserData}) {
           </>
           }
         </div>
-        <div className="col-12">
-        </div>
-
       </div>
 
       </form>

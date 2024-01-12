@@ -3,7 +3,10 @@ import { Helmet } from 'react-helmet'
 export default function PasswordOtp() {
   return <>
     <Helmet>
-      <title>title</title>
+      <title>OTP Password</title>
     </Helmet>
+    <div className="container">
+      
+    </div>
     </>
 }

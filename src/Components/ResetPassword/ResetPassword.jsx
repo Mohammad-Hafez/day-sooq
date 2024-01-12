@@ -3,7 +3,10 @@ import { Helmet } from 'react-helmet'
 export default function ResetPassword() {
   return <>
     <Helmet>
-      <title>title</title>
+      <title>Reset Passoword</title>
     </Helmet>
+    <div className="container">
+      
+    </div>
     </>
 }

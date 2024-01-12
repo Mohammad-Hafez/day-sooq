@@ -40,8 +40,10 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
     setSearchVal('');
   };
 
+  const user = localStorage.getItem('DaySooqUser');
+  
   const headers = {
-    'Authorization': `Bearer ${localStorage.getItem('DaySooqUser')}`,
+    'Authorization': `Bearer ${user}`,
   };
 
   const getMyProfile = () => axios.get(ApiBaseUrl + `users/profile`, { headers });

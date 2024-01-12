@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import {  useNavigate , Link} from 'react-router-dom'
 import { Icon } from 'react-icons-kit';
 import { eye } from 'react-icons-kit/feather/eye';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
@@ -181,6 +181,10 @@ export default function ChangePassword({Logout}) {
                   <Icon size={20} icon={alertCircle} /> {errMsg}
                 </div>
               )}
+            </div>
+
+            <div className="w-75 mx-auto text-start">
+              <Link className='dark-blue-text ms-2' to={'/ForgetPassword'} onClick={Logout}>forget Yor Password ?</Link>
             </div>
 
             {/* Buttons */}
