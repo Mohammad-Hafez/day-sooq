@@ -59,7 +59,7 @@ export default function ProductDetails() {
         <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name} / {product?.name}</p>
       </div>
       <div className="row mb-3">
-        <div className="col-8">
+        <div className="col-6 col-md-8">
           <div className="row">
             <div className="col-md-5">
               <div className="product-images p-2 pt-4">
@@ -112,7 +112,7 @@ export default function ProductDetails() {
             </div>
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-6 col-md-4">
           {product?.isAction && <BiddingSummary RiAuctionLine={RiAuctionLine} product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
           {product?.isAction === false && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
         </div>
