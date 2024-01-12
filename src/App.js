@@ -70,7 +70,7 @@ function App() {
               <Route path="SuccessOrder" element={<ProtectedRoutes><SuccessOrder UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="MyOrders" element={<ProtectedRoutes><MyOrders UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="ProfileDetails" element={<ProtectedRoutes><ProfileDetails UserToken={UserToken}/> </ProtectedRoutes> } /> 
-              <Route path="ChangePassword" element={<ProtectedRoutes><ChangePassword UserToken={UserToken}/> </ProtectedRoutes> } /> 
+              <Route path="ChangePassword" element={<ProtectedRoutes><ChangePassword Logout={Logout} UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="AllProducts" element={<AllProducts UserToken={UserToken}/>} /> 
               <Route path="*" element={<NotFound/>} /> 
             </Route>
