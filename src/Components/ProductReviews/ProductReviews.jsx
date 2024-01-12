@@ -23,14 +23,16 @@ export default function ProductReviews({ product }) {
           {isError && <p>Error fetching ratings</p>}
           {data && (
             <div>
-              <p>Average Rating:</p>
+              <div className="avrg d-flex align-items-center">
+              <p className='mb-0 me-2'>Average Rating:</p>
               <StarRating averageRating={data.data.ratingReviews.reduce((acc, review) => acc + review.avgRating, 0) / data.data.ratingReviews.length} />
-              <p>Ratings Distribution:</p>
-              <ul>
+              </div>
+              <p className='mb-0'>Ratings Distribution:</p>
+              <ul className=''>
                 {data.data.ratingReviews.map((review, index) => (
-                  <li key={index}>
+                  <li key={index} className='d-flex m-0 p-0'>
                     <StarRating averageRating={review.avgRating} /> 
-                    <p>{review.nunmberOfRating}</p>
+                    <p className='ms-2'>({review.nunmberOfRating})</p>
                   </li>
                 ))}
               </ul>
