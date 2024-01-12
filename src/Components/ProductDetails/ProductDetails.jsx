@@ -123,8 +123,10 @@ export default function ProductDetails() {
       </div>
       <div className="reviews px-5">
         <TabView className='brdr p-2'>
-          <TabPanel header="Description" className='dark-grey-text'></TabPanel>
-          <TabPanel header="Reviews"></TabPanel>
+          {/* <TabPanel header="Description" className='dark-grey-text'></TabPanel> */}
+          <TabPanel header="Reviews">
+
+          </TabPanel>
         </TabView>
       </div>
     </div>

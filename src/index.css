@@ -664,6 +664,9 @@ background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4
   color: var(--dark-grey-color);
   text-decoration: none;
 }
+.p-tabview-ink-bar{
+  display: none;
+}
 /* *NOTE - cart summary*/
 .promoCodeInput input::placeholder{
   color: var(--dark-blue);
