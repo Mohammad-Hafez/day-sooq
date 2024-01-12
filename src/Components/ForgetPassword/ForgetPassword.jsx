@@ -19,20 +19,16 @@ export default function ForgetPassword() {
     try {
       setIsLoading(true);
       let {data} = await axios.post(ApiBaseUrl + 'auth/forgetPassword', values);
-      localStorage.setItem('forgetToken' , data.token);
       setIsLoading(false);
-      toast.success(`Login Successfully. Enjoy Your Journey`, {
-        className: 'first-z mt-5 bg-main-light ',
-        duration: 2000,
-    });
-      navigate('/PasswordOtp')
-      if (data.status === 200) {
-        console.log('Email sent successfully');
-      } else {
-        console.error('Unexpected response status:', data.status);
-      }
+        localStorage.setItem('forgetToken' , data.token);
+        navigate('/PasswordOtp')
+        toast.success(`Login Successfully. Enjoy Your Journey`, {
+          className: 'first-z mt-5 bg-main-light ',
+          duration: 2000,
+        });
     } catch (error) {
       setIsLoading(false);
+      setErrMsg('Error sending email')
       console.error('Error sending email:', error);
     }
   };
