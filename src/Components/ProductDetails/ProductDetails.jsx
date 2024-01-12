@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Helmet } from 'react-helmet'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
@@ -12,6 +12,8 @@ import ProductSummary from '../ProductSummary/ProductSummary'
 import BiddingSummary from '../BiddingSummary/BiddingSummary'
 import { RiAuctionLine } from "react-icons/ri";
 import StarRating from '../StarRating/StarRating';
+import ProductReviews from '../ProductReviews/ProductReviews'
+
 
 export default function ProductDetails() {
 
@@ -27,7 +29,7 @@ export default function ProductDetails() {
 
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
-  let {data , isLoading } = useQuery('product-details' , getProduct , {cacheTime : 0});
+  let {data , isLoading , refetch , isFetching } = useQuery('product-details' , getProduct );
 
   let product = (data?.data?.data?.data);
 
@@ -48,6 +50,8 @@ export default function ProductDetails() {
                                                               >
                                                             </div>
                                                           );
+
+  useEffect(()=>{refetch()},[id])
   return <>
   {isLoading && <Loader/>}
   {product && <>
@@ -125,11 +129,12 @@ export default function ProductDetails() {
         <TabView className='brdr p-2'>
           {/* <TabPanel header="Description" className='dark-grey-text'></TabPanel> */}
           <TabPanel header="Reviews">
-
+            <ProductReviews product={product}/>
           </TabPanel>
         </TabView>
       </div>
     </div>
   </>}
+  {isFetching && <Loader/>}
     </>
 }

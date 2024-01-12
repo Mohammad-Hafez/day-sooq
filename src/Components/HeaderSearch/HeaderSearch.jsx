@@ -47,7 +47,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
   };
 
   const getMyProfile = () => axios.get(ApiBaseUrl + `users/profile`, { headers });
-  const { data } = useQuery('my-profile', getMyProfile, { cacheTime: 5000 });
+  const { data } = useQuery('my-profile', getMyProfile, { cacheTime: 5000 ,  enabled: !!user});
 
   return (
     <>

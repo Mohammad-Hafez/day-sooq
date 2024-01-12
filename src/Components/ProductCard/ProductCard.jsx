@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { cartContext } from '../../context/CartContext'
 import { WishListContext } from '../../context/WishListContext'
 import ProductPrice from '../ProductPrice/ProductPrice'
-   
+  
 export default function ProductCard({product , category }) {
   let navigate = useNavigate();
 
