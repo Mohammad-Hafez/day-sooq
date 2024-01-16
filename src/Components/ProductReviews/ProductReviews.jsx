@@ -21,8 +21,15 @@ export default function ProductReviews({ product }) {
 
   const { data, isLoading, isError } = useQuery('get-ratings', getRating);
 
-  let  averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / data?.data?.ratingReviews?.length
-  return (
+  
+  const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
+  let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
+
+  if (!isNaN(averageRating)) {
+    averageRating = Math.abs(averageRating % 1) === 0.5 ? Math.floor(averageRating) + 0.5 : Math.round(averageRating);
+  }
+
+    return (
     <div className="container">
       <div className="row">
         <div className="col-sm-6">
@@ -33,12 +40,11 @@ export default function ProductReviews({ product }) {
             <div>
               <div className="avrg d-flex align-items-center">
                 <p className="mb-0 me-2">Average Rating:</p>
-                <StarRating averageRating={'2.5'} />
+                <StarRating averageRating={averageRating} />
                 <span className='dark-grey-text ms-2'>{averageRating}</span>
-                <span className='ms-2 fs-6'>({data.data.ratingReviews.length} Reviews)</span>
+                <span className='ms-2 fs-6'>({totalNumberOfReviews} Reviews)</span>
                 
               </div>
-              <p className="mb-0">Ratings Distribution:</p>
               <ul className="distribution-rate">
                 {generateFixedRatings(data.data.ratingReviews).map((numberOfRating, index) => (
                   <li key={index} className="d-flex m-0 p-0 star my-1 align-items-center">
