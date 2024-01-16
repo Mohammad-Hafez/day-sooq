@@ -21,6 +21,7 @@ export default function ProductReviews({ product }) {
 
   const { data, isLoading, isError } = useQuery('get-ratings', getRating);
 
+  let  averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / data?.data?.ratingReviews?.length
   return (
     <div className="container">
       <div className="row">
@@ -32,11 +33,10 @@ export default function ProductReviews({ product }) {
             <div>
               <div className="avrg d-flex align-items-center">
                 <p className="mb-0 me-2">Average Rating:</p>
-                <StarRating averageRating={
-                    data.data.ratingReviews.reduce((acc, review) => acc + review.avgRating, 0) /
-                    data.data.ratingReviews.length
-                  } />
+                <StarRating averageRating={'2.5'} />
+                <span className='dark-grey-text ms-2'>{averageRating}</span>
                 <span className='ms-2 fs-6'>({data.data.ratingReviews.length} Reviews)</span>
+                
               </div>
               <p className="mb-0">Ratings Distribution:</p>
               <ul className="distribution-rate">
