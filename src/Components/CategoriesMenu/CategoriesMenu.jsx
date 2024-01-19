@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function CategoriesMenu({ApiBaseUrl , useQuery , axios , setFilterMethod , FilterMethod}) {
+export default function CategoriesMenu({ApiBaseUrl , useQuery , axios , setCategory}) {
 
   const getAllCategories =  () => axios.get(ApiBaseUrl + `categories`) ;
 
   let {data} = useQuery('categories-for-menu' , getAllCategories , {cacheTime : 300000})
 
   const handleCategorySelect = (category)=>{
-    setFilterMethod(category)
+    setCategory(category)
     console.log(category);
   }
 

@@ -16,8 +16,14 @@ const [PageNum, setPageNum] = useState();
 const [LimNum, setLimNum] = useState('8');
 const [SortMethod, setSortMethod] = useState('-price');
 const [selectedLimit, setSelectedLimit] = useState('30');
+const [Category, setCategory] = useState()
+const [Color, setColor] = useState()
+const [Size, setSize] = useState()
+const [Price, setPrice] = useState()
+const [Status, setStatus] = useState()
+
 const getAllProducts = ()=>{
-  return axios.get(ApiBaseUrl + `products?page=${PageNum ? PageNum : '1'}&limit=${LimNum}&sort=${SortMethod}`); 
+  return axios.get(ApiBaseUrl + `products?page=${PageNum ? PageNum : '1'}&limit=${LimNum}&sort=${SortMethod}${Category?`&category=${Category}`:null}`); 
 }
 
 let {data , isFetching , isLoading , refetch } = useQuery('get-products' , getAllProducts , {cacheTime : 3000})
@@ -44,7 +50,7 @@ useEffect(()=>{
   if (data) {
       refetch();
   }
-},[PageNum , LimNum , SortMethod]);
+},[PageNum , LimNum , SortMethod , Category]);
 
   return <>
     <Helmet>
@@ -54,7 +60,7 @@ useEffect(()=>{
       {isLoading && <Loader/> }
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-3">
-          <SideMenu setFilterMethod={setFilterMethod} FilterMethod={FilterMethod}/>
+          <SideMenu setFilterMethod={setFilterMethod} FilterMethod={FilterMethod} setCategory={setCategory}/>
         </div>
         <div className="col-9">
           <div className=" brdr rounded p-3 mb-3">
