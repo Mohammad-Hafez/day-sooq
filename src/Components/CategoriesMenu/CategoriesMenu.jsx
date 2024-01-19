@@ -7,7 +7,8 @@ export default function CategoriesMenu({ApiBaseUrl , useQuery , axios , setFilte
   let {data} = useQuery('categories-for-menu' , getAllCategories , {cacheTime : 300000})
 
   const handleCategorySelect = (category)=>{
-    setFilterMethod('category')
+    setFilterMethod(category)
+    console.log(category);
   }
 
   return <>
@@ -15,7 +16,7 @@ export default function CategoriesMenu({ApiBaseUrl , useQuery , axios , setFilte
         <h5 className='fw-bolder mb-4'> Categries </h5> 
         <h6 className='fw-bold mb-3'> ALL </h6>
         <div>
-          {data?.data?.data?.data.map((category) => <h6 className='cursor-pointer' key={category?._id} onClick={()=> handleCategorySelect(category?.name)}>{category?.name}</h6>)}
+          {data?.data?.data?.data.map((category) => <h6 className='cursor-pointer' key={category?._id} onClick={()=> handleCategorySelect(category?._id)}>{category?.name}</h6>)}
         </div>
     </div>
 

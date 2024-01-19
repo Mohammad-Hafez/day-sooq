@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import SideMenu from '../SideMenu/SideMenu';
 import { useQuery } from 'react-query';
@@ -12,34 +12,40 @@ import { Dropdown } from 'primereact/dropdown';
 
 export default function AllProducts() {
 const [FilterMethod, setFilterMethod] = useState();
-const [PageNum, setPageNum] = useState('1');
-const [LimNum, setLimNum] = useState('30');
+const [PageNum, setPageNum] = useState();
+const [LimNum, setLimNum] = useState('8');
 const [SortMethod, setSortMethod] = useState('-price');
 const [selectedLimit, setSelectedLimit] = useState('30');
 const getAllProducts = ()=>{
-  return axios.get(ApiBaseUrl + `products?page=${PageNum}&limit=${LimNum}&sort=${SortMethod}`); 
+  return axios.get(ApiBaseUrl + `products?page=${PageNum ? PageNum : '1'}&limit=${LimNum}&sort=${SortMethod}`); 
 }
+
 let {data , isFetching , isLoading , refetch } = useQuery('get-products' , getAllProducts , {cacheTime : 3000})
 
 const onPageChange = (event) => {
-  const newPageNum = event.page + 1; // PrimeReact Paginator uses 0-based indexing
+  const newPageNum = event.page + 1; 
   setPageNum(newPageNum.toString());
-  refetch();
 };
 
 const limitOptions = [
   { label: '12', value: '12' },
   { label: '16', value: '16' },
   { label: '20', value: '20' },
-  // Add more options as needed
 ];
 
 const onLimitChange = (event) => {
   const newLimit = event.value;
   setLimNum(newLimit);
   setSelectedLimit(newLimit);
-  refetch();
+  
 };
+
+useEffect(()=>{
+  if (data) {
+      refetch();
+  }
+},[PageNum , LimNum , SortMethod]);
+
   return <>
     <Helmet>
       <title>All Products</title>
@@ -54,6 +60,7 @@ const onLimitChange = (event) => {
           <div className=" brdr rounded p-3 mb-3">
             <h2 className='m-0'>All Products</h2>
             <div className="p-float-label mt-4">
+              <BsGrid3X3GapFill/>
             <Dropdown
               id='limitNum'
               value={selectedLimit }
@@ -61,7 +68,6 @@ const onLimitChange = (event) => {
               onChange={onLimitChange}
               placeholder="Product / Page"
               className='rounded-pill p-0 light-grey-text'
-              
             />
           </div>
           </div>
@@ -70,7 +76,7 @@ const onLimitChange = (event) => {
                 <ProductCard product={product} category={product?.isAction? 'bidding' : 'any'}/>
               </div>
             )}
-             <Paginator
+            <Paginator
               first={PageNum ? parseInt(PageNum, 10) - 1 : 1} 
               rows={parseInt(1, 10)}
               totalRecords={20}

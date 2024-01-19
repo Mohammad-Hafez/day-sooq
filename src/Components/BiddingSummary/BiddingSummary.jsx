@@ -51,15 +51,19 @@ let Biddingformik = useFormik({
           </div>
           <button onClick={()=> addToFav(product._id)} className='w-100 grey-outline-btn cursor-pointer mb-4 py-2 fs-5 d-flex align-items-center justify-content-center addToFavBtn'>Wishlist <Icon className='heart ms-2' icon={heart} size={22}></Icon></button>
           <h5 className='main-grey-text mb-3'>
-            <span className='ms-1 dark-grey-text'>
+            <div className='ms-1 dark-grey-text'>
               Start Bidding : <span className='fw-bolder'>{isBiddingEnded
-                ? "Bidding Ended"
-                : product?.priceDiscount?.value > 0
+                ?<span className=''> Bidding Ended </span>
+                :<span>{
+                  product?.priceDiscount?.value > 0
                   ? product?.priceDiscount.type === 'percentage'
                     ? ((product.price + SelectedVariant?.extraPrice) - ((product.price + SelectedVariant?.extraPrice) * (product.priceDiscount.value / 100)))
                     : (product.price + SelectedVariant?.extraPrice - product.priceDiscount.value)
-                  : (product.price + SelectedVariant?.extraPrice)} JOD </span>
+                  : (product.price + SelectedVariant?.extraPrice)} JOD 
+                  </span>
+                } 
             </span>
+            </div>
           </h5>
 
           <h5 className='main-orange-text mb-3'>
