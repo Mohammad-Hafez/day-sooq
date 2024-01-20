@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Slider } from 'primereact/slider';
 import { InputNumber } from 'primereact/inputnumber';
 
 export default function PricesMenu({ setPrice }) {
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(50);
+  const [maxPrice, setMaxPrice] = useState(1000);
 
   const handleMinPriceChange = (event) => {
     const value = event.value || 0;
@@ -12,13 +11,8 @@ export default function PricesMenu({ setPrice }) {
   };
 
   const handleMaxPriceChange = (event) => {
-    const value = event.value || 100000;
+    const value = event.value || 1000;
     updatePrices(minPrice, value);
-  };
-
-  const handleSliderChange = (event) => {
-    const [min, max] = event.value;
-    updatePrices(min, max);
   };
 
   const updatePrices = (newMin, newMax) => {
@@ -41,8 +35,9 @@ export default function PricesMenu({ setPrice }) {
           value={minPrice}
           onValueChange={handleMinPriceChange}
           mode="currency"
-          currency="USD"
+          currency="JOD"
           locale="en-US"
+          minFractionDigits={0}
         />
 
         <label htmlFor="maxPrice">Max Price:</label>
@@ -51,16 +46,9 @@ export default function PricesMenu({ setPrice }) {
           value={maxPrice}
           onValueChange={handleMaxPriceChange}
           mode="currency"
-          currency="USD"
+          currency="JOD"
           locale="en-US"
-        />
-
-        <Slider
-          className='my-3'
-          value={[minPrice, maxPrice]}
-          onChange={handleSliderChange}
-          range
-          style={{ width: '100%' }}
+          minFractionDigits={0}
         />
       </div>
     </div>
