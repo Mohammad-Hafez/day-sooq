@@ -5,11 +5,11 @@ import { ApiBaseUrl } from '../ApiBaseUrl';
 import CategoriesMenu from '../CategoriesMenu/CategoriesMenu';
 import PricesMenu from '../PricesMenu/PricesMenu';
 
-export default function SideMenu({setFilterMethod , FilterMethod , setCategory}) {
+export default function SideMenu({setCategory , setPrice}) {
   return <>
   <div className="sideMenu font-roboto">
     <CategoriesMenu setCategory={setCategory} axios={axios} useQuery={useQuery} ApiBaseUrl={ApiBaseUrl}/>
-    <PricesMenu FilterMethod={FilterMethod} setFilterMethod={setFilterMethod}/>
+    <PricesMenu/>
   </div>
     </>
 }
