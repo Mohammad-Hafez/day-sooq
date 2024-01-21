@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { InputNumber } from 'primereact/inputnumber';
 
-export default function PricesMenu({ setPrice }) {
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(1000);
+export default function PricesMenu({setMaxPrice, setMinPrice ,minPrice , maxPrice }) {
 
   const handleMinPriceChange = (event) => {
     const value = event.value || 0;

@@ -11,19 +11,21 @@ import { Paginator } from 'primereact/paginator';
 import { Dropdown } from 'primereact/dropdown';
 
 export default function AllProducts() {
-const [FilterMethod, setFilterMethod] = useState();
-const [PageNum, setPageNum] = useState();
+const [PageNum, setPageNum] = useState('1');
 const [LimNum, setLimNum] = useState('8');
 const [SortMethod, setSortMethod] = useState('-price');
 const [selectedLimit, setSelectedLimit] = useState('30');
 const [Category, setCategory] = useState(null)
-const [Color, setColor] = useState()
-const [Size, setSize] = useState()
-const [Price, setPrice] = useState()
-const [Status, setStatus] = useState()
+const [Color, setColor] = useState(null)
+const [Size, setSize] = useState(null)
+const [minPrice, setMinPrice] = useState(0);
+const [maxPrice, setMaxPrice] = useState(1000000);
+const [Status, setStatus] = useState(null)
 
 const getAllProducts = ()=>{
-  return axios.get(ApiBaseUrl + `products?page=${PageNum ? PageNum : '1'}&limit=${LimNum}&sort=${SortMethod}${Category?`&category=${Category}`:null}`); 
+  console.log('max price =>' + maxPrice);
+  console.log('min price =>' + minPrice);
+  return axios.get(ApiBaseUrl + `products?price[lt]=${maxPrice}&price[gt]=${minPrice}&page=${PageNum ? PageNum : '0'}&limit=${LimNum}&sort=${SortMethod}&${Category?`&category=${Category}`:null}`); 
 }
 
 let {data , isFetching , isLoading , refetch } = useQuery('get-products' , getAllProducts , {cacheTime : 3000})
@@ -50,7 +52,7 @@ useEffect(()=>{
   if (data) {
       refetch();
   }
-},[PageNum , LimNum , SortMethod , Category]);
+},[PageNum , LimNum , SortMethod , Category , Color ,Size , maxPrice , minPrice ,Status]);
 
   return <>
     <Helmet>
@@ -60,7 +62,7 @@ useEffect(()=>{
       {isLoading && <Loader/> }
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-3">
-          <SideMenu setPrice={setPrice} setCategory={setCategory}/>
+          <SideMenu maxPrice={maxPrice} minPrice={minPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory} setColor={setColor} setStatus={setStatus} setSize={setSize}/>
         </div>
         <div className="col-9">
           <div className=" brdr rounded p-3 mb-3">
@@ -77,18 +79,27 @@ useEffect(()=>{
             />
           </div>
           </div>
-          <div className="row gy-3">
-            {data?.data.data.data.map((product)=> <div key={product?._id} className="col-6 col-sm-4 col-md-3">
-                <ProductCard product={product} category={product?.isAction? 'bidding' : 'any'}/>
-              </div>
-            )}
-            <Paginator
-              first={PageNum ? parseInt(PageNum, 10) - 1 : 1} 
-              rows={parseInt(1, 10)}
-              totalRecords={20}
-              onPageChange={onPageChange}
-            />
-          </div>
+          {data?.data.data.data.length === 0?<><h2>No Available Data</h2>
+                    <Paginator
+                      first={PageNum ? parseInt(PageNum, 10) - 1 : 1} 
+                      rows={parseInt(1, 10)}
+                      totalRecords={20}
+                      onPageChange={onPageChange}
+                    />
+                    </>:
+                    <div className="row gy-3">
+                    {data?.data.data.data.map((product)=> <div key={product?._id} className="col-6 col-sm-4 col-md-3">
+                        <ProductCard product={product} category={product?.isAction? 'bidding' : 'any'}/>
+                      </div>
+                    )}
+                    <Paginator
+                      first={PageNum ? parseInt(PageNum, 10) - 1 : 1} 
+                      rows={parseInt(1, 10)}
+                      totalRecords={20}
+                      onPageChange={onPageChange}
+                    />
+                  </div>
+        }
         </div>
       </div>
       {isFetching && <Loader/>}
