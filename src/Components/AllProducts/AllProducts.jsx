@@ -71,11 +71,16 @@ useEffect(()=>{
         <div className="col-9">
           <div className=" brdr rounded p-3 mb-3">
             <h2 className='m-0'>All Products</h2>
-            <BsGrid3X3GapFill/>
-            <div className="p-float-label mt-4">
-            <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
-              onChange={onLimitChange} placeholder="Products" className='rounded-pill p-0 light-grey-text' />
-          </div>
+            <hr />
+            <div className="d-flex align-items-center justify-content-between">
+              <div className="grid-icons">
+                <BsGrid3X3GapFill/>
+              </div>
+              <div className="p-float-label mt-4">
+                <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
+                onChange={onLimitChange} placeholder="Products" className='rounded-pill p-0 light-grey-text' />
+              </div>
+            </div>
           </div>
           <div className="row gy-3">
               {data?.data.data.data.length === 0?<h2>No Available Products</h2>

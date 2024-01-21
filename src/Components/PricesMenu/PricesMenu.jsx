@@ -37,7 +37,6 @@ export default function PricesMenu({setMaxPrice, setMinPrice ,minPrice , maxPric
           locale="en-US"
           minFractionDigits={0}
         />
-
         <label htmlFor="maxPrice">Max Price:</label>
         <InputNumber
           id="maxPrice"
