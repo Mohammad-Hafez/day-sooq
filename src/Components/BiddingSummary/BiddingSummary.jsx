@@ -33,7 +33,6 @@ let Biddingformik = useFormik({
   },
   validationSchema: biddingSchema,
   onSubmit: (values) => {
-    console.log(values);
     setBidAmount(values.amount);
   },
 });
