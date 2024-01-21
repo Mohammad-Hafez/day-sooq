@@ -13,7 +13,7 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
 
   return (
     <div className="colorMenu brdr p-3 rounded">
-      <h5 className='fw-bolder mb-3'>Colors</h5>
+      <h5 className='fw-bolder mb-3'>Main Colors</h5>
       {mainColors.map((color) => (
         <div key={color} className="colorOption d-flex align-items-center mb-1">
           <input
