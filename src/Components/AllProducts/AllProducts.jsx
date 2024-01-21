@@ -9,6 +9,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import { BsGrid3X3GapFill } from "react-icons/bs";
 import { Paginator } from 'primereact/paginator';
 import { Dropdown } from 'primereact/dropdown';
+import { FaThList } from "react-icons/fa";
 
 export default function AllProducts() {
 const [PageNum, setPageNum] = useState('1');
@@ -74,7 +75,8 @@ useEffect(()=>{
             <hr />
             <div className="d-flex align-items-center justify-content-between">
               <div className="grid-icons">
-                <BsGrid3X3GapFill/>
+                <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer'/>
+                <FaThList className='fs-3 light-grey-text cursor-pointer'/>
               </div>
               <div className="p-float-label mt-4">
                 <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
