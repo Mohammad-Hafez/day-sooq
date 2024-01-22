@@ -44,15 +44,18 @@ export default function ProductCard({product , category }) {
 
   return <>
     <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100 position-relative" >
-      {category === 'bidding' && !isBiddingEnded ? (
-        <span className='position-absolute end-0 me-3 green-bg rounded px-2 text-white'>
-          available <RiAuctionLine/>
-        </span>
-      ) : (
-        <span className='position-absolute end-0 me-3 dark-red-bg rounded px-2 text-white'>
-          End <RiAuctionLine/>
-        </span>
-      )}
+      {category === 'bidding' ?
+        !isBiddingEnded ? (
+            <span className='position-absolute end-0 me-3 green-bg rounded px-2 text-white'>
+              available <RiAuctionLine/>
+            </span>
+          ) : (
+            <span className='position-absolute end-0 me-3 dark-red-bg rounded px-2 text-white'>
+              End <RiAuctionLine/>
+            </span>
+          )
+          : null
+      }
       <p className='cardCategory me-auto mt-2'>
       {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any'? <>
         { category === 'any' ? product?.subCategory.category.name :
