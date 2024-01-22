@@ -25,7 +25,8 @@ export default function PricesMenu({setMaxPrice, setMinPrice ,minPrice , maxPric
 
   return (
     <div className="priceFilter brdr p-3 rounded mb-4">
-      <h5 className="fw-bolder mb-4">Price Range</h5>
+      <h5 className="fw-bolder mb-1">Price Range</h5>
+      <hr className='mb-3 mt-2 brdr' />
       <div className="priceRangeSlider">
         <label htmlFor="minPrice">Min Price:</label>
         <InputNumber

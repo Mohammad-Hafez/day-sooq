@@ -27,7 +27,7 @@ const getAllProducts = () => {
   const colorQueryParam = SelectedColors.length > 0 ? `&color=${SelectedColors.join(',')}` : '';
   return axios.get(
     ApiBaseUrl +
-      `products?price[lt]=${maxPrice}&price[gt]=${minPrice}&page=${PageNum ? PageNum : '0'}&limit=${LimNum}&sort=${SortMethod}${Category ? `&category=${Category}` : ''}${colorQueryParam}`
+      `products?price[lt]=${maxPrice}&price[gt]=${minPrice}&isUsed=${IsUsed}&page=${PageNum ? PageNum : '0'}&limit=${LimNum}&sort=${SortMethod}${Category ? `&category=${Category}` : ''}${colorQueryParam}`
   );
 };
 
@@ -69,7 +69,7 @@ useEffect(()=>{
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-3">
           <SideMenu 
-            setIsUsed={setIsUsed} setSize={setSize} SelectedColors={SelectedColors} 
+            setIsUsed={setIsUsed} IsUsed={IsUsed} setSize={setSize} SelectedColors={SelectedColors} 
             setSelectedColors={setSelectedColors} maxPrice={maxPrice} minPrice={minPrice} 
             setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory}
           />

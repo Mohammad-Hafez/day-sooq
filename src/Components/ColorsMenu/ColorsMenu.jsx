@@ -14,7 +14,8 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
 
   return (
     <div className="colorMenu brdr p-3 rounded bg-light mb-4">
-      <h5 className='fw-bolder mb-3'>Main Colors</h5>
+      <h5 className='fw-bolder mb-1'>Main Colors</h5>
+      <hr className='mb-3 mt-2 brdr' />
       <div className="row">
       {mainColors.map((color , index) => (<div key={index} className="col-3">
         <div className="colorOption d-flex align-items-center mb-1 justify-content-center">
@@ -23,7 +24,7 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
             id={color}
             checked={SelectedColors.includes(color)}
             onChange={() => handleColorSelect(color)}
-            className='me-1'
+            className='me-1 form-check-input'
           />
           <Tooltip target=".filterdColor" />
           <label htmlFor={color} className='brdr filterdColor'
@@ -41,7 +42,6 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
               
             }}
           ></label>
-          {/* <label htmlFor={color}>{color}</label> */}
         </div>
         </div>
       ))}

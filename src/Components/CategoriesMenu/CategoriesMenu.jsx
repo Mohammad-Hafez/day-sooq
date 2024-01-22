@@ -16,7 +16,8 @@ const CategoriesMenu = ({ ApiBaseUrl, useQuery, axios, setCategory }) => {
   return (
     <>
       <div className="categoriesMenu bg-light rounded p-3 mb-4">
-        <h5 className="fw-bolder mb-4"> Categories </h5>
+        <h5 className="fw-bolder mb-1"> Categories </h5>
+        <hr className='mb-3 mt-2 brdr' />
         <h6 className={`mb-3 cursor-pointer ${selectedCategory === null ? 'fw-bolder' : ''}`} onClick={() => handleCategorySelect(null)}>
           ALL
         </h6>
