@@ -12,10 +12,11 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
   };
 
   return (
-    <div className="colorMenu brdr p-3 rounded">
+    <div className="colorMenu brdr p-3 rounded bg-light">
       <h5 className='fw-bolder mb-3'>Main Colors</h5>
-      {mainColors.map((color) => (
-        <div key={color} className="colorOption d-flex align-items-center mb-1">
+      <div className="row">
+      {mainColors.map((color) => (<div className="col-3">
+        <div key={color} className="colorOption d-flex align-items-center mb-1 justify-content-center">
           <input
             type="checkbox"
             id={color}
@@ -23,18 +24,21 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
             onChange={() => handleColorSelect(color)}
             className='me-1'
           />
-          <label htmlFor={color}>{color}</label>
-          {/* <span
+          {/* <label htmlFor={color}>{color}</label> */}
+          <label htmlFor={color} className='brdr'
             style={{
-              background: `linear-gradient(182deg, #F2Ffff 0%, ${color} 100%)`,
+              background: `${color}`,
+              opacity:.7,
               width: 20,
               height: 20,
               display: 'inline-block',
               marginLeft: 5,
             }}
-          ></span> */}
+          ></label>
+        </div>
         </div>
       ))}
+      </div>
     </div>
   );
 }
