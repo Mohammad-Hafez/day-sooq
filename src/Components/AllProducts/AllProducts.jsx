@@ -21,7 +21,7 @@ const [SelectedColors, setSelectedColors] = useState([]);
 const [Size, setSize] = useState(null)
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(1000000);
-const [IsUsed, setIsUsed] = useState(null)
+const [IsUsed, setIsUsed] = useState(false)
 
 const getAllProducts = () => {
   const colorQueryParam = SelectedColors.length > 0 ? `&color=${SelectedColors.join(',')}` : '';

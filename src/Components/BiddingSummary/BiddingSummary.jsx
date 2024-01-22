@@ -9,11 +9,16 @@ import { AiOutlineLogin } from "react-icons/ai";
 import CountdownTimer from '../Countdown/Countdown';
 import * as Yup from 'yup'
 import {  useFormik } from 'formik'
+import axios from 'axios';
+import { ApiBaseUrl } from '../ApiBaseUrl';
 
 export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine }) {
 
-  let user = localStorage.getItem('DaySooqUser')
-  let navigate = useNavigate()
+  const user = localStorage.getItem("DaySooqUser") ;
+  let headers = {
+      'Authorization': `Bearer ${user}` 
+  }
+let navigate = useNavigate()
   const [Visible, setVisible] = useState(false);
   const minimumBidAmount = SelectedVariant?.current_price + product?.biddingGap;
   const [BidAmount, setBidAmount] = useState(minimumBidAmount);
@@ -26,6 +31,14 @@ export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine
     amount :Yup.number().required('Bid amount is required'),
   })
 
+  const biddingOnProduct = async (val)=>{
+    try {
+      let {data} = await axios.post(ApiBaseUrl + `biddings` , val , {headers})
+      console.log(data);
+    } catch (error) {
+      
+    }
+  }
 let Biddingformik = useFormik({
   initialValues: {
     amount: BidAmount,
@@ -33,6 +46,7 @@ let Biddingformik = useFormik({
   },
   validationSchema: biddingSchema,
   onSubmit: (values) => {
+    biddingOnProduct(values);
     setBidAmount(values.amount);
   },
 });
@@ -92,19 +106,19 @@ let Biddingformik = useFormik({
                   <input
                     type="number"
                     placeholder="Bid Amount"
-                    className="AuthForm-inputs mb-2 form-control"
+                    className=" mb-2 form-control"
                     name="amount"
                     value={Biddingformik.values.amount}
                     onChange={Biddingformik.handleChange}
                     onBlur={Biddingformik.handleBlur}
                   />
                   {Biddingformik.errors.amount && Biddingformik.touched.amount ?<div className="alert alert-danger">{Biddingformik.errors.amount}</div>: null} 
-                  <button type="submit" className="btn btn-outline-primary">Bid Now</button>
+                  <button type="submit" className="btn btn-orange rounded-pill w-100">Bid Now <RiAuctionLine/></button>
                 </form>
               </div>
             </>}
             {!user && <>
-              <h5>Goto login</h5> 
+              <h6>You aren't logged in. Please log in and try again.</h6> 
               <button className='btn-orange rounded py-2 px-3' onClick={()=>navigate('/Authorization')}>Go to Login  <AiOutlineLogin size={22}  className="ms-1" /></button>
             </>
             }

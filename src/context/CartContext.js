@@ -8,10 +8,10 @@ export let cartContext = createContext();
 export function CartContextProvider(props) {
 
 
-    const user = localStorage.getItem("DaySooqUser") ;
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
     const [AllCartsId, setAllCartsId] = useState()
+    const user = localStorage.getItem("DaySooqUser") ;
     let headers = {
         'Authorization': `Bearer ${user}` 
     }

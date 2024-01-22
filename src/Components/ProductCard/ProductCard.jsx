@@ -7,9 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import { cartContext } from '../../context/CartContext'
 import { WishListContext } from '../../context/WishListContext'
 import ProductPrice from '../ProductPrice/ProductPrice'
-  
+import { RiAuctionLine } from "react-icons/ri";
+
 export default function ProductCard({product , category }) {
   let navigate = useNavigate();
+
+  let isBiddingEnded = new Date(product?.endDate) < new Date();
 
   const { addToCart } = useContext(cartContext);
   const {addToFav} = useContext(WishListContext)
@@ -40,14 +43,23 @@ export default function ProductCard({product , category }) {
   }
 
   return <>
-    <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100" >
+    <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100 position-relative" >
+      {category === 'bidding' && !isBiddingEnded ? (
+        <span className='position-absolute end-0 me-3 green-bg rounded px-2 text-white'>
+          available <RiAuctionLine/>
+        </span>
+      ) : (
+        <span className='position-absolute end-0 me-3 dark-red-bg rounded px-2 text-white'>
+          End <RiAuctionLine/>
+        </span>
+      )}
       <p className='cardCategory me-auto mt-2'>
       {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any'? <>
         { category === 'any' ? product?.subCategory.category.name :
           product?.subCategory.name
         }
           </> : <>
-          Category
+          { product?.variant.product.subCategory.category[0].name }
           </>}
       </p>
       <div className="card-product-info mb-2 flex-grow-1 d-flex flex-column justify-content-between" onClick={handleCardClick}>

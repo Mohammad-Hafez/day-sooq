@@ -671,3 +671,23 @@ background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4
 .promoCodeInput input::placeholder{
   color: var(--dark-blue);
 }
+
+/* *NOTE -  Bidding Actions */
+.p-dialog{
+  background-color: #003566  !important;
+}
+.p-dialog-header{
+  padding: 4px;
+}
+.p-dialog input{
+  border-color: var(--main-orange);
+}
+.p-dialog input:focus{
+    border-color:#ff6200a6;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #ff620069;
+}
+.p-dialog .btn-orange:hover{
+  background-color: var(--main-orange);
+  border: 0;
+}

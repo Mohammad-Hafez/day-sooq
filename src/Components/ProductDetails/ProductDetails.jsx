@@ -77,13 +77,27 @@ export default function ProductDetails() {
                 <div className="product-category mb-4">
                   <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name}</p>
                   {product?.isAction &&
-                    <h5>
-                      {isBiddingEnded ?
-                        <span className='badge dark-red-bg'>Biding End <RiAuctionLine className='fs-6'/></span>
-                        :
-                        <span className='badge dark-green-bg'>Biding Available <RiAuctionLine className='fs-6'/></span>
-                      }
-                    </h5>
+                    isBiddingEnded ? (
+                      <h5>
+                        <span className='badge dark-red-bg'>Bidding Ended <RiAuctionLine className='fs-6'/></span>
+                      </h5>
+                    ) : (
+                      !product?.startDate || new Date(product?.startDate) > new Date() ? (
+                        <h5>
+                          <span className='badge dark-grey-bg'>Bidding Not Started Yet <RiAuctionLine className='fs-6'/></span>
+                        </h5>
+                      ) : (
+                        <>
+                          <h5>
+                            <span className='badge dark-green-bg'>Bidding Available <RiAuctionLine className='fs-6'/></span>
+                          </h5>
+                          {/* Add your upcoming bidding content here */}
+                          {/* For example, you can show a countdown timer or any other information */}
+                          {/* Disable actions or show relevant information */}
+                          {/* You may need to implement the logic for upcoming bidding here */}
+                        </>
+                      )
+                    )                  
                   }
                 </div>
                 <div className="product-data">
