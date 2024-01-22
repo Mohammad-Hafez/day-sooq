@@ -15,7 +15,7 @@ export default function AllProducts() {
 const [PageNum, setPageNum] = useState('1');
 const [LimNum, setLimNum] = useState('8');
 const [SortMethod, setSortMethod] = useState('-price');
-const [selectedLimit, setSelectedLimit] = useState('30');
+const [selectedLimit, setSelectedLimit] = useState(12);
 const [Category, setCategory] = useState(null)
 const [SelectedColors, setSelectedColors] = useState([]);
 const [Size, setSize] = useState(null)
@@ -39,6 +39,7 @@ const onPageChange = (event) => {
 };
 
 const limitOptions = [
+  { label: '8', value: '8' },
   { label: '12', value: '12' },
   { label: '16', value: '16' },
   { label: '20', value: '20' },
@@ -67,7 +68,11 @@ useEffect(()=>{
       {isLoading && <Loader/> }
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-3">
-          <SideMenu SelectedColors={SelectedColors} setSelectedColors={setSelectedColors} maxPrice={maxPrice} minPrice={minPrice} setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory} setIsUsed={setIsUsed} setSize={setSize}/>
+          <SideMenu 
+            setIsUsed={setIsUsed} setSize={setSize} SelectedColors={SelectedColors} 
+            setSelectedColors={setSelectedColors} maxPrice={maxPrice} minPrice={minPrice} 
+            setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory}
+          />
         </div>
         <div className="col-9">
           <div className=" brdr rounded p-3 mb-3">
