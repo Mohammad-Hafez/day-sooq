@@ -21,13 +21,16 @@ export default function ProductReviews({ product }) {
 
   const { data, isLoading, isError } = useQuery('get-ratings', getRating);
 
-  
-  const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
-  let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
+const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
+let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
 
-  if (!isNaN(averageRating)) {
-    averageRating = Math.abs(averageRating % 1) === 0.5 ? Math.floor(averageRating) + 0.5 : Math.round(averageRating);
-  }
+if (isNaN(averageRating) || totalNumberOfReviews === 0) {
+  averageRating = 0; 
+}
+
+if (!isNaN(averageRating)) {
+  averageRating = Math.abs(averageRating % 1) === 0.5 ? Math.floor(averageRating) + 0.5 : Math.round(averageRating);
+}
 
     return (
     <div className="container">
