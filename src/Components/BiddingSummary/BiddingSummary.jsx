@@ -12,7 +12,7 @@ import {  useFormik } from 'formik'
 import axios from 'axios';
 import { ApiBaseUrl } from '../ApiBaseUrl';
 
-export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine }) {
+export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine , refetch }) {
 
   const user = localStorage.getItem("DaySooqUser") ;
   let headers = {
@@ -22,21 +22,25 @@ let navigate = useNavigate()
   const [Visible, setVisible] = useState(false);
   const minimumBidAmount = SelectedVariant?.current_price + product?.biddingGap;
   const [BidAmount, setBidAmount] = useState(minimumBidAmount);
-
+  const [BidLoading, setBidLoading] = useState(false)
   const isBiddingEnded = new Date(product.endDate) < new Date();
 
   const {addToFav} = useContext(WishListContext)
 
   let biddingSchema = Yup.object({
-    amount :Yup.number().required('Bid amount is required'),
+    amount :Yup.number().min(minimumBidAmount, `Bid amount must be at least ${minimumBidAmount}`)
+    .required('Bid amount is required'),
   })
 
   const biddingOnProduct = async (val)=>{
+    setBidLoading(true)
     try {
       let {data} = await axios.post(ApiBaseUrl + `biddings` , val , {headers})
-      console.log(data);
+      refetch();
+      setVisible(false)
+      setBidLoading(false)
     } catch (error) {
-      
+      setBidLoading(false)
     }
   }
 let Biddingformik = useFormik({
@@ -112,8 +116,14 @@ let Biddingformik = useFormik({
                     onChange={Biddingformik.handleChange}
                     onBlur={Biddingformik.handleBlur}
                   />
-                  {Biddingformik.errors.amount && Biddingformik.touched.amount ?<div className="alert alert-danger">{Biddingformik.errors.amount}</div>: null} 
-                  <button type="submit" className="btn btn-orange rounded-pill w-100">Bid Now <RiAuctionLine/></button>
+                  {Biddingformik.errors.amount && Biddingformik.touched.amount ?<div className="alert alert-danger py-1">{Biddingformik.errors.amount}</div>: null} 
+                  {BidLoading ? 
+                    <button type="button" className='btn btn-orange rounded-pill text-light me-2 w-100'><i className=' fa fa-spin fa-spinner'></i></button>
+                    :
+                    <button type="submit" className="btn btn-orange rounded-pill w-100" disabled={Biddingformik.errors.amount || Biddingformik.values.amount < minimumBidAmount}>
+                      Bid Now <RiAuctionLine/>
+                    </button>
+                }
                 </form>
               </div>
             </>}

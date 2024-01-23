@@ -131,7 +131,7 @@ export default function ProductDetails() {
           </div>
         </div>
         <div className="col-6 col-md-4">
-          {product?.isAction && <BiddingSummary RiAuctionLine={RiAuctionLine} product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
+          {product?.isAction && <BiddingSummary refetch={refetch} RiAuctionLine={RiAuctionLine} product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
           {product?.isAction === false && <ProductSummary product={product} quantity={product?.quantity} SelectedVariant={selectedVariant ? selectedVariant : product?.variants[0]}/>}
         </div>
       </div>
