@@ -22,7 +22,7 @@ const [Size, setSize] = useState()
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(1000000);
 const [IsUsed, setIsUsed] = useState(false)
-
+const [GridPage, setGridPage] = useState('col-6 col-sm-4 col-md-3')
 const getAllProducts = () => {
   const colorQueryParam = SelectedColors.length > 0 ? `&color=${SelectedColors.join(',')}` : '';
   return axios.get(
@@ -80,8 +80,8 @@ useEffect(()=>{
             <hr />
             <div className="d-flex align-items-center justify-content-between">
               <div className="grid-icons">
-                <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer'/>
-                <FaThList className='fs-3 light-grey-text cursor-pointer'/>
+                <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-6 col-sm-4 col-md-3')}/>
+                <FaThList className='fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-12')}/>
               </div>
               <div className="p-float-label mt-4">
                 <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
@@ -92,8 +92,8 @@ useEffect(()=>{
           <div className="row gy-3">
               {data?.data.data.data.length === 0?<h2>No Available Products</h2>
                 :
-                data?.data.data.data.map((product)=> <div key={product?._id} className="col-6 col-sm-4 col-md-3">
-                    <ProductCard product={product} category={product?.isAction? 'bidding' : 'any'}/>
+                data?.data.data.data.map((product)=> <div key={product?._id} className={GridPage}>
+                    <ProductCard product={product} GridPage={GridPage} category={product?.isAction? 'bidding' : 'any'}/>
                   </div>
                 )
               }

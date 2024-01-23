@@ -617,6 +617,7 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   -o-transition: all 1s ease-in-out;
   opacity: 0;
 }
+
 .slide-container:hover .toggleBtns {
   opacity: 1;
   transform: translateY(-50%);
@@ -625,6 +626,28 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
 }
+.toggleBtns-wide{
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  transition: all 1s ease-in-out;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  right: 0;
+  opacity: 0;
+
+}
+.slide-container:hover .toggleBtns-wide {
+  opacity: 1;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
 .before-price{
   text-decoration: line-through;
 }

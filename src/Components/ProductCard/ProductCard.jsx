@@ -9,11 +9,10 @@ import { WishListContext } from '../../context/WishListContext'
 import ProductPrice from '../ProductPrice/ProductPrice'
 import { RiAuctionLine } from "react-icons/ri";
 
-export default function ProductCard({product , category }) {
+export default function ProductCard({product , category , GridPage}) {
   let navigate = useNavigate();
 
   let isBiddingEnded = new Date(product?.endDate) < new Date();
-
   const { addToCart } = useContext(cartContext);
   const {addToFav} = useContext(WishListContext)
 
@@ -43,20 +42,20 @@ export default function ProductCard({product , category }) {
   }
 
   return <>
-    <div className="slide-item slide-container brdr px-3 py-2 d-flex flex-column justify-content-between h-100 position-relative" >
+    <div className={`slide-item slide-container brdr px-3 py-2 d-flex ${GridPage === 'col-12' ? 'align-items-end' : 'flex-column justify-content-between'}  h-100 position-relative`}>
       {category === 'bidding' ?
         !isBiddingEnded ? (
-            <span className='position-absolute end-0 me-3 green-bg rounded px-2 text-white'>
+            <span className='position-absolute top-0 mt-2 end-0 me-3 green-bg rounded px-2 text-white'>
               available <RiAuctionLine/>
             </span>
           ) : (
-            <span className='position-absolute end-0 me-3 dark-red-bg rounded px-2 text-white'>
+            <span className='position-absolute top-0 mt-2 end-0 me-3 dark-red-bg rounded px-2 text-white'>
               End <RiAuctionLine/>
             </span>
           )
           : null
       }
-      <p className='cardCategory me-auto mt-2'>
+      <p className={`cardCategory ${GridPage === 'col-12' ? 'align-self-start' : 'me-auto'}  mt-2`}>
       {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any'? <>
         { category === 'any' ? product?.subCategory.category.name :
           product?.subCategory.name
@@ -65,13 +64,13 @@ export default function ProductCard({product , category }) {
           { product?.variant.product.subCategory.category[0].name }
           </>}
       </p>
-      <div className="card-product-info mb-2 flex-grow-1 d-flex flex-column justify-content-between" onClick={handleCardClick}>
+      <div className={`card-product-info mb-2 ${GridPage === 'col-12' ? 'mx-3 d-flex align-items-center w-75' : 'flex-grow-1 d-flex flex-column justify-content-between'} `} onClick={handleCardClick}>
         {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
-            <h6 className='cardProductName fw-bolder '>{product?.name}</h6>
+            <h6 className={`cardProductName fw-bolder ${GridPage === 'col-12' ? 'order-2 align-self-start' : ''}`}>{product?.name}</h6>
             </> : <>
-            <h6 className='cardProductName fw-bolder '>{product?.variant.product.name}</h6>
+            <h6 className={`cardProductName fw-bolder ${GridPage === 'col-12' ? 'order-2 align-self-start' : ''}`}>{product?.variant.product.name}</h6>
             </>}
-          <div className="slide-img over-flow-hidden flex-grow-1">
+          <div className={`slide-img over-flow-hidden ${GridPage === 'col-12' ? 'order-1 w-25 me-2' : 'flex-grow-1'}`}>
             {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any'? <>
               <img  className='img-fluid h-100 w-100 rounded object-fit-contain' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
             </> : <>
@@ -79,10 +78,12 @@ export default function ProductCard({product , category }) {
             </>}
           </div>
       </div>
-      <div className="card-footer d-flex align-items-center justify-content-between w-100">
-        <ProductPrice product={product} category={category}/>
-        <div className="actionBtns position-relative">
-          <div className="toggleBtns mb-3">
+      <div className={`card-footer ${GridPage === 'col-12' ? 'w-25': 'w-100'} d-flex align-items-center justify-content-between`}>
+        <div className={`${GridPage === 'col-12' ? '':''}`}>
+          <ProductPrice product={product} category={category} />
+        </div>
+        <div className={`actionBtns position-relative`}>
+          <div className={`${GridPage === 'col-12' ? 'toggleBtns-wide mb-3' : 'toggleBtns  mb-3'}`}>
             <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='mt-1' icon={heart} size={22}></Icon></button>
           </div>
           <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2' onClick={addToCartFromCard}><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
