@@ -20,7 +20,7 @@ export default function ProductReviews({ product }) {
     return response.data;
   };
 
-  const { data, isLoading, isError } = useQuery('get-ratings', getRating);
+  const { data, isLoading, isError , refetch} = useQuery('get-ratings', getRating);
 
   const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
   let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
@@ -37,7 +37,7 @@ export default function ProductReviews({ product }) {
     <div className="container">
       <div className="row">
         <div className="col-sm-6">
-          <h5>Product Ratings:</h5>
+          <h5 className='fw-bolder dark-grey-text'>Product Ratings:</h5>
           {isLoading && <p>Loading...</p>}
           {isError && <p>Error fetching ratings</p>}
           {data && (
@@ -66,7 +66,7 @@ export default function ProductReviews({ product }) {
           )}
         </div>
         <div className="col-sm-6">
-          <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product}/>
+          <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product} refetch={refetch}/>
         </div>
       </div>
     </div>

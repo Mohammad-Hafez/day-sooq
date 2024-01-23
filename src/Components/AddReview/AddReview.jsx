@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { ApiBaseUrl } from '../ApiBaseUrl';
+import { toast } from 'react-hot-toast';
 
-export default function AddReview({ IoIosStar, product }) {
+export default function AddReview({ IoIosStar, product , refetch}) {
   const user = localStorage.getItem("DaySooqUser");
   const [rating, setRating] = useState(0);
   const [ReviewStatus, setReviewStatus] = useState('Your Review');
@@ -18,9 +19,20 @@ export default function AddReview({ IoIosStar, product }) {
         product: product._id
       };
       const {data} = await axios.post(ApiBaseUrl + 'reviews', reviewData, { headers });
+      refetch()
       setRating(0);
       setReviewText('');
+      toast.success('Your Review Added Successfully.', {
+        className: 'first-z mt-5 bg-main-light ',
+        duration: 2000,
+    });
+
     } catch (error) {
+      toast.error("An Error Occured, Please Try Again.", {
+        className: 'first-z mt-5 bg-main-light ',
+        duration: 2000,
+      });  
+
       console.error('Error adding review', error);
     }
   };
@@ -69,7 +81,7 @@ export default function AddReview({ IoIosStar, product }) {
           className="form-control mb-3 reviewComment"
           style={{resize:'none'}}
         /> 
-        <button className="btn dark-blue-btn rounded-pill px-4" onClick={addReview}>
+        <button className="btn dark-blue-btn rounded-pill px-4 text-light" onClick={addReview}>
           Submit Review
         </button>
       </div>
