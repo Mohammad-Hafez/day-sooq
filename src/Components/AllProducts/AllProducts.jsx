@@ -96,24 +96,26 @@ useEffect(()=>{
           <div className=" brdr rounded p-3 mb-3">
             <h2 className='m-0'>All Products</h2>
             <hr />
-            <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-center justify-content-around">
               <div className="grid-icons">
                 <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-6 col-sm-4 col-md-3')}/>
                 <FaThList className='fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-12')}/>
               </div>
-              <div className="p-float-label mt-4">
+              <div className="dropDowns d-flex w-75 justify-content-end align-items-center">
+              <div className=" mt-4 me-2 w-25">
                 <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
-                onChange={onLimitChange} placeholder="Products" className='rounded-pill p-0 light-grey-text' />
+                onChange={onLimitChange} placeholder="Products" className='rounded-pill p-0 light-grey-text w-100' />
               </div>
-              <div className="p-float-label mt-4">
+              <div className=" mt-4 w-25">
                 <Dropdown
                   id='sortMethod'
-                  value={`${SortMethod}_${SortOrder}`}
+                  value={`${SortMethod}`}
                   options={sortOptions}
                   onChange={onSortChange}
                   placeholder="Sort By"
-                  className='rounded-pill p-0 light-grey-text'
+                  className='rounded-pill p-0 light-grey-text w-100'
                 />
+              </div>
               </div>
             </div>
           </div>
