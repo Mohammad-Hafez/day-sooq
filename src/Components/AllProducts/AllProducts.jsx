@@ -15,6 +15,7 @@ export default function AllProducts() {
 const [PageNum, setPageNum] = useState('1');
 const [LimNum, setLimNum] = useState('8');
 const [SortMethod, setSortMethod] = useState('-price');
+const [SortOrder, setSortOrder] = useState('asc');
 const [selectedLimit, setSelectedLimit] = useState(12);
 const [Category, setCategory] = useState(null)
 const [SelectedColors, setSelectedColors] = useState([]);
@@ -46,12 +47,29 @@ const limitOptions = [
   { label: '32', value: '32' },
   { label: '40', value: '40' },
 ];
-
 const onLimitChange = (event) => {
   const newLimit = event.value;
   setLimNum(newLimit);
   setSelectedLimit(newLimit);
   
+};
+
+
+const sortOptions = [
+  { label: 'Name (A-Z)', value: 'name' },
+  { label: 'Name (Z-A)', value: '-name' },
+  { label: 'Price (Low to High)', value: 'price' },
+  { label: 'Price (High to Low)', value: '-price' },
+  { label: 'Rating (Low to High)', value: 'rating' },
+  { label: 'Rating (High to Low)', value: '-rating' },
+];
+
+const onSortChange = (event) => {
+  const selectedSort = event.value;
+  const [sortField, sortOrder] = selectedSort.split('_');
+
+  setSortMethod(sortField);
+  setSortOrder(sortOrder);
 };
 
 useEffect(()=>{
@@ -86,6 +104,16 @@ useEffect(()=>{
               <div className="p-float-label mt-4">
                 <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
                 onChange={onLimitChange} placeholder="Products" className='rounded-pill p-0 light-grey-text' />
+              </div>
+              <div className="p-float-label mt-4">
+                <Dropdown
+                  id='sortMethod'
+                  value={`${SortMethod}_${SortOrder}`}
+                  options={sortOptions}
+                  onChange={onSortChange}
+                  placeholder="Sort By"
+                  className='rounded-pill p-0 light-grey-text'
+                />
               </div>
             </div>
           </div>
