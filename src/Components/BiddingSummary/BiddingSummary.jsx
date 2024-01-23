@@ -11,6 +11,7 @@ import * as Yup from 'yup'
 import {  useFormik } from 'formik'
 import axios from 'axios';
 import { ApiBaseUrl } from '../ApiBaseUrl';
+import { toast } from 'react-hot-toast';
 
 export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine , refetch }) {
 
@@ -36,6 +37,10 @@ let navigate = useNavigate()
     setBidLoading(true)
     try {
       let {data} = await axios.post(ApiBaseUrl + `biddings` , val , {headers})
+      toast.success('Bidd Amount Added Successfully.', {
+        className: 'first-z mt-5 bg-main-light ',
+        duration: 2000,
+    });
       refetch();
       setVisible(false)
       setBidLoading(false)
