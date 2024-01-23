@@ -19,14 +19,14 @@ export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine
   let headers = {
       'Authorization': `Bearer ${user}` 
   }
-let navigate = useNavigate()
-  const [Visible, setVisible] = useState(false);
+  let navigate = useNavigate()
+  const isBiddingEnded = new Date(product.endDate) < new Date();
+  const {addToFav} = useContext(WishListContext)
   const minimumBidAmount = SelectedVariant?.current_price + product?.biddingGap;
   const [BidAmount, setBidAmount] = useState(minimumBidAmount);
   const [BidLoading, setBidLoading] = useState(false)
-  const isBiddingEnded = new Date(product.endDate) < new Date();
-
-  const {addToFav} = useContext(WishListContext)
+  const [Visible, setVisible] = useState(false);
+  const [BuyNowVisible, setBuyNowVisible] = useState(false);
 
   let biddingSchema = Yup.object({
     amount :Yup.number().min(minimumBidAmount, `Bid amount must be at least ${minimumBidAmount}`)
@@ -94,7 +94,7 @@ let Biddingformik = useFormik({
             </span>
           </h5>
           {!isBiddingEnded && (
-            <button className='btn dark-blue-btn text-light rounded-pill w-100 py-2 fs-5' onClick={() => console.log("hii")} disabled={isBiddingEnded}>
+            <button className='btn dark-blue-btn text-light rounded-pill w-100 py-2 fs-5' onClick={() => setBuyNowVisible(true)} disabled={isBiddingEnded}>
               Buy It Now <IoBagCheck />
             </button>
           )}
@@ -121,6 +121,7 @@ let Biddingformik = useFormik({
                     onChange={Biddingformik.handleChange}
                     onBlur={Biddingformik.handleBlur}
                   />
+                  <p className='main-orange-text'>** Amount Have to be more than <span className='dark-blue-text'>{minimumBidAmount - 0.1}</span> JOD</p>
                   {Biddingformik.errors.amount && Biddingformik.touched.amount ?<div className="alert alert-danger py-1">{Biddingformik.errors.amount}</div>: null} 
                   {BidLoading ? 
                     <button type="button" className='btn btn-orange rounded-pill text-light me-2 w-100'><i className=' fa fa-spin fa-spinner'></i></button>
@@ -138,6 +139,17 @@ let Biddingformik = useFormik({
             </>
             }
         </div>
+      </Dialog>
+      <Dialog visible={BuyNowVisible} onHide={() => setBuyNowVisible(false)} style={{ width: 'fit-content' }} breakpoints={{ '960px': '75vw', '641px': '100vw' }}>
+      <div className="dialogContainer px-5 d-flex flex-column justify-content-around align-items-center h-100">
+        <h6 className='fw-bolder'>
+          Purchase Confirmation
+        </h6>
+        <p>
+          Confirm your purchase of this product for <span className='fw-bolder'>{product.biddingPrice} JOD</span>. Payment is required now via credit card.
+        </p>
+        <button className='btn dark-blue-btn rounded-pill px-5'>Confirm Purchase <IoBagCheck /></button>
+      </div>
       </Dialog>
     </>
   );
