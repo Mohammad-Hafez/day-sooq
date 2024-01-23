@@ -18,7 +18,7 @@ const [SortMethod, setSortMethod] = useState('-price');
 const [selectedLimit, setSelectedLimit] = useState(12);
 const [Category, setCategory] = useState(null)
 const [SelectedColors, setSelectedColors] = useState([]);
-const [Size, setSize] = useState(null)
+const [Size, setSize] = useState()
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(1000000);
 const [IsUsed, setIsUsed] = useState(false)
@@ -27,7 +27,7 @@ const getAllProducts = () => {
   const colorQueryParam = SelectedColors.length > 0 ? `&color=${SelectedColors.join(',')}` : '';
   return axios.get(
     ApiBaseUrl +
-      `products?price[lt]=${maxPrice}&price[gt]=${minPrice}&isUsed=${IsUsed}&page=${PageNum ? PageNum : '0'}&limit=${LimNum}&sort=${SortMethod}${Category ? `&category=${Category}` : ''}${colorQueryParam}`
+      `products?price[lt]=${maxPrice}&price[gt]=${minPrice}&isUsed=${IsUsed}${Size ? `&size=${Size}` : ''}&page=${PageNum ? PageNum : '0'}&limit=${LimNum}&sort=${SortMethod}${Category ? `&category=${Category}` : ''}${colorQueryParam}`
   );
 };
 

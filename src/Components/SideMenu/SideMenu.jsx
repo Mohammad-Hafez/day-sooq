@@ -14,7 +14,7 @@ export default function SideMenu({setCategory , setMaxPrice , setMinPrice , maxP
     <CategoriesMenu setCategory={setCategory} axios={axios} useQuery={useQuery} ApiBaseUrl={ApiBaseUrl}/>
     <PricesMenu setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} maxPrice={maxPrice} minPrice={minPrice} />
     <ColorsMenu SelectedColors={SelectedColors} setSelectedColors={setSelectedColors}/>
-    {/* <SizeMenu setSize={setSize}/> */}
+    <SizeMenu setSize={setSize}/>
     <StatusMenu setIsUsed={setIsUsed} IsUsed={IsUsed} />
   </div>
     </>
