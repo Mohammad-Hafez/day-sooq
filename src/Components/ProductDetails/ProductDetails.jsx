@@ -29,7 +29,7 @@ export default function ProductDetails() {
 
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
-  let {data , isLoading , refetch , isFetching } = useQuery('product-details' , getProduct );
+  let {data , isLoading , refetch , isFetching } = useQuery('product-details' , getProduct , {cacheTime:1000});
 
   let product = (data?.data?.data?.data);
 

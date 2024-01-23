@@ -52,7 +52,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
   return (
     <>
       <div className="search-header">
-        <div className="row align-items-center">
+        <div className="row align-items-center gy-2">
           <div className="col-6 col-md-5 col-lg-3">
             <div className="logo d-flex align-items-center justify-content-around">
               <span>
@@ -106,7 +106,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
               ) : null}
             </div>
           </div>
-          <div className="col-6 col-md-5 col-lg-3">
+          <div className="col-12 col-md-5 col-lg-3">
             <div className="profileContainer d-flex align-items-center justify-content-center">
               {UserToken ? <>
               <span className='fs-6 dark-blue-text font-Rowdies me-3'>
@@ -143,11 +143,11 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                   </span>
                 </div>
                 <Icon size={22} icon={heart} className="main-grey-text me-2 cursor-pointer" onClick={()=>navigate('/WishList')} ></Icon>
-                <span className="cart-icon position-relative me-2 main-grey-text d-flex align-items-center">
+                <span className="cart-icon position-relative me-1 main-grey-text d-flex align-items-center">
                   <Icon onClick={()=> navigate('/MyCart')} size={22} icon={ic_local_mall} className="me-1 cursor-pointer" ></Icon>
                   {numbOfCartItems > 0 &&<span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span> } 
-                  <span className="ms-2 cart-budget"> {TotalPrice} JOD</span>
                 </span>
+                <span className="ms-2 cart-budget"> {TotalPrice} JOD</span>
               </> :
                 <span className='dark-blue-text cursor-pointer text-uppercase' onClick={()=> navigate('/Authorization')}>Have an Acount ?
                   <AiOutlineLogin size={22}  className="ms-1" />
