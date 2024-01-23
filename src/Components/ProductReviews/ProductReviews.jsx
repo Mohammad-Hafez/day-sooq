@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { ApiBaseUrl } from '../ApiBaseUrl';
 import StarRating from '../StarRating/StarRating';
 import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
+import AddReview from '../AddReview/AddReview';
 
 const generateFixedRatings = (ratingReviews) => {
   const fixedRatings = Array.from({ length: 5 }, (_, index) => {
@@ -21,18 +22,18 @@ export default function ProductReviews({ product }) {
 
   const { data, isLoading, isError } = useQuery('get-ratings', getRating);
 
-const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
-let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
+  const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
+  let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
 
-if (isNaN(averageRating) || totalNumberOfReviews === 0) {
-  averageRating = 0; 
-}
+  if (isNaN(averageRating) || totalNumberOfReviews === 0) {
+    averageRating = 0; 
+  }
 
-if (!isNaN(averageRating)) {
-  averageRating = Math.abs(averageRating % 1) === 0.5 ? Math.floor(averageRating) + 0.5 : Math.round(averageRating);
-}
+  if (!isNaN(averageRating)) {
+    averageRating = Math.abs(averageRating % 1) === 0.5 ? Math.floor(averageRating) + 0.5 : Math.round(averageRating);
+  }
 
-    return (
+  return (
     <div className="container">
       <div className="row">
         <div className="col-sm-6">
@@ -64,7 +65,9 @@ if (!isNaN(averageRating)) {
             </div>
           )}
         </div>
-        <div className="col-sm-6">{/* Additional content for the second column, if needed */}</div>
+        <div className="col-sm-6">
+          <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product}/>
+        </div>
       </div>
     </div>
   );
