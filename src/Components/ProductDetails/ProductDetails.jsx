@@ -35,17 +35,17 @@ export default function ProductDetails() {
 
   const isBiddingEnded = new Date(product?.endDate) < new Date();
 
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]);
+  const [selectedVariant, setSelectedVariant] = useState(product?.variants[0]._id);
 
   const splitDescription = product?.description?.split(',').map((item, index) => <li className='mb-1' key={index}>{item.trim()}</li> )
 
-  const colors = product?.variants.map((product , index)=>  <div
+  const colors = product?.variants.map((newProduct , index)=>  <div
                                                                   key={index}
-                                                                  onClick={() => setSelectedVariant(product)}
-                                                                  className={`color rounded me-1 ${selectedVariant?._id === product._id ? 'selected' : ''}`}
+                                                                  onClick={() => setSelectedVariant(newProduct)}
+                                                                  className={`color rounded me-1 ${selectedVariant?._id === newProduct._id ? 'selected' : ''}`}
                                                                   style={{
-                                                                    background: `linear-gradient(182deg, #F2FFF7 0%, ${product?.color} 100%)`,
-                                                                    border: selectedVariant?._id === product._id ? '2px solid #000' : 'none',
+                                                                    background: `linear-gradient(182deg, #F2FFF7 0%, ${newProduct?.color} 100%)`,
+                                                                    border: selectedVariant?._id === newProduct._id ? '2px solid #000' : 'none',
                                                                   }}
                                                               >
                                                             </div>
@@ -91,10 +91,6 @@ export default function ProductDetails() {
                           <h5>
                             <span className='badge dark-green-bg'>Bidding Available <RiAuctionLine className='fs-6'/></span>
                           </h5>
-                          {/* Add your upcoming bidding content here */}
-                          {/* For example, you can show a countdown timer or any other information */}
-                          {/* Disable actions or show relevant information */}
-                          {/* You may need to implement the logic for upcoming bidding here */}
                         </>
                       )
                     )                  

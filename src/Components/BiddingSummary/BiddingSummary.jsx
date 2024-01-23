@@ -12,6 +12,7 @@ import {  useFormik } from 'formik'
 import axios from 'axios';
 import { ApiBaseUrl } from '../ApiBaseUrl';
 import { toast } from 'react-hot-toast';
+import { cartContext } from '../../context/CartContext';
 
 export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine , refetch }) {
 
@@ -19,6 +20,9 @@ export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine
   let headers = {
       'Authorization': `Bearer ${user}` 
   }
+
+  const {addToCart} = useContext(cartContext);
+
   let navigate = useNavigate()
   const isBiddingEnded = new Date(product.endDate) < new Date();
   const {addToFav} = useContext(WishListContext)
@@ -60,6 +64,16 @@ let Biddingformik = useFormik({
   },
 });
 
+const confirmPurchase = ()=>{
+  setBidLoading(true)
+  try {
+    addToCart(SelectedVariant._id ,1)
+    setBidLoading(false)
+    setBuyNowVisible(false)  
+  } catch (error) {
+    setBidLoading(false)
+  }
+}
 
   return (
     <>
@@ -146,9 +160,20 @@ let Biddingformik = useFormik({
           Purchase Confirmation
         </h6>
         <p>
-          Confirm your purchase of this product for <span className='fw-bolder'>{product.biddingPrice} JOD</span>. Payment is required now via credit card.
+          By confirming your purchase, this product will be added to your cart, and the bidding process will be set to pending.
         </p>
-        <button className='btn dark-blue-btn rounded-pill px-5'>Confirm Purchase <IoBagCheck /></button>
+        <p>
+          purchase this product for <span className='fw-bolder'>{product.biddingPrice} JOD</span>.
+        </p>
+        {BidLoading ? 
+          <button type="button" className='btn dark-blue-btn rounded-pill px-5 mb-2 text-light'><i className=' fa fa-spin fa-spinner'></i></button>
+                    :
+          <button className='btn dark-blue-btn rounded-pill px-5 mb-2 text-light' onClick={confirmPurchase}>Confirm Purchase <IoBagCheck /></button>
+        }
+        <p className='fs-6 light-red-text '>
+          NOTE: The bidding will not end until you Place the order.
+        </p>
+
       </div>
       </Dialog>
     </>
