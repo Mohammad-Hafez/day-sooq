@@ -17,7 +17,7 @@ export default function ColorsMenu({ SelectedColors, setSelectedColors }) {
       <h5 className='fw-bolder mb-1'>Main Colors</h5>
       <hr className='mb-3 mt-2 brdr' />
       <div className="row">
-      {mainColors.map((color , index) => (<div key={index} className="col-3">
+      {mainColors.map((color , index) => (<div key={index} className="col-6 col-md-3">
         <div className="colorOption d-flex align-items-center mb-1 justify-content-center">
           <input
             type="checkbox"

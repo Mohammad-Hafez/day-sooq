@@ -22,7 +22,7 @@ const [Size, setSize] = useState()
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(1000000);
 const [IsUsed, setIsUsed] = useState(false)
-const [GridPage, setGridPage] = useState('col-6 col-sm-4 col-md-3')
+const [GridPage, setGridPage] = useState('col-12 col-sm-4 col-md-3')
 const getAllProducts = () => {
   const colorQueryParam = SelectedColors.length > 0 ? `&color=${SelectedColors.join(',')}` : '';
   return axios.get(
@@ -83,23 +83,23 @@ useEffect(()=>{
     <div className="container">
       {isLoading && <Loader/> }
       <div className="row mt-3 mb-4 gy-3">
-        <div className="col-3">
+        <div className="col-5 col-md-3">
           <SideMenu 
             setIsUsed={setIsUsed} IsUsed={IsUsed} setSize={setSize} SelectedColors={SelectedColors} 
             setSelectedColors={setSelectedColors} maxPrice={maxPrice} minPrice={minPrice} 
             setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory}
           />
         </div>
-        <div className="col-9">
+        <div className="col-7 col-md-9">
           <div className=" brdr rounded p-3 mb-3">
             <h2 className='m-0'>All Products</h2>
             <hr />
-            <div className="d-flex align-items-center justify-content-around">
+            <div className="allProductsHeader d-flex align-items-center justify-content-around">
               <div className="grid-icons">
                 <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-6 col-sm-4 col-md-3')}/>
                 <FaThList className='fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-12')}/>
               </div>
-              <div className="dropDowns d-flex w-75 justify-content-end align-items-center">
+              <div className="allProductsSorting dropDowns d-flex w-75 justify-content-end align-items-center">
               <div className=" mt-4 me-2 w-25">
                 <Dropdown id='limitNum' value={selectedLimit } options={limitOptions}
                 onChange={onLimitChange} placeholder="Products" className='rounded-pill p-0 light-grey-text w-100' />
