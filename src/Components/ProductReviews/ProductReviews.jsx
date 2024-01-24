@@ -16,6 +16,7 @@ const generateFixedRatings = (ratingReviews) => {
 };
 
 export default function ProductReviews({ product }) {
+
   const getRating = async () => {
     const response = await axios.get(ApiBaseUrl + `reviews/rating/${product._id}`);
     return response.data;
@@ -70,7 +71,7 @@ export default function ProductReviews({ product }) {
           <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product} refetch={refetch}/>
         </div>
       </div>
-      <AllComments/>
+      <AllComments product={product._id}/>
     </div>
   );
 }
