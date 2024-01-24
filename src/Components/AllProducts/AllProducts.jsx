@@ -22,7 +22,7 @@ const [Size, setSize] = useState()
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(1000000);
 const [IsUsed, setIsUsed] = useState(false)
-const [GridPage, setGridPage] = useState('col-12 col-sm-4 col-md-3')
+const [GridPage, setGridPage] = useState('col-12 col-sm-6 col-md-4 col-lg-3')
 const getAllProducts = () => {
   const colorQueryParam = SelectedColors.length > 0 ? `&color=${SelectedColors.join(',')}` : '';
   return axios.get(
@@ -80,7 +80,7 @@ useEffect(()=>{
     <Helmet>
       <title>All Products</title>
     </Helmet>
-    <div className="container">
+    <div className="container allproducts">
       {isLoading && <Loader/> }
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-5 col-md-3">
@@ -96,7 +96,7 @@ useEffect(()=>{
             <hr />
             <div className="allProductsHeader d-flex align-items-center justify-content-around">
               <div className="grid-icons">
-                <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-6 col-sm-4 col-md-3')}/>
+                <BsGrid3X3GapFill className='me-3 fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-12 col-sm-6 col-md-3')}/>
                 <FaThList className='fs-3 light-grey-text cursor-pointer' onClick={()=>setGridPage('col-12')}/>
               </div>
               <div className="allProductsSorting dropDowns d-flex w-75 justify-content-end align-items-center">

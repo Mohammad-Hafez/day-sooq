@@ -84,9 +84,9 @@ export default function ProductCard({product , category , GridPage}) {
         </div>
         <div className={`actionBtns position-relative`}>
           <div className={`${GridPage === 'col-12' ? 'toggleBtns-wide mb-3' : 'toggleBtns  mb-3'}`}>
-            <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='mt-1' icon={heart} size={22}></Icon></button>
+            <button className='go-Btn d-flex align-items-center justify-content-center ms-auto mb-1 pb-2' onClick={addToFavFromCard}><Icon className='mt-1 fs-5' icon={heart}></Icon></button>
           </div>
-          <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2' onClick={addToCartFromCard}><Icon className='p-0 m-0' icon={ic_local_mall} size={22}></Icon></button>
+          <button className='go-Btn addCart-btn d-flex align-items-center justify-content-center ms-auto pb-2' onClick={addToCartFromCard}><Icon className='p-0 m-0 fs-5' icon={ic_local_mall} ></Icon></button>
         </div>
       </div>
     </div>

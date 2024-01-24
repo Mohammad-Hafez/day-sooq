@@ -1,4 +1,4 @@
-/* general style & colors */
+/* *SECTION -  - general style & colors */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -8,7 +8,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-transform: capitalize ;
   scroll-behavior: smooth;
-  /* min-width: 500px; */
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -223,7 +222,7 @@ label{
 .addToFavBtn:hover .heart{
  color: var(--pink-color);
 }
-/* *SECTION - Not found */
+/* *SECTION -  -  - Not found */
 .not-found{
   background-image: url('./assets/error.svg');
   width: 100%;
@@ -232,7 +231,8 @@ label{
   background-repeat: no-repeat;
   margin-top: 0;
 }
-/* *NOTE -  Header style */
+/* *STUB -  */
+/* *SECTION -  -  Header style */
 .topHeader::after{
 content: "";
 position: absolute;
@@ -358,7 +358,8 @@ padding-left: 0 ;
   -ms-transform: translateY(50%);
   -o-transform: translateY(50%);
 }
-/* *NOTE - Authorization */
+/* *STUB -  */
+/* *SECTION -  Authorization */
 .selectAuth{
   padding-inline: 20px;
   border-bottom: 2px solid var(--dark-blue);
@@ -411,9 +412,10 @@ padding-left: 0 ;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
+/* *STUB -  */
+/* **SECTION -  -  - Home Style */
 
-/* *NOTE - Home Style */
-/* *SECTION - product card */
+/* *NOTE -  - product card */
 .slide-item , .slide-item img , .category-container , .category-container img , .brand-container img{
   transition: all .5s ease-in-out;
   -webkit-transition: all .5s ease-in-out;
@@ -453,7 +455,8 @@ padding-left: 0 ;
 .p-carousel-indicators{
   display: none;
 }
-/* *SECTION - main slider */
+/* *STUB -  */
+/* *NOTE -  - main slider */
 .slick-slider :focus-visible {
   outline: none ;
 }
@@ -479,11 +482,13 @@ padding-left: 0 ;
  width: 50px ;
  height: 50px ;
 }
-/* *SECTION - Bidding slider */
+/* *STUB -  */
+/* *NOTE -  - Bidding slider */
 .biddingSlider{
   background: linear-gradient(91deg, rgba(0, 53, 102, 0.09) 9.23%, rgba(255, 96, 0, 0.09) 95.06%);
 }
-/* *SECTION - Categories style */
+/* *STUB -  */
+/* *NOTE -  - Categories style */
 .allCategoriesContainer{
   width: 90%;
   margin-inline: auto;
@@ -531,7 +536,8 @@ margin-bottom: 10px;
 .go-Btn:hover , .go-Btn:active{
   background-color: var(--light-blue);
 }
-/* *SECTION - static products */
+/* *STUB -  */
+/* *NOTE -  - static products */
 .staticProductRight{
 border-radius: 25px;
 background: linear-gradient(245deg, #003566 28.74%, #FF6000 66.04%);
@@ -546,7 +552,8 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
   image-rendering: optimizeQuality;
   object-fit: contain;
 }
-/* *SECTION - best selling slider */
+/* *STUB -  */
+/* *NOTE -  - best selling slider */
 .BestSlider-container .slick-slide{
   padding-inline: 16px;
 }
@@ -652,6 +659,7 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
 .before-price{
   text-decoration: line-through;
 }
+/* *STUB -  */
 /* *NOTE - Blogs Syle */
 .blogInfo{
   height: fit-content;
@@ -663,7 +671,8 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
 .blogDate{
   width: fit-content;
 }
-/* *NOTE - Footer style */
+/* *STUB -  */
+/* *NOTE -  - Footer style */
 
 .email-tab{
   background: linear-gradient(270deg, #003566 6.75%, #FF6000 99.3%);
@@ -675,7 +684,10 @@ background: linear-gradient(64deg, #003566 19.51%, #FF6000 65.05%);
 .footer{
 background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4, 0.01) 98.64%);
 }
-/* *NOTE - Product Details */
+/* *STUB -  */
+/* *STUB - End home */
+
+/* *SECTION -   Product Details */
 .color{
   width: 20px ;
   height: 20px ;
@@ -691,12 +703,13 @@ background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4
 .p-tabview-ink-bar{
   display: none;
 }
-/* *NOTE - cart summary*/
+/* *STUB -  */
+/* *SECTION -  cart summary*/
 .promoCodeInput input::placeholder{
   color: var(--dark-blue);
 }
-
-/* *NOTE -  Bidding Actions */
+/* *STUB -  */
+/* *SECTION -   Bidding Actions */
 .p-dialog{
   background-color: #003566  !important;
 }
@@ -715,3 +728,10 @@ background: linear-gradient(92deg, rgba(3, 54, 101, 0.13) 6.65%, rgba(246, 95, 4
   background-color: var(--main-orange);
   border: 1px solid var(--main-orange);
 }
+/* *STUB -  */
+/* *SECTION - AllProducts */
+.priceRangeSlider .p-inputtext{
+  width: 50%;
+  padding-block: 6px;
+}
+/* *STUB -  */

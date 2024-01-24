@@ -18,11 +18,26 @@
       .productCard.wide{
         flex-direction: column;
       }
+      .productCard.wide .slide-img{
+        width: 50% !important;
+      }
+      .productCard.wide .card-footer{
+        align-self: center;
+        width: 80% !important;
+      }
+      .productCard.wide .card-footer .toggleBtns-wide{
+        margin-bottom: 12px !important;
+      }
+
     }
     @media screen and (max-width:500px) {
       html,body {
           font-size: 70%;
       }
+      .go-Btn{
+        width: 28px;
+        height: 28px
+      };
       .nav-search{
         width: 20%;
       }
@@ -33,7 +48,7 @@
         display: none;
       }
       .toggleBtns{
-        margin-bottom: 18px !important;
+        margin-bottom: 12px !important;
       }
       .blogs{
         flex-direction: column;
@@ -53,4 +68,8 @@
       }
     }
   }
-  
+  @media screen and (max-width:767px) {
+    .container{
+        max-width: 100% !important;
+    }
+  }
