@@ -165,11 +165,15 @@ const confirmPurchase = ()=>{
         <p>
           purchase this product for <span className='fw-bolder'>{product.biddingPrice} JOD</span>.
         </p>
-        {BidLoading ? 
+        {!user ? <>
+              <button className='btn-orange rounded py-2 px-3 mb-2' onClick={()=>navigate('/Authorization')}>Go to Login  <AiOutlineLogin size={22}  className="ms-1" /></button>
+            </>
+            :
+        BidLoading ? 
           <button type="button" className='btn dark-blue-btn rounded-pill px-5 mb-2 text-light'><i className=' fa fa-spin fa-spinner'></i></button>
                     :
           <button className='btn dark-blue-btn rounded-pill px-5 mb-2 text-light' onClick={confirmPurchase}>Confirm Purchase <IoBagCheck /></button>
-        }
+      }
         <p className='fs-6 light-red-text '>
           NOTE: The bidding will not end until you Place the order.
         </p>
