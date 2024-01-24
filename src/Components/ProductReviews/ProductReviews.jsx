@@ -5,6 +5,7 @@ import { ApiBaseUrl } from '../ApiBaseUrl';
 import StarRating from '../StarRating/StarRating';
 import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
 import AddReview from '../AddReview/AddReview';
+import AllComments from '../AllComments/AllComments';
 
 const generateFixedRatings = (ratingReviews) => {
   const fixedRatings = Array.from({ length: 5 }, (_, index) => {
@@ -35,7 +36,7 @@ export default function ProductReviews({ product }) {
 
   return (
     <div className="container">
-      <div className="row">
+      <div className="row brdr border-0 border-bottom rounded-0 pb-4">
         <div className="col-md-6">
           <h5 className='fw-bolder dark-grey-text'>Product Ratings:</h5>
           {isLoading && <p>Loading...</p>}
@@ -69,6 +70,7 @@ export default function ProductReviews({ product }) {
           <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product} refetch={refetch}/>
         </div>
       </div>
+      <AllComments/>
     </div>
   );
 }
