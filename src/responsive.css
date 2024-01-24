@@ -6,6 +6,9 @@
       html,body {
           font-size: 90%;
       }
+      .search-result-item{
+        flex-direction: column;
+      }
       .allProductsSorting{
         flex-direction: column;
       }
