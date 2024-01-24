@@ -108,7 +108,7 @@ const confirmPurchase = ()=>{
             </span>
           </h5>
           {!isBiddingEnded && (
-            <button className='btn dark-blue-btn text-light rounded-pill w-100 py-2 fs-5' onClick={() => setBuyNowVisible(true)} disabled={isBiddingEnded}>
+            <button className='btn dark-blue-btn text-light rounded-pill w-100 py-2 fs-5' onClick={() => setBuyNowVisible(true)} disabled={isBiddingEnded || product.biddingPrice <= SelectedVariant?.current_price}>
               Buy It Now <IoBagCheck />
             </button>
           )}
