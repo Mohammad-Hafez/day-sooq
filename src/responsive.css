@@ -11,11 +11,24 @@
       html,body {
           font-size: 70%;
       }
+      .nav-search{
+        width: 20%;
+      }
+      .categoriesDropDown{
+        width: 30%;
+      }
       .biddingStatusTxt{
         display: none;
       }
       .toggleBtns{
         margin-bottom: 18px !important;
+      }
+      .blogs{
+        flex-direction: column;
+        justify-content: center;
+      }
+      .blogInfo {
+        margin-top: 8px;
       }
     }
   }

@@ -78,7 +78,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                 <Dropdown
                   value={SelectedCategory} onChange={(e) => setSelectedCategory(e.value)}
                   showClear placeholder="All Categories"
-                  options={categories?.map((category) => category.name)} className="border-0 main-orange-text"
+                  options={categories?.map((category) => category.name)} className="border-0 main-orange-text categoriesDropDown"
                 />
                 <Button icon="pi pi-search" className="main-orange-bg border-0 rounded-end-pill text-light" onClick={handleNavSearch} disabled={!SearchVal} />
               </div>

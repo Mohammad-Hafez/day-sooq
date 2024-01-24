@@ -19,6 +19,11 @@ export default function ProductsSlider({ products, slider }) {
       numVisible: 2,
       numScroll: 1,
     },
+    // {
+    //   breakpoint: '500px',
+    //   numVisible: 1,
+    //   numScroll: 1,
+    // },
   ];
 
   return (

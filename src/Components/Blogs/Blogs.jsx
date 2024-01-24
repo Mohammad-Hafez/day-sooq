@@ -37,7 +37,7 @@ export default function Blogs({setIsBlogsLoading}) {
   ];
   let blogTemplate = (blog)=>{
     return(
-      <div key={blog._id} className='my-2 d-flex justify-content-center align-item-center p-3 normal-blue-text h-100'>
+      <div key={blog._id} className='blogs my-2 d-flex justify-content-center align-item-center p-3 normal-blue-text h-100'>
        <div className="blogImage">
          <img src={ImgBaseURL + blog.image} className='w-100 object-fit-contain rounded-start' alt={blog.title + 'image'} />
        </div>
