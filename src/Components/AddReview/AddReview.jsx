@@ -81,7 +81,7 @@ export default function AddReview({ IoIosStar, product , refetch}) {
           className="form-control mb-3 reviewComment"
           style={{resize:'none'}}
         /> 
-        <button className="btn dark-blue-btn rounded-pill px-4 text-light" onClick={addReview}>
+        <button className="btn dark-blue-btn rounded-pill px-4 text-light" onClick={addReview} disabled={!user}>
           Submit Review
         </button>
       </div>

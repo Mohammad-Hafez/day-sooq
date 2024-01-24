@@ -36,7 +36,7 @@ export default function ProductReviews({ product }) {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-sm-6">
+        <div className="col-md-6">
           <h5 className='fw-bolder dark-grey-text'>Product Ratings:</h5>
           {isLoading && <p>Loading...</p>}
           {isError && <p>Error fetching ratings</p>}
@@ -65,7 +65,7 @@ export default function ProductReviews({ product }) {
             </div>
           )}
         </div>
-        <div className="col-sm-6">
+        <div className="col-md-6">
           <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product} refetch={refetch}/>
         </div>
       </div>
