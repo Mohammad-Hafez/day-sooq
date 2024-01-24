@@ -32,7 +32,7 @@ export default function Home() {
     <BestSlider setIsBestSliderLoading={setIsBestSliderLoading}/>
     <DealsSlider setIsDealsSliderLoading={setIsDealsSliderLoading}/>
     <Blogs setIsBlogsLoading={setIsBlogsLoading}/>
-    <EmailTab/>
+    {/* <EmailTab/> */}
     {IsBannerLoading || IsBiddingSliderLoading || IsFeaturedCategoriesLoading || IsBrandSliderLoading || IsBestSliderLoading || IsDealsSliderLoading || IsBlogsLoading ? <Loader/> : <></>}
     </>
 }

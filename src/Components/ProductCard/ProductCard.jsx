@@ -45,13 +45,13 @@ export default function ProductCard({product , category , GridPage}) {
     <div className={`slide-item slide-container brdr px-3 py-2 d-flex ${GridPage === 'col-12' ? 'align-items-end' : 'flex-column justify-content-between'}  h-100 position-relative`}>
       {category === 'bidding' ?
         !isBiddingEnded ? (
-            <span className='position-absolute top-0 mt-2 end-0 me-3 green-bg rounded px-2 text-white'>
-              available <RiAuctionLine/>
-            </span>
+            <p className='position-absolute top-0 mt-2 end-0 me-3 green-bg rounded px-2 text-white'>
+              <span className='biddingStatusTxt'>available</span> <RiAuctionLine/>
+            </p>
           ) : (
-            <span className='position-absolute top-0 mt-2 end-0 me-3 dark-red-bg rounded px-2 text-white'>
-              End <RiAuctionLine/>
-            </span>
+            <p className='position-absolute top-0 mt-2 end-0 me-3 dark-red-bg rounded px-2 text-white'>
+              <span className='biddingStatusTxt'>End</span> <RiAuctionLine/>
+            </p>
           )
           : null
       }

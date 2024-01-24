@@ -1,0 +1,22 @@
+@media screen and (max-width: 992px) {
+    html,body {
+        font-size: 85%;
+    }
+    @media screen and (max-width:780px) {
+      html,body {
+          font-size: 90%;
+      }
+    }
+    @media screen and (max-width:500px) {
+      html,body {
+          font-size: 70%;
+      }
+      .biddingStatusTxt{
+        display: none;
+      }
+      .toggleBtns{
+        margin-bottom: 18px !important;
+      }
+    }
+  }
+  
