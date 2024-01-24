@@ -42,12 +42,19 @@ export function WishListContextProvider(props){
             return response;
         })
         .catch((error)=>{
+          if (!user) {
+            toast.error("You Can't Add Product Until login. Please Login", {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 3000,
+              });  
+            return error;    
+            }else{
             toast.error("The product is already in your Wishlist.", {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
               });  
             return error;
-
+            }
         })
     }
 
