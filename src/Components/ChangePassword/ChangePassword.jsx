@@ -81,7 +81,7 @@ export default function ChangePassword({Logout}) {
     <div className="container login w-75">
       <form onSubmit={formik.handleSubmit} className="text-center">
         <div className="row">
-          <div className="col-8 offset-2 my-3 p-4">
+          <div className="changePassForm col-8 offset-2 my-3 p-4">
             <div className="w-75 mx-auto">
               {/* Current Password */}
               <div className="col-12 text-start">
