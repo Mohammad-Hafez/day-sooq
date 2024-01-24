@@ -15,7 +15,6 @@ export default function AllProducts() {
 const [PageNum, setPageNum] = useState('1');
 const [LimNum, setLimNum] = useState('8');
 const [SortMethod, setSortMethod] = useState('-price');
-const [SortOrder, setSortOrder] = useState('asc');
 const [selectedLimit, setSelectedLimit] = useState(12);
 const [Category, setCategory] = useState(null)
 const [SelectedColors, setSelectedColors] = useState([]);
@@ -69,7 +68,6 @@ const onSortChange = (event) => {
   const [sortField, sortOrder] = selectedSort.split('_');
 
   setSortMethod(sortField);
-  setSortOrder(sortOrder);
 };
 
 useEffect(()=>{
