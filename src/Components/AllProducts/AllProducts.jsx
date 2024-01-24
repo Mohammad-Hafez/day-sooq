@@ -65,7 +65,7 @@ const sortOptions = [
 
 const onSortChange = (event) => {
   const selectedSort = event.value;
-  const [sortField, sortOrder] = selectedSort.split('_');
+  const [sortField] = selectedSort.split('_');
 
   setSortMethod(sortField);
 };

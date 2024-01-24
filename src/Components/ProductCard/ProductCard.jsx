@@ -42,7 +42,7 @@ export default function ProductCard({product , category , GridPage}) {
   }
 
   return <>
-    <div className={`slide-item slide-container brdr px-3 py-2 d-flex ${GridPage === 'col-12' ? 'align-items-end' : 'flex-column justify-content-between'}  h-100 position-relative`}>
+    <div className={`slide-item slide-container brdr px-3 py-2 d-flex productCard ${GridPage === 'col-12' ? 'wide align-items-end' : 'flex-column justify-content-between'}  h-100 position-relative`}>
       {category === 'bidding' ?
         !isBiddingEnded ? (
             <p className='position-absolute top-0 mt-2 end-0 me-3 green-bg rounded px-2 text-white'>
