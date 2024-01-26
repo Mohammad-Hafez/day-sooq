@@ -16,13 +16,12 @@ const generateFixedRatings = (ratingReviews) => {
 };
 
 export default function ProductReviews({ product }) {
-
   const getRating = async () => {
     const response = await axios.get(ApiBaseUrl + `reviews/rating/${product._id}`);
     return response.data;
   };
 
-  const { data, isLoading, isError , refetch} = useQuery('get-ratings', getRating);
+  const { data, isLoading, isError , refetch:refetchRatings } = useQuery('get-ratings', getRating);
 
   const totalNumberOfReviews = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.nunmberOfRating, 0);
   let averageRating = data?.data?.ratingReviews?.reduce((acc, review) => acc + review.avgRating, 0) / totalNumberOfReviews;
@@ -68,10 +67,10 @@ export default function ProductReviews({ product }) {
           )}
         </div>
         <div className="col-md-6">
-          <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline } product={product} refetch={refetch}/>
-        </div>
+        <AddReview IoIosStar={ IoIosStar} IoIosStarOutline={IoIosStarOutline} product={product} refetch={refetchRatings} />
       </div>
-      <AllComments product={product._id}/>
+      </div>
+      <AllComments product={product._id} refetchRatings={refetchRatings} />
     </div>
   );
 }

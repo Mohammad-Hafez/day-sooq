@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl';
 import StarRating from '../StarRating/StarRating';
 
-export default function AllComments({ product }) {
+export default function AllComments({ product , refetchRatings}) {
   const getAllComments = () => {
     return axios.get(ApiBaseUrl + `reviews?product=${product}`);
   };
@@ -26,7 +26,13 @@ export default function AllComments({ product }) {
     }
   };
 
-  let { data } = useQuery('getComments', getAllComments, { cacheTime: 1000000 });
+  let { data , refetch: refetchComments } = useQuery('getComments', getAllComments, { cacheTime: 1000000 });
+
+  const handleRefetch = async () => {
+    await refetchRatings();
+    await refetchComments();
+  };
+
   return (
     <>
       <div className="AllCommentsContainer">
