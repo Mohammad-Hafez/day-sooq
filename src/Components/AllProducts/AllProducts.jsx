@@ -81,7 +81,7 @@ useEffect(()=>{
       <title>All Products</title>
     </Helmet>
     <div className="container allproducts">
-      {isLoading && <Loader/> }
+      {isLoading || isFetching ? <Loader/> : 
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-5 col-md-3">
           <SideMenu 
@@ -129,7 +129,7 @@ useEffect(()=>{
         </div>
         </div>
       </div>
-      {isFetching && <Loader/>}
+      }
     </div>
     </>
 }
