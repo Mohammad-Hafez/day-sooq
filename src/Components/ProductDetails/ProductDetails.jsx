@@ -53,7 +53,7 @@ export default function ProductDetails() {
 
   useEffect(()=>{refetch()},[id])
   return <>
-  {isLoading && <Loader/>}
+  {isLoading || isFetching ?<Loader/>: <>
   {product && <>
     <Helmet>
       <title>{product.name?.split(' ').slice(0, 3).join(' ')}</title>
@@ -145,6 +145,7 @@ export default function ProductDetails() {
       </div>
     </div>
   </>}
-  {isFetching && <Loader/>}
-    </>
+
+  </>}
+      </>
 }

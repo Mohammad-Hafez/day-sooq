@@ -24,7 +24,7 @@ export default function CategoryProducts() {
       <title>{category} Products</title>
     </Helmet>
     <div className="container px-5">
-    {isLoading && <Loader/>}
+    {isLoading || isFetching ? <Loader/> : <>
     {data && <div className="row mt-3 mb-4 gy-3">
         {allProducts.map((product) => <div key={product._id} className="col-6 col-sm-4 col-md-3">
           <ProductCard product={product} category={category === 'auction' ? 'bidding' : 'any'}/>
@@ -32,7 +32,8 @@ export default function CategoryProducts() {
           )}
     </div>
     }
-    {isFetching && <Loader/>}
+    </>
+  }
     </div>
     </>
 }

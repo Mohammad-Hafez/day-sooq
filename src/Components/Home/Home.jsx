@@ -24,6 +24,7 @@ export default function Home() {
     <Helmet>
       <title>DAY SOOQ | HOME</title>
     </Helmet>
+    {IsBannerLoading || IsBiddingSliderLoading || IsFeaturedCategoriesLoading || IsBrandSliderLoading || IsBestSliderLoading || IsDealsSliderLoading || IsBlogsLoading ? <Loader/> : <></>}
     <MainSlider setIsBannerLoading={setIsBannerLoading}/> 
     <BiddingSlider setIsBiddingSliderLoading={setIsBiddingSliderLoading}/>
     <CategorySlider setIsFeaturedCategoriesLoading={setIsFeaturedCategoriesLoading}/>
@@ -33,6 +34,5 @@ export default function Home() {
     <DealsSlider setIsDealsSliderLoading={setIsDealsSliderLoading}/>
     <Blogs setIsBlogsLoading={setIsBlogsLoading}/>
     {/* <EmailTab/> */}
-    {IsBannerLoading || IsBiddingSliderLoading || IsFeaturedCategoriesLoading || IsBrandSliderLoading || IsBestSliderLoading || IsDealsSliderLoading || IsBlogsLoading ? <Loader/> : <></>}
     </>
 }

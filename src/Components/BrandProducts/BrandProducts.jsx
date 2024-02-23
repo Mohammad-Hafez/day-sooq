@@ -25,8 +25,7 @@ export default function BrandProducts() {
       <title>{name} Products</title>
     </Helmet>
     <div className="container">
-    {isLoading && <Loader/>}
-    {data && 
+    {isLoading || isFetching  ? <Loader/> :
         <div className="row my-4">
           {allProducts.map((product) => <div key={product._id} className="col-6 col-sm-4 col-md-3">
             <div className="p-3">
@@ -35,8 +34,7 @@ export default function BrandProducts() {
             </div>
             )}
         </div>
-    }
-    {isFetching && <Loader/>}
+  }
     </div>
     </>
 }
