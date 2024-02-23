@@ -21,7 +21,7 @@ export default function ProductCard({product , category , GridPage}) {
       navigate(`/ProductDetails/${product._id}`)
       console.log();
     }else{
-      navigate(`/ProductDetails/${product.variant.product._id}`)
+      navigate(`/ProductDetails/${product.variant?.product._id}`)
     }
   }
 
@@ -57,24 +57,24 @@ export default function ProductCard({product , category , GridPage}) {
       }
       <p className={`cardCategory ${GridPage === 'col-12' ? 'align-self-start' : 'me-auto'}  mt-2`}>
       {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any'? <>
-        { category === 'any' ? product?.subCategory.category.name :
-          product?.subCategory.name
+        { category === 'any' ? product?.subCategory?.category?.name :
+          product?.subCategory?.name
         }
           </> : <>
-          { product?.variant.product.subCategory.category[0].name }
+          { product?.variant?.product?.subCategory?.category[0]?.name }
           </>}
       </p>
       <div className={`card-product-info mb-2 ${GridPage === 'col-12' ? 'mx-3 d-flex align-items-center w-75' : 'flex-grow-1 d-flex flex-column justify-content-between'} `} onClick={handleCardClick}>
         {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any' ? <>
             <h6 className={`cardProductName fw-bolder ${GridPage === 'col-12' ? 'order-2 align-self-start' : ''}`}>{product?.name}</h6>
             </> : <>
-            <h6 className={`cardProductName fw-bolder ${GridPage === 'col-12' ? 'order-2 align-self-start' : ''}`}>{product?.variant.product.name}</h6>
+            <h6 className={`cardProductName fw-bolder ${GridPage === 'col-12' ? 'order-2 align-self-start' : ''}`}>{product?.variant?.product.name}</h6>
             </>}
           <div className={`slide-img over-flow-hidden ${GridPage === 'col-12' ? 'order-1 w-25 me-2' : 'flex-grow-1'}`}>
             {category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category ===  'any'? <>
-              <img  className='img-fluid h-100 w-100 rounded object-fit-contain' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product.name + ' image'} />
+              <img  className='img-fluid h-100 w-100 rounded object-fit-contain' src={ImgBaseURL + product?.variants[0]?.imageCover} loading='lazy' alt={product?.name + ' image'} />
             </> : <>
-              <img  className='img-fluid mb-2 rounded object-fit-contain' src={ImgBaseURL + product.variant.imageCover} loading='lazy' alt={product.variant.product.name + ' image'} />
+              <img  className='img-fluid mb-2 rounded object-fit-contain' src={ImgBaseURL + product.variant?.imageCover} loading='lazy' alt={product?.variant?.product?.name + ' image'} />
             </>}
           </div>
       </div>

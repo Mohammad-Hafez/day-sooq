@@ -80,19 +80,19 @@ const [ErrMsg, setErrMsg] = useState()
                 {/*First name input */}
                 <label className='ms-2' htmlFor="firstName">First Name</label>
                 <input type="text" placeholder='First Name' className="form-control mb-2 AuthForm-inputs" id="firstName" name="firstName" value={formik.values.firstName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.errors.firstName && formik.touched.firstName ? <div className="alert alert-danger">{formik.errors.firstName}</div>: null}
+                {formik.errors.firstName && formik.touched.firstName ? <div className="alert p-1 mb-0 text-danger">{formik.errors.firstName}</div>: null}
               </div>
               <div className="col-md-6">
                 {/* lastName input */}
                 <label className='ms-2' htmlFor="lastName">last Name </label>
                 <input type="text" className="form-control mb-2 AuthForm-inputs" placeholder='last Name' id="lastName" name="lastName" value={formik.values.lastName} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.errors.lastName && formik.touched.lastName ?  <div className="alert alert-danger">{formik.errors.lastName}</div> : null}
+                {formik.errors.lastName && formik.touched.lastName ?  <div className="alert p-1 mb-0 text-danger">{formik.errors.lastName}</div> : null}
               </div>
               <div className="col-md-6">
                 {/* email input */}
                 <label className='ms-2' htmlFor="email">Email</label>
                 <input placeholder='Email@example.ex' type="email" className="form-control mb-2 AuthForm-inputs" id="email" name="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.errors.email && formik.touched.email ?<div className="alert alert-danger">{formik.errors.email}</div> : null}
+                {formik.errors.email && formik.touched.email ?<div className="alert p-1 mb-0 text-danger">{formik.errors.email}</div> : null}
               </div>
               <div className="col-md-6">
                 {/* gender input */}
@@ -102,13 +102,13 @@ const [ErrMsg, setErrMsg] = useState()
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
-                {formik.errors.gender && formik.touched.gender ? <div className="alert alert-danger">{formik.errors.gender}</div> : null}
+                {formik.errors.gender && formik.touched.gender ? <div className="alert p-1 mb-0 text-danger">{formik.errors.gender}</div> : null}
               </div>
               <div className="col-md-6">
                 {/* mobile number input */}
                 <label className='ms-2' htmlFor="phone">Mobile Number</label>
                 <input type="text" className="form-control mb-2 AuthForm-inputs" id="phone" placeholder='Mobile Number' name="phone" value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur} />
-                {formik.errors.phone && formik.touched.phone ? <div className="alert alert-danger">{formik.errors.phone}</div> : null}
+                {formik.errors.phone && formik.touched.phone ? <div className="alert p-1 mb-0 text-danger">{formik.errors.phone}</div> : null}
               </div>
             </div>
           </div>
@@ -121,7 +121,7 @@ const [ErrMsg, setErrMsg] = useState()
                   <input type={passwordShown ? 'text' : 'password'} className="mb-2 form-control AuthForm-inputs" placeholder='Password' name="password" id="password" current-password = "true" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                   <span onClick={togglePassword} className='togglePassword position-absolute top-0 end-0 me-3 mt-4 cursor-pointer'>{passwordShown ? <Icon className='text-danger' icon={eye}></Icon>:<Icon className='text-main' icon={eyeOff}></Icon>}</span>
                 </div>
-                {formik.errors.password && formik.touched.password ? <div className="alert alert-danger">{formik.errors.password}</div> : null}
+                {formik.errors.password && formik.touched.password ? <div className="alert p-1 mb-0 text-danger">{formik.errors.password}</div> : null}
               </div>
               <div className="col-sm-6">
                 <div className="passwordField position-relative">
@@ -130,12 +130,12 @@ const [ErrMsg, setErrMsg] = useState()
                   <input type={passwordConfirmShown ? 'text' : 'Password'} className="mb-2 form-control AuthForm-inputs" placeholder='Password' name="passwordConfirm" id="passwordConfirm" current-password = "true" value={formik.values.passwordConfirm} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                   <span onClick={togglepasswordConfirm} className='togglePassword position-absolute top-0 end-0 me-3 mt-4 cursor-pointer'>{passwordConfirmShown ? <Icon className='text-danger' icon={eye}></Icon>:<Icon className='text-main' icon={eyeOff}></Icon>}</span>
                 </div>
-                {formik.errors.passwordConfirm && formik.touched.passwordConfirm ? <div className="alert alert-danger">{formik.errors.passwordConfirm}</div> : null}
+                {formik.errors.passwordConfirm && formik.touched.passwordConfirm ? <div className="alert p-1 mb-0 text-danger">{formik.errors.passwordConfirm}</div> : null}
               </div>
             </div>
           </div>
           <div className="col-8 offset-2">
-          {ErrMsg ? <div className="Err alert alert-danger"><Icon size={20} icon={alertCircle}> </Icon> {ErrMsg}</div> : null }
+          {ErrMsg ? <div className="Err alert p-1 mb-0 text-danger"><Icon size={20} icon={alertCircle}> </Icon> {ErrMsg}</div> : null }
           </div>
 
           <div className="btns col-6 offset-3 mt-2">

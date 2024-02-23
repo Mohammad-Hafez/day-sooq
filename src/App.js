@@ -27,7 +27,8 @@ import ChangePassword from './Components/ChangePassword/ChangePassword';
 import ForgetPassword from './Components/ForgetPassword/ForgetPassword';
 import PasswordOtp from './Components/PasswordOtp/PasswordOtp';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
-
+import { generateToken , messaging } from './notifications/firebase';
+import { onMessage } from 'firebase/messaging';
 
 function App() {
   const [UserToken, setUserToken] = useState(null);
@@ -42,6 +43,10 @@ function App() {
   };
   
   useEffect(() => {
+    generateToken()
+    onMessage(messaging , (payload) =>{
+      console.log(payload);
+    })
     const storedUserToken = localStorage.getItem('DaySooqUser');
     if (storedUserToken) {
       const decodedUserToken = jwtDecode(storedUserToken);
@@ -63,7 +68,7 @@ function App() {
           <Routes>
             <Route path="" element={<Layout UserToken={UserToken} Logout={Logout}/>} >
               <Route index element={<Home />} />
-              <Route path="Authorization" element={<Authorization saveUserData={saveUserData}/>} /> 
+              <Route path="Authorization" element={<Authorization generateToken={generateToken} saveUserData={saveUserData}/>} /> 
               <Route path="ForgetPassword" element={<ForgetPassword saveUserData={saveUserData}/>} /> 
               <Route path="PasswordOtp" element={<PasswordOtp saveUserData={saveUserData}/>} /> 
               <Route path="ResetPassword" element={<ResetPassword saveUserData={saveUserData}/>} /> 

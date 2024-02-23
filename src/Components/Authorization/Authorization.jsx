@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
 
-export default function Authorization({saveUserData}) {
+export default function Authorization({saveUserData , generateToken}) {
   const [SelectAuth, setSelectAuth] = useState('login');
   const [ActiveAuth, setActiveAuth] = useState('login')
   const handleAuthChange = (role)=>{
@@ -23,7 +23,7 @@ export default function Authorization({saveUserData}) {
           SIGN UP
         </button>
       </div>
-      {SelectAuth === 'login' ? <Login saveUserData={saveUserData}/> : <Signup saveUserData={saveUserData} handleAuthChange={handleAuthChange}/>}
+      {SelectAuth === 'login' ? <Login generateToken={generateToken} saveUserData={saveUserData}/> : <Signup saveUserData={saveUserData} handleAuthChange={handleAuthChange}/>}
     </div>
     </>
 }

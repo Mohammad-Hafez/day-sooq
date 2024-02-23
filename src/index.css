@@ -361,6 +361,7 @@ padding-left: 0 ;
 }
 /* *STUB -  */
 /* *SECTION -  Authorization */
+
 .selectAuth{
   padding-inline: 20px;
   border-bottom: 2px solid var(--dark-blue);

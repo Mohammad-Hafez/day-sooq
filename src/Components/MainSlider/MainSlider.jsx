@@ -32,11 +32,11 @@ export default function MainSlider({setIsBannerLoading}) {
             <div className="row">
               <div className="col-6 text-center d-flex align-items-center justify-content-center flex-column">
                 <div className="labelContainer d-flex align-items-center justify-content-center flex-column">
-                <p className='fs-1 fw-light'>
+                {/* <p className='fs-1 fw-light'>
                   {data?.data?.data?.data[0].description}
                   <br />
                   
-                </p>
+                </p> */}
                 </div>
               </div>
               <div className="col-6">

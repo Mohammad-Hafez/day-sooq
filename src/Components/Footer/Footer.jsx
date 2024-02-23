@@ -9,8 +9,10 @@ import { IoShieldCheckmark } from "react-icons/io5";
 import { FaCreditCard } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
 import { BiShieldQuarter } from "react-icons/bi";
-import { MdLabel } from "react-icons/md";
+
 export default function Footer() {
+  const googleDrivePDFUrl = 'https://drive.google.com/uc?export=download&id=1APdBldNJBI2zVqZau8wopC-50QKfOCDZ';
+
   return <>
   <div className="fixed-features mb-3">
     <div className="container">
@@ -110,12 +112,10 @@ export default function Footer() {
         <div className="col-4 col-md-2">
           <div className="footer-item p-4 text-start">
             <h6 className='dark-grey-text'>Useful Links</h6>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>About</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Contact</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Wishlist</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>FAQ</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Terms & Conditions</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Privacy Policy</Link>
+            <a href={googleDrivePDFUrl} download className='main-grey-text text-decoration-none my-2 d-block'>Contact</a>
+            <Link to={'/WishList'} className='main-grey-text text-decoration-none my-2 d-block'>Wishlist</Link>
+            <a href={googleDrivePDFUrl} download className='main-grey-text text-decoration-none my-2 d-block'>Terms & Conditions</a>
+            <a href={googleDrivePDFUrl} download className='main-grey-text text-decoration-none my-2 d-block'>Privacy Policy</a>
           </div>
         </div>
         <div className="col-4 col-md-2">

@@ -15,6 +15,7 @@ import { IoIosCloseCircleOutline } from 'react-icons/io';
 import { cartContext } from '../../context/CartContext';
 import { AiOutlineLogin } from "react-icons/ai";
 import { useQuery } from 'react-query';
+import { IoFilterCircleSharp } from "react-icons/io5";
 
 export default function HeaderSearch({ UserToken , categories , Logout}) {
   let navigate = useNavigate();
@@ -56,7 +57,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
           <div className="col-6 col-md-5 col-lg-3">
             <div className="logo d-flex align-items-center justify-content-around">
               <span>
-                <Icon icon={text_justify} className="main-grey-text cursor-pointer zoom" onClick={()=>navigate('/AllProducts')}></Icon>
+                <IoFilterCircleSharp className="dark-blue-text fs-3 cursor-pointer zoom" onClick={()=>navigate('/AllProducts')}/>
               </span>
               <span>
                 <h3 className="p-0 m-0">

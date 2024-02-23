@@ -40,7 +40,7 @@ export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine
   const biddingOnProduct = async (val)=>{
     setBidLoading(true)
     try {
-      let {data} = await axios.post(ApiBaseUrl + `biddings` , val , {headers})
+      await axios.post(ApiBaseUrl + `biddings` , val , {headers})
       toast.success('Bidd Amount Added Successfully.', {
         className: 'first-z mt-5 bg-main-light ',
         duration: 2000,
