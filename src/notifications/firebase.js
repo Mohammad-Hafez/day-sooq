@@ -17,6 +17,8 @@ const app = initializeApp(firebaseConfig);
 export const messaging = getMessaging(app);
 
 export const generateToken =  async () =>{
+  const permission = await Notification.requestPermission();
+  console.log(permission);
     let token = await getToken(messaging , 
       {
         vapidKey :

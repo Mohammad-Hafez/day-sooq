@@ -28,12 +28,12 @@ export function CartContextProvider(props) {
     async function getCart(){
         let response = await getLoggedUserCart()
         if (response?.data?.status === 'success') {
-            setNumbOfCartItems(response.data.data.data.length);
-            setTotalPrice(response.data.data.data.reduce((sum, product) => {
-                const productPrice = (product.price + product.variant.extraPrice) * product.quantity;
+            setNumbOfCartItems(response?.data?.data?.data?.length);
+            setTotalPrice(response?.data?.data.data.reduce((sum, product) => {
+                const productPrice = (product.price + product?.variant?.extraPrice) * product?.quantity;
                 return sum + productPrice;
             }, 0))
-            setAllCartsId(response.data.data.data.map((cart)=>cart._id))
+            setAllCartsId(response?.data?.data?.data.map((cart)=>cart._id))
         }
     }
 

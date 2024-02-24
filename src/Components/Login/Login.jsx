@@ -16,6 +16,7 @@ export default function Login({saveUserData }) {
   const[isLoading,setIsLoading]=useState(false)
   const [passwordShown, setPasswordShown] = useState(false);
   const [ErrMsg, setErrMsg] = useState()
+
   const togglePassword = () => {
     setPasswordShown(!passwordShown);
   };
@@ -32,6 +33,7 @@ export default function Login({saveUserData }) {
           duration: 2000,
         });
         localStorage.setItem("DaySooqUser", data.token);
+        // allowNotifications(data.token)
         saveUserData();
         formik.resetForm();
         setIsLoading(false);
@@ -47,10 +49,12 @@ export default function Login({saveUserData }) {
         setErrMsg(error.response.data.message);
       });
   }
+
   let mySchema =Yup.object( {
     email:Yup.string().required("Email is required"),
     password:Yup.string().required("password is required")
   })
+
   let formik = useFormik({
   initialValues:{
     email:"",
@@ -61,6 +65,17 @@ export default function Login({saveUserData }) {
   validationSchema:mySchema,
   onSubmit:(values)=> makeLogged(values)
   })
+
+  // const allowNotifications = async(token)=>{
+  //   await axios.patch(ApiBaseUrl + `notifications/allow/web` , {
+  //     deviceToken:notificationsToken ,
+  //     enable:true
+  //   } ,
+  //   {
+  //     headers :token
+  //   }
+  //   )
+  // }
   return <>
   <div className="container login w-75 ">
       <form action=""  onSubmit={formik.handleSubmit} className='row text-center '>

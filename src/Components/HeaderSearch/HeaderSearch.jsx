@@ -1,6 +1,5 @@
-import React, {useContext,useState } from 'react';
+import React, {useContext,useEffect,useState } from 'react';
 import { Icon } from 'react-icons-kit';
-import { text_justify } from 'react-icons-kit/ikons/text_justify';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -16,7 +15,7 @@ import { cartContext } from '../../context/CartContext';
 import { AiOutlineLogin } from "react-icons/ai";
 import { useQuery } from 'react-query';
 import { IoFilterCircleSharp } from "react-icons/io5";
-
+import {bell} from 'react-icons-kit/fa/bell'
 export default function HeaderSearch({ UserToken , categories , Logout}) {
   let navigate = useNavigate();
 
@@ -28,9 +27,10 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
   const [SearchVal, setSearchVal] = useState('');
   const [SearchResult, setSearchResult] = useState(null);
 
+  const [Notifications, setNotifications] = useState(null)
+
   const handleNavSearch = async () => {
-    let { data } = await axios.get(
-      ApiBaseUrl +
+    let { data } = await axios.get( ApiBaseUrl +
         `products${SelectedCategory ? `/${SelectedCategory}/category` : ''}?limit=5&name=${SearchVal}`
     );
     setSearchResult(data?.data.data);
@@ -47,8 +47,17 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
     'Authorization': `Bearer ${user}`,
   };
 
+  const getMyNotifications = ()=> axios.get(ApiBaseUrl  + `notifications/myNotifications` ,{ headers })
+  const { data:notificationsResponse  } = useQuery('my-notifications', getMyNotifications, { cacheTime: 5000 ,  enabled: !!user});
+  useEffect(()=>{
+    if (notificationsResponse) {
+      console.log(notificationsResponse?.data.data.notifications);
+      setNotifications(notificationsResponse?.data.data.notifications)
+    }
+  }, [notificationsResponse])
+  
   const getMyProfile = () => axios.get(ApiBaseUrl + `users/profile`, { headers });
-  const { data } = useQuery('my-profile', getMyProfile, { cacheTime: 5000 ,  enabled: !!user});
+  const { data:ProfileResponse  } = useQuery('my-profile', getMyProfile, { cacheTime: 5000 ,  enabled: !!user});
 
   return (
     <>
@@ -62,8 +71,8 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
               <span>
                 <h3 className="p-0 m-0">
                   <Link className="logo text-decoration-none font-quest dark-blue-text m-0 p-0" to={''} >
-                    Electrobile{' '}
-                    <span className="font-Rowdies main-orange-text">Souq</span>
+                    DAY{' '}
+                    <span className="font-Rowdies main-orange-text">SOOQ</span>
                   </Link>{' '}
                 </h3>
               </span>
@@ -111,14 +120,10 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
             <div className="profileContainer d-flex align-items-center justify-content-center">
               {UserToken ? <>
               <span className='fs-6 dark-blue-text font-Rowdies me-3'>
-                Hi, {data?.data.data.data.firstName}
+                Hi, {ProfileResponse?.data.data.data.firstName}
               </span>
                 <span className={`cursor-pointer profile-dropdown dropdown-toggle ${activeLink === '' ? ' active' : ''}`} id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <Icon
-                    size={22}
-                    icon={androidPerson}
-                    className="main-grey-text me-2 cursor-pointer"
-                  ></Icon>
+                  <Icon size={22}  icon={androidPerson} className="main-grey-text me-2 cursor-pointer" ></Icon>
                 </span>
                 <div className="dropdown-menu profile-menu text-center font-Poppins" aria-labelledby="navbarDropdown">
                   <span className="nav-itemdropdown-menu text-center" aria-labelledby="navbarDropdown">
@@ -143,12 +148,12 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                     </Link>
                   </span>
                 </div>
+                <Icon size={20} icon={bell} className="main-grey-text me-2 cursor-pointer" onClick={()=>{console.log("notify");}} ></Icon>
                 <Icon size={22} icon={heart} className="main-grey-text me-2 cursor-pointer" onClick={()=>navigate('/WishList')} ></Icon>
                 <span className="cart-icon position-relative me-1 main-grey-text d-flex align-items-center">
                   <Icon onClick={()=> navigate('/MyCart')} size={22} icon={ic_local_mall} className="me-1 cursor-pointer" ></Icon>
                   {numbOfCartItems > 0 &&<span className='main-orange-bg text-white cart-num rounded-circle d-flex align-items-center justify-content-center p-2'>{numbOfCartItems}</span> } 
                 </span>
-                <span className="ms-2 cart-budget"> {TotalPrice} JOD</span>
               </> :
                 <span className='dark-blue-text cursor-pointer text-uppercase' onClick={()=> navigate('/Authorization')}>Have an Acount ?
                   <AiOutlineLogin size={22}  className="ms-1" />
