@@ -328,6 +328,11 @@ padding-left: 0 ;
   box-shadow: none ;
 
 }
+.p-sidebar-header{
+  padding-bottom: 0;
+  padding-top: 4px;
+}
+
 /* .loader-container{
   background-color: rgba(0, 0, 0, 0.314);
   z-index: 9999!;

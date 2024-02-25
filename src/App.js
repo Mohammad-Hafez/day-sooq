@@ -38,7 +38,7 @@ function App() {
     setUserToken(encodedPharmacistToken)
   }
   const Logout = () => {
-    localStorage.removeItem("DaySooqUser");
+    localStorage.clear();
     setUserToken(null);
   };
   

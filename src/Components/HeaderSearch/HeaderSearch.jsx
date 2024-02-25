@@ -16,6 +16,8 @@ import { AiOutlineLogin } from "react-icons/ai";
 import { useQuery } from 'react-query';
 import { IoFilterCircleSharp } from "react-icons/io5";
 import {bell} from 'react-icons-kit/fa/bell'
+import { Sidebar } from 'primereact/sidebar';
+
 export default function HeaderSearch({ UserToken , categories , Logout}) {
   let navigate = useNavigate();
 
@@ -28,6 +30,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
   const [SearchResult, setSearchResult] = useState(null);
 
   const [Notifications, setNotifications] = useState(null)
+  const [visibleSidebar, setVisibleSidebar] = useState(false);
 
   const handleNavSearch = async () => {
     let { data } = await axios.get( ApiBaseUrl +
@@ -61,6 +64,15 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
 
   return (
     <>
+      <Sidebar visible={visibleSidebar} position="right" className='pt-0 mt-0' onHide={() => setVisibleSidebar(false)}>
+        <h4>My Notifications</h4>
+        <hr />
+        {Notifications?.map((notification , index)=> <div key={index} className='d-flex bg-light flex-column justify-content-start p-2 my-2 border'>
+            <h5 className='dark-blue-text'>{notification?.title}</h5>
+            <h6 className='text-muted opacity-50'>{notification?.createdAt?.slice(0,10)}</h6>
+            <p>{notification?.body}</p>
+        </div>)}
+      </Sidebar>
       <div className="search-header">
         <div className="row align-items-center gy-2">
           <div className="col-6 col-md-5 col-lg-3">
@@ -148,7 +160,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                     </Link>
                   </span>
                 </div>
-                <Icon size={20} icon={bell} className="main-grey-text me-2 cursor-pointer" onClick={()=>{console.log("notify");}} ></Icon>
+                <Icon size={20} icon={bell} className="main-grey-text me-2 cursor-pointer" onClick={()=>{setVisibleSidebar(!visibleSidebar)}} ></Icon>
                 <Icon size={22} icon={heart} className="main-grey-text me-2 cursor-pointer" onClick={()=>navigate('/WishList')} ></Icon>
                 <span className="cart-icon position-relative me-1 main-grey-text d-flex align-items-center">
                   <Icon onClick={()=> navigate('/MyCart')} size={22} icon={ic_local_mall} className="me-1 cursor-pointer" ></Icon>

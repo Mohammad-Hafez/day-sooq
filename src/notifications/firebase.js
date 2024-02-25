@@ -3,14 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getMessaging , getToken} from "firebase/messaging";
 
 const firebaseConfig = {
-  
-  apiKey: "AIzaSyAaFOpfMqgKFL8O2Di6dJB2ATXFcQKpWzU",
-  authDomain: "day-sooq-notifications.firebaseapp.com",
-  projectId: "day-sooq-notifications",
-  storageBucket: "day-sooq-notifications.appspot.com",
-  messagingSenderId: "678430887753",
-  appId: "1:678430887753:web:dea613c5a6ca2b83a8d498",
-  measurementId: "G-MCFVD47800"
+  apiKey: "AIzaSyA6lOOfl5vPe29nOEdHXHuNB-QPeUsP6-Y",
+  authDomain: "daysouq-301d1.firebaseapp.com",
+  projectId: "daysouq-301d1",
+  storageBucket: "daysouq-301d1.appspot.com",
+  messagingSenderId: "303515155721",
+  appId: "1:303515155721:web:feeab1bced2027fd5727d8",
+  measurementId: "G-DV0NCB7TBB"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -22,7 +21,7 @@ export const generateToken =  async () =>{
     let token = await getToken(messaging , 
       {
         vapidKey :
-        "BJZy2S1XUGEbmH_HlUMTvFmYxi9H06JU_daE0Z2fGe-9q-GwiTFPzGKbVg-Otip-npWW1qvWJehSl9NxHmto6l0"
+          "BBeeiUUAW0qLX0as9HFSHytxAsgYnSacbWV3N_XYKGQvnetCQNbVVJN6g0M8weZcZg7_SET1rXNmr3EukXpo-6I"
       });
       saveFCM(token)
 }
