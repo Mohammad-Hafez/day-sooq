@@ -332,7 +332,13 @@ padding-left: 0 ;
   padding-bottom: 0;
   padding-top: 4px;
 }
-
+.unReadNotification{
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 4px;
+  background-color: var(--main-orange);
+}
 /* .loader-container{
   background-color: rgba(0, 0, 0, 0.314);
   z-index: 9999!;

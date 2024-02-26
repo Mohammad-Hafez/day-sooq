@@ -1,7 +1,25 @@
+@media screen and (max-width: 1200px) {
+  .LogoConatiner{
+    background: #ffe2;
+  }
+  .IconsContainer{
+    order: 2;
+    width: 45%;
+    margin-left: auto;
+    margin-right: .5rem;
+    /* justify-content: end !important; */
+    background: #000;
+  }
+  .SearchContainer{
+    order: 3;
+    width: 100%;
+  }
+}
 @media screen and (max-width: 992px) {
     html,body {
         font-size: 85%;
     }
+
   }
   @media screen and (max-width:780px) {
     html,body {

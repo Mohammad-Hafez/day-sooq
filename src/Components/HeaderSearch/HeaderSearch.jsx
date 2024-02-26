@@ -21,7 +21,7 @@ import { Sidebar } from 'primereact/sidebar';
 export default function HeaderSearch({ UserToken , categories , Logout}) {
   let navigate = useNavigate();
 
-  let {numbOfCartItems , TotalPrice} = useContext(cartContext);
+  let {numbOfCartItems } = useContext(cartContext);
 
   const [activeLink, setActiveLink] = useState();
 
@@ -31,6 +31,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
 
   const [Notifications, setNotifications] = useState(null)
   const [visibleSidebar, setVisibleSidebar] = useState(false);
+  const [IsUnread, setIsUnread] = useState(false)
 
   const handleNavSearch = async () => {
     let { data } = await axios.get( ApiBaseUrl +
@@ -49,13 +50,20 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
   const headers = {
     'Authorization': `Bearer ${user}`,
   };
-
+  
+  const readAllNotifications = async () => {
+    await axios.patch(ApiBaseUrl + `notifications/markAllAsRead`, {}, { headers: headers });
+    notificationsRefetch()
+  };
+  
   const getMyNotifications = ()=> axios.get(ApiBaseUrl  + `notifications/myNotifications` ,{ headers })
-  const { data:notificationsResponse  } = useQuery('my-notifications', getMyNotifications, { cacheTime: 5000 ,  enabled: !!user});
+  const { data:notificationsResponse , refetch : notificationsRefetch } = useQuery('my-notifications', getMyNotifications, { cacheTime: 5000 ,  enabled: !!user});
   useEffect(()=>{
     if (notificationsResponse) {
-      console.log(notificationsResponse?.data.data.notifications);
-      setNotifications(notificationsResponse?.data.data.notifications)
+      const notifications = notificationsResponse?.data?.data.notifications;
+      const unreadNotification = notifications.some(notification => !notification.read);
+      setIsUnread(unreadNotification);
+      setNotifications(notifications)
     }
   }, [notificationsResponse])
   
@@ -64,20 +72,20 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
 
   return (
     <>
-      <Sidebar visible={visibleSidebar} position="right" className='pt-0 mt-0' onHide={() => setVisibleSidebar(false)}>
+      <Sidebar visible={visibleSidebar} position="right" className='pt-0 mt-0' onHide={() => {setVisibleSidebar(false) ; setIsUnread(false);}}>
         <h4>My Notifications</h4>
         <hr />
-        {Notifications?.map((notification , index)=> <div key={index} className='d-flex bg-light flex-column justify-content-start p-2 my-2 border'>
+        {Notifications?.map((notification , index)=> <div key={index} className={`d-flex ${notification?.read ? 'bg-light blue-brdr' : "bg-muted" }  flex-column justify-content-start p-2 my-2 border`}>
             <h5 className='dark-blue-text'>{notification?.title}</h5>
             <h6 className='text-muted opacity-50'>{notification?.createdAt?.slice(0,10)}</h6>
             <p>{notification?.body}</p>
         </div>)}
       </Sidebar>
       <div className="search-header">
-        <div className="row align-items-center gy-2">
-          <div className="col-6 col-md-5 col-lg-3">
-            <div className="logo d-flex align-items-center justify-content-around">
-              <span>
+        <div className="row align-items-center gy-2 navRow">
+          <div className="col-6 col-lg-3 LogoConatiner">
+            <div className="logo d-flex align-items-center justify-content-start">
+              <span className='me-2'>
                 <IoFilterCircleSharp className="dark-blue-text fs-3 cursor-pointer zoom" onClick={()=>navigate('/AllProducts')}/>
               </span>
               <span>
@@ -90,7 +98,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
               </span>
             </div>
           </div>
-          <div className="col-6 col-md-7 col-lg-6">
+          <div className="col-12 col-lg-6 SearchContainer">
             <div className="headerSearchInput position-relative">
               <div className="p-inputgroup brdr-blue rounded-pill">
                 <InputText placeholder="Search for Products"
@@ -128,7 +136,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
               ) : null}
             </div>
           </div>
-          <div className="col-12 col-md-5 col-lg-3">
+          <div className="col-6 col-lg-3 IconsContainer">
             <div className="profileContainer d-flex align-items-center justify-content-center">
               {UserToken ? <>
               <span className='fs-6 dark-blue-text font-Rowdies me-3'>
@@ -160,7 +168,10 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
                     </Link>
                   </span>
                 </div>
-                <Icon size={20} icon={bell} className="main-grey-text me-2 cursor-pointer" onClick={()=>{setVisibleSidebar(!visibleSidebar)}} ></Icon>
+                <span className='position-relative'>
+                  {IsUnread ? <span className='unReadNotification rounded-circle'></span> : null}
+                  <Icon size={20} icon={bell} className="main-grey-text me-2 cursor-pointer" onClick={()=>{setVisibleSidebar(!visibleSidebar); readAllNotifications()}} ></Icon>
+                </span>
                 <Icon size={22} icon={heart} className="main-grey-text me-2 cursor-pointer" onClick={()=>navigate('/WishList')} ></Icon>
                 <span className="cart-icon position-relative me-1 main-grey-text d-flex align-items-center">
                   <Icon onClick={()=> navigate('/MyCart')} size={22} icon={ic_local_mall} className="me-1 cursor-pointer" ></Icon>
