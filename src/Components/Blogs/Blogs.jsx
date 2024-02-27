@@ -58,7 +58,7 @@ export default function Blogs({setIsBlogsLoading}) {
   <div className="blogs-slider-Container light-grey-bg mb-5 py-3">
     <div className="container  position-relative pt-3">
       {allBlogs &&
-        <Carousel value={allBlogs} numVisible={2} numScroll={3} responsiveOptions={responsiveOptions} itemTemplate={blogTemplate} />
+        <Carousel value={allBlogs} numVisible={2} numScroll={2} responsiveOptions={responsiveOptions} itemTemplate={blogTemplate} />
       }
     </div>
   </div>
