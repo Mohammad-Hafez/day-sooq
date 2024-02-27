@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import img1 from '../../assets/6058a70910ae31c1bbcb06ed5792f274.png'
 import img2 from '../../assets/b96a8f62f6fb6ab9082a364fc4ae74da.png'
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { ApiBaseUrl , ImgBaseURL } from '../ApiBaseUrl';
+
 export default function StaticProducts() {
+  const getBanners = () => {
+    return axios.get(ApiBaseUrl + `banners`);
+  };
+
+  let { data } = useQuery('mainBanner', getBanners);
+
+
+  const ad = data?.data?.data?.data.filter(item => item.type === 'ads');
+  console.log(ad);
   return <>
   <div className="container mb-5">
     <div className="row g-3">
@@ -15,7 +28,7 @@ export default function StaticProducts() {
             </h4>
           </div>
           <div className="staticProductImg">
-            <img src={img1} alt="speaker"  />
+            {ad ? <img src={ImgBaseURL + ad[0]?.image} alt="speaker"  /> : null}
           </div>
         </div>
       </div>
@@ -29,7 +42,7 @@ export default function StaticProducts() {
             </h4>
           </div>
           <div className="staticProductImg">
-            <img src={img2} alt="ps-controller"  />
+          {ad ? <img src={ImgBaseURL + ad[1]?.image} alt="ps-controller"  /> : null}
           </div>
         </div>
       </div>

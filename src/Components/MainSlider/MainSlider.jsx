@@ -22,19 +22,16 @@ export default function MainSlider({ setIsBannerLoading }) {
   };
 
   let { data, isLoading } = useQuery('mainBanner', getBanners);
-  console.log(data?.data?.data?.data);
 
   useEffect(() => {
     setIsBannerLoading(isLoading);
   }, [isLoading, setIsBannerLoading]);
 
-  // Filter data to get only slides where type === 'slider'
   const sliderData = data?.data?.data?.data.filter(item => item.type === 'slider');
 
   return (
     <div className="container mainSlider position-relative mb-3">
       <Slider {...settings} className='rounded'>
-        {/* Map over the filtered slider data and create slides */}
         {sliderData && sliderData.map((item, index) => (
           <div key={index}>
             <img src={ImgBaseURL + item.image} alt={`Slide ${index}`} />
