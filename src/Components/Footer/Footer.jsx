@@ -9,6 +9,7 @@ import { IoShieldCheckmark } from "react-icons/io5";
 import { FaCreditCard } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
 import { BiShieldQuarter } from "react-icons/bi";
+import logo from '../../assets/Logo daysooq V09.png'
 
 export default function Footer() {
   const googleDrivePDFUrl = 'https://drive.google.com/uc?export=download&id=1APdBldNJBI2zVqZau8wopC-50QKfOCDZ';
@@ -72,7 +73,7 @@ export default function Footer() {
         <div className="col-12 col-md-6">
           <div className="footer-item p-4 text-start">
             <div className="logo mb-3">
-              <span><h3 className='p-0 m-0 logo text-decoration-none font-quest dark-blue-text'> Electrobile <span className='font-Rowdies main-orange-text'>Souq</span> </h3></span> 
+              <span><h3 className='p-0 m-0 logo text-decoration-none font-quest dark-blue-text'> Day <span className='font-Rowdies main-orange-text'>Sooq</span> </h3></span> 
             </div>
             <h6 className='dark-grey-text'>Address</h6>
             <p className='main-grey-text'>street, area Name, Jordan</p>
