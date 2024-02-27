@@ -36,8 +36,7 @@ return <>
     <Helmet>
       <title>WishList</title>
     </Helmet>
-    {isLoading && <Loader/> }
-    {data && 
+    {isLoading ? <Loader/> :
     <div className="container my-3">
       <div className="px-1 w-75 mx-auto">
         <h5 className='main-orange-text ms-2 font-Poppins fw-bolder'>Wishlist</h5>
@@ -81,6 +80,5 @@ return <>
       </div>
     </div>
 }
-    {isFetching && <Loader/>}
     </>
 }

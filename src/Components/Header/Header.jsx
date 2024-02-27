@@ -14,7 +14,7 @@ export default function Header({UserToken , Logout}) {
 
   return<>
   <div className="container d-flex flex-column justify-content-center">
-    <TopHeaderInfo/>
+    {/* <TopHeaderInfo/> */}
   </div>
   <div className="container mb-3 position-sticky top-0 z-3 bg-white py-2 rounded-bottom">
     <HeaderSearch UserToken={UserToken} categories={data?.data?.data?.data} Logout={Logout}/>
