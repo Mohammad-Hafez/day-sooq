@@ -3,8 +3,27 @@ import React , {useEffect} from 'react'
 import { useQuery } from 'react-query'
 import {ApiBaseUrl , ImgBaseURL} from '../ApiBaseUrl'
 import { useNavigate } from 'react-router-dom'
+import { Carousel } from 'primereact/carousel';
 
 export default function BrandsSlider({setIsBrandSliderLoading}) {
+  const responsiveOptions = [
+    {
+      breakpoint: '1199px',
+      numVisible: 3,
+      numScroll: 1,
+    },
+    {
+      breakpoint: '991px',
+      numVisible: 2,
+      numScroll: 1,
+    },
+    {
+      breakpoint: '767px',
+      numVisible: 2,
+      numScroll: 1,
+    },
+  ];
+
   let navigate = useNavigate()
   const getFeaturedBrands = ()=>{
     return axios.get(ApiBaseUrl + `brands`)  
@@ -33,6 +52,20 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
             </div>
           </div>
         )}
+                        <Carousel
+                  value={data?.data?.data?.data} 
+                  numVisible={5}
+                  numScroll={1}
+                  responsiveOptions={responsiveOptions}
+                  itemTemplate={(product, index) => (
+                    <div key={index} className='h-100 px-2'>
+                      <div className="category-container bg-white text-center p-3 h-100 d-flex flex-column justify-content-center align-items-center" onClick={() => { handleSelectBrand(data?.data?.data?.data) }}>
+                        <img src={ImgBaseURL + product?.image} loading='lazy' className='img-fluid flex-grow-1 mb-2 rounded' alt={product.name + 'image'} />
+                      </div>
+                    </div>
+                  )}
+                />
+
       </div>
     </div>
   </div>

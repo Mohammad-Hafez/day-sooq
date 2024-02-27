@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { ApiBaseUrl, ImgBaseURL } from '../ApiBaseUrl';
 import { IoArrowForwardOutline } from "react-icons/io5";
@@ -56,7 +56,7 @@ export default function CategorySlider({ setIsFeaturedCategoriesLoading }) {
                   responsiveOptions={responsiveOptions}
                   itemTemplate={(product, index) => (
                     <div key={index} className='h-100 px-2'>
-                      <div className="category-container bg-white text-center p-3 h-100 d-flex flex-column justify-content-center align-items-center" onClick={() => { handleSelectCategory(data?.data?.data?.data) }}>
+                      <div className="category-container bg-white text-center p-3 h-100 d-flex flex-column justify-content-center align-items-center" onClick={() => { handleSelectCategory(product) }}>
                         <h6 className='font-roboto fw-bold mb-3'>{product.name}</h6>
                         <img src={ImgBaseURL + product?.image} loading='lazy' className='img-fluid flex-grow-1 mb-2 rounded' alt={product.name + 'image'} />
                         <button className='go-Btn d-flex align-items-center justify-content-center ms-auto'><IoArrowForwardOutline /></button>
