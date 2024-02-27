@@ -40,7 +40,7 @@ export default function MainSlider({setIsBannerLoading}) {
                 </div>
               </div>
               <div className="col-6">
-                <img alt='img1' src={ImgBaseURL +  data?.data?.data?.data[0].image} loading='lazy' className='img-fluid'/>
+                <img alt='img1' src={ImgBaseURL +  data?.data?.data?.data[0]?.image} loading='lazy' className='img-fluid'/>
               </div>
             </div>
           </div>
@@ -49,12 +49,12 @@ export default function MainSlider({setIsBannerLoading}) {
               <div className="col-6 text-center d-flex align-items-center justify-content-center flex-column">
                 <div className="labelContainer d-flex align-items-center justify-content-center flex-column">
                 <p className='fs-1 fw-light'>
-                {data?.data?.data?.data[1].description}
+                {data?.data?.data?.data[1]?.description}
                 </p>
                 </div>
               </div>
               <div className="col-6">
-                <img alt='img2' src={ImgBaseURL +  data?.data?.data?.data[1].image} className='img-fluid'/>
+                <img alt='img2' src={ImgBaseURL +  data?.data?.data?.data[1]?.image} className='img-fluid'/>
               </div>
             </div>
           </div>
@@ -63,12 +63,12 @@ export default function MainSlider({setIsBannerLoading}) {
               <div className="col-6 text-center d-flex align-items-center justify-content-center flex-column">
                 <div className="labelContainer d-flex align-items-center justify-content-center flex-column">
                 <p className='fs-1 fw-light'>
-                {data?.data?.data?.data[2].description}
+                {data?.data?.data?.data[2]?.description}
                 </p>
                 </div>
               </div>
               <div className="col-6">
-              <img alt='img3' src={ImgBaseURL +  data?.data?.data?.data[2].image} className='img-fluid py-3'/>
+              <img alt='img3' src={ImgBaseURL +  data?.data?.data?.data[2]?.image} className='img-fluid py-3'/>
               </div>
             </div>
           </div>

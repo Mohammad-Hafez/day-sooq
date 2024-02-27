@@ -39,14 +39,14 @@ export default function AllComments({ product , refetchRatings}) {
         {data?.data?.data?.data.map((comment, index) => (
           <div key={index} className="comment mb-3 border-0 brdr border-bottom p-3 rounded-0 d-flex align-items-start justify-content-start">
             <div className="userImg me-5 font-Poppins d-flex flex-column justify-content-start align-items-center">
-              <img src={ImgBaseURL + comment.user.image} loading="lazy" className="object-fit-contain rounded-circle" style={{ width: '5vw', minWidth: '35px' }} alt={comment.user.firstName + 'Image'} />
-              <h5 className="fw-bolder dark-grey-text">{comment.user.firstName}</h5>
-              <p className="fw-bold ">{comment.createdAt?.slice(0, 10)}</p>
+              <img src={ImgBaseURL + comment?.user?.image} loading="lazy" className="object-fit-contain rounded-circle" style={{ width: '5vw', minWidth: '35px' }} alt={comment?.user?.firstName + 'Image'} />
+              <h5 className="fw-bolder dark-grey-text">{comment?.user?.firstName}</h5>
+              <p className="fw-bold ">{comment?.createdAt?.slice(0, 10)}</p>
             </div>
             <div className="commentData">
-              <h6 className="mb-1 commentStatus">{getRatingStatus(comment.rating)}</h6>
-              <StarRating averageRating={comment.rating} />
-              <p className="light-grey-text font-roboto">{comment.review}</p>
+              <h6 className="mb-1 commentStatus">{getRatingStatus(comment?.rating)}</h6>
+              <StarRating averageRating={comment?.rating} />
+              <p className="light-grey-text font-roboto">{comment?.review}</p>
             </div>
           </div>
         ))}

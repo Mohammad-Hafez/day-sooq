@@ -42,10 +42,10 @@ export default function ProductDetails() {
   const colors = product?.variants.map((newProduct , index)=>  <div
                                                                   key={index}
                                                                   onClick={() => setSelectedVariant(newProduct)}
-                                                                  className={`color rounded me-1 ${selectedVariant?._id === newProduct._id ? 'selected' : ''}`}
+                                                                  className={`color rounded me-1 ${selectedVariant?._id === newProduct?._id ? 'selected' : ''}`}
                                                                   style={{
                                                                     background: `linear-gradient(182deg, #F2FFF7 0%, ${newProduct?.color} 100%)`,
-                                                                    border: selectedVariant?._id === newProduct._id ? '2px solid #000' : 'none',
+                                                                    border: selectedVariant?._id === newProduct?._id ? '2px solid #000' : 'none',
                                                                   }}
                                                               >
                                                             </div>
@@ -56,7 +56,7 @@ export default function ProductDetails() {
   {isLoading || isFetching ?<Loader/>: <>
   {product && <>
     <Helmet>
-      <title>{product.name?.split(' ').slice(0, 3).join(' ')}</title>
+      <title>{product?.name?.split(' ').slice(0, 3).join(' ')}</title>
     </Helmet>
     <div className="container my-4">
       <div className="product-path mb-5">
@@ -68,14 +68,14 @@ export default function ProductDetails() {
             <div className="col-md-5">
               <div className="product-images p-2 pt-4">
                 <Slider {...settings}>
-                  {product?.variants[0].images?.map((img , index)=><img className='img-fluid rounded' key={index}  src={'https://electrobile-souq.onrender.com/' + img}  loading='lazy' alt={product.name + ' image'} />)}
+                  {product?.variants[0]?.images?.map((img , index)=><img className='img-fluid rounded' key={index}  src={'https://electrobile-souq.onrender.com/' + img}  loading='lazy' alt={product?.name + ' image'} />)}
                 </Slider>  
               </div>
             </div>
             <div className="col-md-7">
               <div className="product-details ps-2">
                 <div className="product-category mb-4">
-                  <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name}</p>
+                  <p className='main-grey-text'>{product?.subCategory?.category?.name} / {product?.subCategory?.name}</p>
                   {product?.isAction &&
                     isBiddingEnded ? (
                       <h5>
