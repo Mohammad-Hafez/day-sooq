@@ -17,7 +17,7 @@ import { useQuery } from 'react-query';
 import { IoFilterCircleSharp } from "react-icons/io5";
 import {bell} from 'react-icons-kit/fa/bell'
 import { Sidebar } from 'primereact/sidebar';
-
+import logo from '../../assets/Logo daysooq V09.png'
 export default function HeaderSearch({ UserToken , categories , Logout}) {
   let navigate = useNavigate();
 
@@ -91,8 +91,7 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
               <span>
                 <h3 className="p-0 m-0">
                   <Link className="logo text-decoration-none font-quest dark-blue-text m-0 p-0" to={''} >
-                    DAY{' '}
-                    <span className="font-Rowdies main-orange-text">SOOQ</span>
+                    <img src={logo} className='w-50' alt="" />
                   </Link>{' '}
                 </h3>
               </span>
