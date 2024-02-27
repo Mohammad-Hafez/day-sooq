@@ -46,20 +46,20 @@ export default function BrandsSlider({setIsBrandSliderLoading}) {
     </div>
     <div className="container brdr featuredBrandsContainer p-3">
       <div className="row g-3">
-        {data?.data?.data?.data.map((brand)=> <div key={brand._id} className="col-4 col-md-3 col-lg-2">
+        {/* {data?.data?.data?.data.map((brand)=> <div key={brand._id} className="col-4 col-md-3 col-lg-2">
             <div className='brand-container p-2 h-100 cursor-pointer' onClick={()=> handleSelectBrand(brand)}>
               <img src={ ImgBaseURL+brand.image} alt={brand.name} className='w-100 h-100 object-fit-contain'/>
             </div>
           </div>
-        )}
+        )} */}
                         <Carousel
                   value={data?.data?.data?.data} 
-                  numVisible={5}
-                  numScroll={1}
+                  numVisible={6}
+                  numScroll={2}
                   responsiveOptions={responsiveOptions}
                   itemTemplate={(product, index) => (
                     <div key={index} className='h-100 px-2'>
-                      <div className="category-container bg-white text-center p-3 h-100 d-flex flex-column justify-content-center align-items-center" onClick={() => { handleSelectBrand(data?.data?.data?.data) }}>
+                      <div className="category-container bg-white text-center p-3 h-100 d-flex flex-column justify-content-center align-items-center" onClick={() => { handleSelectBrand(product) }}>
                         <img src={ImgBaseURL + product?.image} loading='lazy' className='img-fluid flex-grow-1 mb-2 rounded' alt={product.name + 'image'} />
                       </div>
                     </div>
