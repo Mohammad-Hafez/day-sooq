@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { CiMenuBurger } from 'react-icons/ci';
 
 export default function Navbar({ categories }) {
-  const [activeLink, setActiveLink] = useState();
+  const [activeLink, setActiveLink] = useState(null);
+  let url =useParams()
+  console.log(url);
 
   const NavItem = ({ to, activeLink, onClick, name }) => (
     <li className="nav-item">
@@ -18,7 +20,11 @@ export default function Navbar({ categories }) {
       </Link>
     </li>
   );
-
+        useEffect(()=>{
+          if (!url.category) {
+            setActiveLink(null)
+          }
+        },[url])
   return (
     <div className="container-fluid text-uppercase">
       <nav className="navbar navbar-expand-lg py-0 dark-blue-bg text-light">
