@@ -47,7 +47,7 @@ const limitOptions = [
   { label: '40', value: '40' },
 ];
 const onLimitChange = (event) => {
-  const newLimit = event.value;
+  const newLimit = event?.value;
   setLimNum(newLimit);
   setSelectedLimit(newLimit);
   
@@ -64,8 +64,8 @@ const sortOptions = [
 ];
 
 const onSortChange = (event) => {
-  const selectedSort = event.value;
-  const [sortField] = selectedSort.split('_');
+  const selectedSort = event?.value;
+  const [sortField] = selectedSort?.split('_');
 
   setSortMethod(sortField);
 };
@@ -118,9 +118,9 @@ useEffect(()=>{
             </div>
           </div>
           <div className="row gy-3">
-              {data?.data.data.data.length === 0?<h2>No Available Products</h2>
+              {data?.data.data.data?.length === 0?<h2>No Available Products</h2>
                 :
-                data?.data.data.data.map((product)=> <div key={product?._id} className={GridPage}>
+                data?.data.data.data?.map((product)=> <div key={product?._id} className={GridPage}>
                     <ProductCard product={product} GridPage={GridPage} category={product?.isAction? 'bidding' : 'any'}/>
                   </div>
                 )

@@ -5,7 +5,6 @@ import { CiMenuBurger } from 'react-icons/ci';
 export default function Navbar({ categories }) {
   const [activeLink, setActiveLink] = useState(null);
   let url =useParams()
-  console.log(url);
 
   const NavItem = ({ to, activeLink, onClick, name }) => (
     <li className="nav-item">

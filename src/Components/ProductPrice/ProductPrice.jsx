@@ -46,7 +46,7 @@ export default function ProductPrice({ category, product }) {
             {calculateDiscountedPrice(product.price, product.priceDiscount)} JOD
           </h6>
           <h6 className='font-Roboto fw-bold main-orange-text'>
-            {product.variants[0].extraPrice ? product.variants[0].extraPrice : 0 + product.variants[0].current_price ? product.variants[0].current_price : calculateDiscountedPrice(product.price, product.priceDiscount)} JOD
+            {product.variants[0]?.extraPrice ? product.variants[0]?.extraPrice : 0 + product.variants[0]?.current_price ? product.variants[0]?.current_price : calculateDiscountedPrice(product?.price, product?.priceDiscount)} JOD
           </h6>
         </div>
       );
@@ -57,7 +57,7 @@ export default function ProductPrice({ category, product }) {
   const renderDefaultPrice = () => {
     return (
       <h6 className='font-Roboto fw-bold dark-grey-text'>
-        {calculateDiscountedPrice(product.variant.product.price, product.variant.product.priceDiscount)} JOD
+        {calculateDiscountedPrice(product.variant?.product.price, product.variant?.product.priceDiscount)} JOD
       </h6>
     );
   };
