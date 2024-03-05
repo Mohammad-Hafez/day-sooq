@@ -67,9 +67,9 @@ export function CartContextProvider(props) {
                   });  
                 return error;    
             }else {
-            toast.error("The product is already in your cart.", {
+            toast.error(error.response.data.message, {
                 className: 'first-z mt-5 bg-main-light ',
-                duration: 2000,
+                duration: 4000,
               });  
             return error;
         }
@@ -91,7 +91,7 @@ export function CartContextProvider(props) {
             }
         )
         .catch((error) => {
-            toast.error("An Error Occured", {
+            toast.error(error.response.data.message, {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
             });  
@@ -118,7 +118,7 @@ export function CartContextProvider(props) {
             return response
             })
         .catch((error) => {
-            toast.error("An Error Occured", {
+            toast.error(error.response.data.message, {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
             });  
@@ -147,7 +147,13 @@ export function CartContextProvider(props) {
                 window.location.href = stripeUrl;
             }
         })
-        .catch((error) => error)
+        .catch((error) => {
+            toast.error(error.response.data.message, {
+                className: 'first-z mt-5 bg-main-light ',
+                duration: 2000,
+              });  
+            return error;
+        })
     }
 
     function applyPromoCode (promoCode , totalPrice){
@@ -167,7 +173,7 @@ export function CartContextProvider(props) {
             return response
             })
         .catch((error) => {
-            toast.error("The Promocode expired.", {
+            toast.error(error.response.data.message, {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
               });  

@@ -49,7 +49,7 @@ export function WishListContextProvider(props){
               });  
             return error;    
             }else{
-            toast.error("The product is already in your Wishlist.", {
+            toast.error(error.response.data.message, {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
               });  
@@ -74,7 +74,7 @@ export function WishListContextProvider(props){
             return response;
           })
           .catch((error) => {
-            toast.error('An error occurred. Try Again', {
+            toast.error(error.response.data.message, {
               className: 'first-z mt-5 bg-main-light ',
               duration: 2000,
             });
