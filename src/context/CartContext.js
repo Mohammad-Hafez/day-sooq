@@ -10,7 +10,10 @@ export function CartContextProvider(props) {
 
     const [numbOfCartItems, setNumbOfCartItems] = useState();
     const [TotalPrice, setTotalPrice] = useState()
+    const [PromoDicount, setPromoDicount] = useState()
     const [AllCartsId, setAllCartsId] = useState()
+
+
     const user = localStorage.getItem("DaySooqUser") ;
     let headers = {
         'Authorization': `Bearer ${user}` 
@@ -165,6 +168,8 @@ export function CartContextProvider(props) {
         {
             headers
         }).then((response) => {   
+            setPromoDicount(response?.data.data.discount);
+            setTotalPrice(response?.data.data.totalPrice)
             toast.success('Promocode Added Successfully.', {
                 className: 'first-z mt-5 bg-main-light ',
                 duration: 2000,
@@ -182,7 +187,7 @@ export function CartContextProvider(props) {
     }
 
     return <>
-    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, placeOrder, addToCart, getLoggedUserCart, removeItem, updateProductCount , getCart }}>
+    <cartContext.Provider value={{setNumbOfCartItems, AllCartsId, numbOfCartItems, TotalPrice, applyPromoCode, PromoDicount, placeOrder, addToCart, getLoggedUserCart, removeItem, updateProductCount , getCart }}>
         {props.children}
     </cartContext.Provider>
     </>

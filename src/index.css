@@ -126,12 +126,16 @@ code {
   -o-transition: all .15s ease-in;
 }
 .btn-orange:hover , 
-.btn-orange:disabled , 
+ 
 .btn-orange:focus-visible , 
 .btn-orange:active  {
   background-color: var(--light-blueBtns) ;
   border: 1px solid var(--light-blueBtns);
   color: var(--White-color) ;
+}
+.btn-orange:disabled {
+  background-color:#ff620098;
+  color: var(--White-color);
 }
 .dark-blue-btn {
   background-color: var(--dark-blue);

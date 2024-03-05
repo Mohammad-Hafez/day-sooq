@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CartSummary({itemsNum}) {
 
-  let {TotalPrice , applyPromoCode} = useContext(cartContext);
-
-  const [PromoCodeName, setPromoCodeName] = useState();
+  let {TotalPrice , applyPromoCode , PromoDicount} = useContext(cartContext);
+  
+  const [PromoCodeName, setPromoCodeName] = useState('');
 
   let navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export default function CartSummary({itemsNum}) {
           <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between'>
             Discount : 
             <span className='ms-1 fw-bold light-red-text'>
-            0.00 JOD
+            {PromoDicount ? PromoDicount + `JOD` : `0.00 JOD`}
             </span>
           </p>
           <p className='dark-blue-text mb-3 w-100 d-flex align-items-center justify-content-between'>
