@@ -114,7 +114,7 @@ const confirmPurchase = ()=>{
           )}
         </div>
         <button className='btn btn-orange rounded-pill w-100 py-2 fs-5' onClick={() => setVisible(true)} disabled={isBiddingEnded}>
-           {isBiddingEnded ? `Bidding Ended` : `Bid Now <RiAuctionLine />`}
+           {isBiddingEnded ? `Bidding Ended` : <> Bid Now <RiAuctionLine /></>}
         </button>
         {!isBiddingEnded &&
         <h6><CountdownTimer endDate={product?.endDate}/></h6>
