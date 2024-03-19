@@ -343,6 +343,7 @@ padding-left: 0 ;
   top: 4px;
   background-color: var(--main-orange);
 }
+
 /* .loader-container{
   background-color: rgba(0, 0, 0, 0.314);
   z-index: 9999!;
@@ -373,6 +374,23 @@ padding-left: 0 ;
   -moz-transform: translateY(50%);
   -ms-transform: translateY(50%);
   -o-transform: translateY(50%);
+}
+.p-tree{
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: var(--White-color);
+  padding: 0;
+}
+.p-tree-container{
+display: flex;
+width: 100%;
+justify-content: space-between;
+align-items: center;
+padding: 0;
+}
+.p-tree-header , .p-tree-footer{
+  display: none;
 }
 /* *STUB -  */
 /* *SECTION -  Authorization */

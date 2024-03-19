@@ -133,7 +133,7 @@ export default function ProductDetails() {
       </div>
       <div className="px-4">
         <h6 className='main-orange-text mb-0'>Similar Products :</h6>
-        {product && <SimilarProduct subCategory={product?.subCategory._id}/>}
+        {product && <SimilarProduct subCategory={product?.subCategory?._id}/>}
       </div>
       <div className="reviews px-5">
         <TabView className='brdr p-2'>

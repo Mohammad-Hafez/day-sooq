@@ -31,26 +31,28 @@ export default function BiddingSummary({ product, SelectedVariant, RiAuctionLine
   const [BidLoading, setBidLoading] = useState(false)
   const [Visible, setVisible] = useState(false);
   const [BuyNowVisible, setBuyNowVisible] = useState(false);
-
+  const [ErrMsg, setErrMsg] = useState(null)
   let biddingSchema = Yup.object({
     amount :Yup.number().min(minimumBidAmount, `Bid amount must be at least ${minimumBidAmount}`)
     .required('Bid amount is required'),
   })
 
   const biddingOnProduct = async (val)=>{
+    setErrMsg(null);
     setBidLoading(true)
-    try {
       await axios.post(ApiBaseUrl + `biddings` , val , {headers})
+      .then(response =>{
       toast.success('Bidd Amount Added Successfully.', {
         className: 'first-z mt-5 bg-main-light ',
         duration: 2000,
-    });
-      refetch();
+        })
+      refetch()
       setVisible(false)
       setBidLoading(false)
-    } catch (error) {
+      }).catch(error=>{
+        setErrMsg(error?.response?.data?.message);
       setBidLoading(false)
-    }
+      })
   }
 let Biddingformik = useFormik({
   initialValues: {
@@ -74,7 +76,10 @@ const confirmPurchase = ()=>{
     setBidLoading(false)
   }
 }
-
+const hideDialog =()=>{
+  setVisible(false)
+  setErrMsg(null);
+}
   return (
     <>
       <div className="p-summary">
@@ -120,7 +125,7 @@ const confirmPurchase = ()=>{
         <h6><CountdownTimer endDate={product?.endDate}/></h6>
         }
       </div>
-      <Dialog visible={Visible} onHide={() => setVisible(false)} style={{ width: 'fit-content' }} breakpoints={{ '960px': '75vw', '641px': '100vw' }}>
+      <Dialog visible={Visible} onHide={hideDialog} style={{ width: 'fit-content' }} breakpoints={{ '960px': '75vw', '641px': '100vw' }}>
         <div className="dialogContainer px-5 d-flex flex-column justify-content-around align-items-center h-100">
             {user && <>
               <div className="createBid">
@@ -137,6 +142,8 @@ const confirmPurchase = ()=>{
                   />
                   <p className='main-orange-text'>** Amount Have to be more than <span className='dark-blue-text'>{minimumBidAmount - 0.1}</span> JOD</p>
                   {Biddingformik.errors.amount && Biddingformik.touched.amount ?<div className="alert alert-danger py-1">{Biddingformik.errors.amount}</div>: null} 
+                  
+                  {ErrMsg ? <div className='alert text-danger'>{ErrMsg}</div> :null}
                   {BidLoading ? 
                     <button type="button" className='btn btn-orange rounded-pill text-light me-2 w-100'><i className=' fa fa-spin fa-spinner'></i></button>
                     :
