@@ -15,7 +15,7 @@ import { ApiBaseUrl } from '../ApiBaseUrl';
 
 export default function Footer() {
   const googleDrivePDFUrl = 'https://drive.google.com/uc?export=download&id=1APdBldNJBI2zVqZau8wopC-50QKfOCDZ';
-  const getAllCategories = () => axios.get(ApiBaseUrl + `subcategories`);
+  const getAllCategories = () => axios.get(ApiBaseUrl + `categories`);
   const { data: CategoriesNameResponse } = useQuery(
     'get Categories', getAllCategories, { cacheTime: 100000 }
   );
