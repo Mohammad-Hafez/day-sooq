@@ -10,10 +10,16 @@ import { FaCreditCard } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
 import { BiShieldQuarter } from "react-icons/bi";
 import logo from '../../assets/Logo daysooq V09.png'
+import { useQuery } from 'react-query';
+import axios from 'axios';
+import { ApiBaseUrl } from '../ApiBaseUrl';
 
 export default function Footer() {
   const googleDrivePDFUrl = 'https://drive.google.com/uc?export=download&id=1APdBldNJBI2zVqZau8wopC-50QKfOCDZ';
-
+  const getAllCategories = () => axios.get(ApiBaseUrl + `subcategories`);
+  const { data: CategoriesNameResponse } = useQuery(
+    'get Categories', getAllCategories, { cacheTime: 100000 }
+  );
   return <>
   <div className="fixed-features mb-3">
     <div className="container">
@@ -100,14 +106,9 @@ export default function Footer() {
         <div className="col-4 col-md-2">
           <div className="footer-item p-4 text-start">
             <h6 className='dark-grey-text'>Categories</h6>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>TV & Audio</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Smartphones</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Laptops & PCs</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Gadgets</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Photo & Video</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Gifts</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Books</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>Toys</Link>
+            {CategoriesNameResponse?.data.data.data?.map((category , index)=>{return (
+              <Link key={index} to={`/CategoryProducts/${category.name}/${encodeURIComponent(category._id)}`} className='main-grey-text text-decoration-none my-2 d-block'>{category?.name}</Link>)
+            })}
           </div>
         </div>
         <div className="col-4 col-md-2">
