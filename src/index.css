@@ -280,9 +280,6 @@ padding-left: 0 ;
   border: none;
   border-right: 1px solid var(--main-orange) ;
 }
-.nav-link.active{
-  background-color: var(--main-orange);
-}
 .headerSearchInput .p-dropdown-items li,
 .headerSearchInput .p-dropdown-label{
   color: var(--main-orange) ;
@@ -330,7 +327,12 @@ padding-left: 0 ;
 .navbar-toggler:focus:not(:focus-visible){
   border: none ;
   box-shadow: none ;
-
+}
+#basic-nav-dropdown{
+  color: var(--White-color) !important;
+}
+#basic-nav-dropdown.active{
+  background: var(--main-orange);
 }
 .p-sidebar-header{
   padding-bottom: 0;
@@ -374,23 +376,6 @@ padding-left: 0 ;
   -moz-transform: translateY(50%);
   -ms-transform: translateY(50%);
   -o-transform: translateY(50%);
-}
-.p-tree{
-  width: 100%;
-  background: transparent;
-  border: 0;
-  color: var(--White-color);
-  padding: 0;
-}
-.p-tree-container{
-display: flex;
-width: 100%;
-justify-content: space-between;
-align-items: center;
-padding: 0;
-}
-.p-tree-header , .p-tree-footer{
-  display: none;
 }
 /* *STUB -  */
 /* *SECTION -  Authorization */

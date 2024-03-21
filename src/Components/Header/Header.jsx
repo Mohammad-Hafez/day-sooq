@@ -1,5 +1,5 @@
 import React from 'react' ;
-import Navbar from '../Navbar/Navbar';
+import HeaderNavbar from '../HeaderNavbar/HeaderNavbar';
 import TopHeaderInfo from '../TopHeaderInfo/TopHeaderInfo';
 import HeaderSearch from '../HeaderSearch/HeaderSearch';
 import axios from 'axios';
@@ -19,6 +19,6 @@ export default function Header({UserToken , Logout}) {
   <div className="container mb-3 position-sticky top-0 z-3 bg-white py-2 rounded-bottom">
     <HeaderSearch UserToken={UserToken} categories={data?.data?.data?.data} Logout={Logout}/>
   </div>
-  <Navbar  categories={data?.data?.data?.data}/>
+  <HeaderNavbar  categories={data?.data?.data?.data}/>
   </>
 }

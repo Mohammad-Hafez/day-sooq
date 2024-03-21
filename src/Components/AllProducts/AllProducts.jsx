@@ -7,9 +7,9 @@ import { ApiBaseUrl } from '../ApiBaseUrl';
 import Loader from '../Loader/Loader'
 import ProductCard from '../ProductCard/ProductCard'
 import { BsGrid3X3GapFill } from "react-icons/bs";
-import { Paginator } from 'primereact/paginator';
 import { Dropdown } from 'primereact/dropdown';
 import { FaThList } from "react-icons/fa";
+import SimplePaginator from '../Paginator/Paginator';
 
 export default function AllProducts() {
 const [PageNum, setPageNum] = useState('1');
@@ -31,13 +31,16 @@ const getAllProducts = () => {
   );
 };
 
-let {data , isFetching , isLoading , refetch } = useQuery('get-products' , getAllProducts , {cacheTime : 3000})
+let {data:AllProductsResponse , isLoading , refetch:AllProductsFetch } = useQuery('get-products' , getAllProducts , {cacheTime : 3000})
 
-const onPageChange = (event) => {
-  const newPageNum = event.page + 1; 
-  setPageNum(newPageNum.toString());
+const onPageChange = (newPageNum) => {
+  const totalPages = Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results);
+  console.log(AllProductsResponse?.data);
+  if (newPageNum >= 1 && newPageNum <= totalPages) {
+    setPageNum(newPageNum.toString());
+    AllProductsFetch();
+  }
 };
-
 const limitOptions = [
   { label: '8', value: '8' },
   { label: '12', value: '12' },
@@ -50,9 +53,8 @@ const onLimitChange = (event) => {
   const newLimit = event?.value;
   setLimNum(newLimit);
   setSelectedLimit(newLimit);
-  
+  AllProductsFetch();
 };
-
 
 const sortOptions = [
   { label: 'Name (A-Z)', value: 'name' },
@@ -66,28 +68,29 @@ const sortOptions = [
 const onSortChange = (event) => {
   const selectedSort = event?.value;
   const [sortField] = selectedSort?.split('_');
-
   setSortMethod(sortField);
+  AllProductsFetch();
 };
 
 useEffect(()=>{
-  if (data) {
-      refetch();
+  if (Category || SelectedColors || minPrice || maxPrice || IsUsed ||Size) {
+    AllProductsFetch();
   }
-},[PageNum , LimNum , SortMethod , Category , SelectedColors ,Size , maxPrice , minPrice ,IsUsed]);
+},[Category ,SelectedColors,minPrice,maxPrice,IsUsed,Size, AllProductsFetch]);
 
   return <>
     <Helmet>
       <title>All Products</title>
     </Helmet>
     <div className="container allproducts">
-      {isLoading || isFetching ? <Loader/> : 
+      {isLoading? <Loader/> : 
       <div className="row mt-3 mb-4 gy-3">
         <div className="col-5 col-md-3">
           <SideMenu 
             setIsUsed={setIsUsed} IsUsed={IsUsed} setSize={setSize} SelectedColors={SelectedColors} 
             setSelectedColors={setSelectedColors} maxPrice={maxPrice} minPrice={minPrice} 
             setMinPrice={setMinPrice} setMaxPrice={setMaxPrice} setCategory={setCategory}
+            AllProductsFetch={AllProductsFetch}
           />
         </div>
         <div className="col-7 col-md-9">
@@ -118,14 +121,14 @@ useEffect(()=>{
             </div>
           </div>
           <div className="row gy-3">
-              {data?.data.data.data?.length === 0?<h2>No Available Products</h2>
+              {AllProductsResponse?.data.data.data?.length === 0?<h2>No Available Products</h2>
                 :
-                data?.data.data.data?.map((product)=> <div key={product?._id} className={GridPage}>
+                AllProductsResponse?.data.data.data?.map((product)=> <div key={product?._id} className={GridPage}>
                     <ProductCard product={product} GridPage={GridPage} category={product?.isAction? 'bidding' : 'any'}/>
                   </div>
                 )
               }
-            <Paginator first={PageNum ? parseInt(PageNum, 10) - 1 : 1} rows={parseInt(1, 10)} totalRecords={20} onPageChange={onPageChange} />
+              <SimplePaginator currentPage={PageNum} onPageChange={onPageChange} totalPages={Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results)}/>
         </div>
         </div>
       </div>
@@ -133,3 +136,5 @@ useEffect(()=>{
     </div>
     </>
 }
+
+            {/* <Paginator first={PageNum ? parseInt(PageNum, Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results)) - 1 : 1} nextPage={AllProductsResponse?.data.nextPage} i nextPageLinkIcon={!AllProductsResponse?.data.nextPage} lastPageLinkIcon={!AllProductsResponse?.data.nextPage}  rows={Math.ceil(1, (AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results))} totalRecords={Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results)} onPageChange={onPageChange} /> */}

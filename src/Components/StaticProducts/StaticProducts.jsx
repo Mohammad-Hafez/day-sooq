@@ -11,10 +11,7 @@ export default function StaticProducts() {
   };
 
   let { data } = useQuery('mainBanner', getBanners);
-
-
   const ad = data?.data?.data?.data.filter(item => item.type === 'ads');
-  console.log(ad);
   return <>
   <div className="container mb-5">
     <div className="row g-3">
