@@ -29,6 +29,7 @@ export default function HeaderNavbar({ categories }) {
     <NavDropdown
       title={name}
       id="basic-nav-dropdown"
+      color='danger'
       className={`text-danger ${activeLink === name ? 'active' : ''}`}
     >
       {SubcategoriesNameResponse?.data.data.data

@@ -9,7 +9,6 @@ import { IoShieldCheckmark } from "react-icons/io5";
 import { FaCreditCard } from "react-icons/fa";
 import { FaTruck } from "react-icons/fa";
 import { BiShieldQuarter } from "react-icons/bi";
-import logo from '../../assets/Logo daysooq V09.png'
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { ApiBaseUrl } from '../ApiBaseUrl';
@@ -60,16 +59,6 @@ export default function Footer() {
               </span>
             </div>
           </div>
-          {/* <div className="col-4 col-md-3 col-lg-2 brdr rounded-0">
-          <div className="featuer p-3 d-flex align-items-center justify-content-center">
-              <span className='me-2'><MdLabel className='main-orange-text fs-3 rotate'/></span>
-              <span className="text">
-                <h6 className='dark-grey-text'>Brands</h6>
-                <span className='dark-grey-text fs-6'>Only Top</span>
-              </span>
-            </div>
-          </div> */}
-
       </div>
     </div>
   </div>

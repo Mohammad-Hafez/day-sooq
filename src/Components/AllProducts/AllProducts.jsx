@@ -9,7 +9,6 @@ import ProductCard from '../ProductCard/ProductCard'
 import { BsGrid3X3GapFill } from "react-icons/bs";
 import { Dropdown } from 'primereact/dropdown';
 import { FaThList } from "react-icons/fa";
-import SimplePaginator from '../Paginator/Paginator';
 
 export default function AllProducts() {
 const [PageNum, setPageNum] = useState('1');
@@ -35,7 +34,7 @@ let {data:AllProductsResponse , isLoading , refetch:AllProductsFetch } = useQuer
 
 const onPageChange = (newPageNum) => {
   const totalPages = Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results);
-  console.log(AllProductsResponse?.data);
+  console.log(newPageNum);
   if (newPageNum >= 1 && newPageNum <= totalPages) {
     setPageNum(newPageNum.toString());
     AllProductsFetch();
@@ -73,10 +72,11 @@ const onSortChange = (event) => {
 };
 
 useEffect(()=>{
-  if (Category || SelectedColors || minPrice || maxPrice || IsUsed ||Size) {
+  if (AllProductsResponse) {
     AllProductsFetch();
+    console.log(AllProductsResponse?.data);
   }
-},[Category ,SelectedColors,minPrice,maxPrice,IsUsed,Size, AllProductsFetch]);
+},[PageNum , LimNum , SortMethod , Category , SelectedColors ,Size , maxPrice , minPrice ,IsUsed , onPageChange]);
 
   return <>
     <Helmet>
@@ -128,7 +128,19 @@ useEffect(()=>{
                   </div>
                 )
               }
-              <SimplePaginator currentPage={PageNum} onPageChange={onPageChange} totalPages={Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results)}/>
+              <div className='text-center py-3 font-quest d-flex align-items-center justify-content-center'>
+                <span onClick={()=>onPageChange(Number(PageNum) - 1)}>
+                  {(PageNum !=='1') && <i className="fa-solid fa-chevron-left fs-5 cursor-pointer mx-2 pt-1"></i> }
+                </span>
+                <span className='fs-4 fw-bold dark-grey-text'>
+                {(PageNum !=='1') && Number(PageNum) - 1} <span className='main-orange-text mx-2'>{PageNum}</span> {AllProductsResponse?.data?.nextPage && (Number(PageNum) + 1)}
+                </span>
+                {AllProductsResponse?.data?.nextPage &&
+                <span onClick={()=>onPageChange((Number(PageNum) + 1))}>
+                  
+                  <i className="fa-solid fa-chevron-right fs-5 cursor-pointer mx-2 pt-1"></i>
+                </span>}
+              </div>
         </div>
         </div>
       </div>
@@ -136,5 +148,3 @@ useEffect(()=>{
     </div>
     </>
 }
-
-            {/* <Paginator first={PageNum ? parseInt(PageNum, Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results)) - 1 : 1} nextPage={AllProductsResponse?.data.nextPage} i nextPageLinkIcon={!AllProductsResponse?.data.nextPage} lastPageLinkIcon={!AllProductsResponse?.data.nextPage}  rows={Math.ceil(1, (AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results))} totalRecords={Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results)} onPageChange={onPageChange} /> */}

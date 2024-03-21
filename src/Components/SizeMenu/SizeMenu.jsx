@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 export default function SizeMenu({ setSize }) {
-  const sizes = ['64g', '128g', '256g', '512g', '1t'];
+  const sizes = ['64g', '128g', '256g', '512g', '1t' , 'no size'];
   const [selectedSize, setSelectedSize] = useState(null);
 
   const handleSizeClick = (size) => {
