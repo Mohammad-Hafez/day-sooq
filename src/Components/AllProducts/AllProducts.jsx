@@ -34,7 +34,6 @@ let {data:AllProductsResponse , isLoading , refetch:AllProductsFetch } = useQuer
 
 const onPageChange = (newPageNum) => {
   const totalPages = Math.ceil(AllProductsResponse?.data.numOfDocs / AllProductsResponse?.data.results);
-  console.log(newPageNum);
   if (newPageNum >= 1 && newPageNum <= totalPages) {
     setPageNum(newPageNum.toString());
     AllProductsFetch();
@@ -74,7 +73,6 @@ const onSortChange = (event) => {
 useEffect(()=>{
   if (AllProductsResponse) {
     AllProductsFetch();
-    console.log(AllProductsResponse?.data);
   }
 },[PageNum , LimNum , SortMethod , Category , SelectedColors ,Size , maxPrice , minPrice ,IsUsed , onPageChange]);
 

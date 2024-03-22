@@ -29,6 +29,7 @@ import PasswordOtp from './Components/PasswordOtp/PasswordOtp';
 import ResetPassword from './Components/ResetPassword/ResetPassword';
 import { generateToken , messaging } from './notifications/firebase';
 import { onMessage } from 'firebase/messaging';
+import SubProducts from './Components/SubProducts/SubProducts';
 
 function App() {
   const [UserToken, setUserToken] = useState(null);
@@ -45,7 +46,6 @@ function App() {
   useEffect(() => {
     generateToken()
     onMessage(messaging , (payload) =>{
-      console.log(payload);
     })
     const storedUserToken = localStorage.getItem('DaySooqUser');
     if (storedUserToken) {
@@ -74,7 +74,8 @@ function App() {
               <Route path="ResetPassword" element={<ResetPassword saveUserData={saveUserData}/>} /> 
               <Route path="AllProducts" element={<AllProducts UserToken={UserToken}/>} /> 
               <Route path="ProductDetails/:id" element={<ProductDetails UserToken={UserToken}/>} /> 
-              <Route path="CategoryProducts/:category/:id" element={<CategoryProducts UserToken={UserToken}/>} /> 
+              <Route path="CategoryProducts/:category/:id" element={<CategoryProducts UserToken={UserToken}/>} />
+              <Route path="SubCategoryProducts/:category/:subCat/:id" element={<SubProducts UserToken={UserToken}/>} />
               <Route path="BrandProducts/:brand/:name" element={<BrandProducts UserToken={UserToken}/>} /> 
               <Route path="MyCart" element={<ProtectedRoutes> <MyCart UserToken={UserToken}/> </ProtectedRoutes> } /> 
               <Route path="WishList" element={<ProtectedRoutes> <WishList UserToken={UserToken}/> </ProtectedRoutes>} /> 

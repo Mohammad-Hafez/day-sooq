@@ -29,7 +29,7 @@ export default function ProductDetails() {
 
   const getProduct = ()=> axios.get(ApiBaseUrl + `products/${id}`);
 
-  let {data , isLoading , refetch , isFetching } = useQuery('product-details' , getProduct , {cacheTime:1000});
+  let {data , isLoading , refetch  } = useQuery('product-details' , getProduct , {cacheTime:1000});
 
   let product = (data?.data?.data?.data);
 
@@ -53,14 +53,14 @@ export default function ProductDetails() {
 
   useEffect(()=>{refetch()},[id])
   return <>
-  {isLoading || isFetching ?<Loader/>: <>
+  {isLoading ?<Loader/>: <>
   {product && <>
     <Helmet>
       <title>{product?.name?.split(' ').slice(0, 3).join(' ')}</title>
     </Helmet>
     <div className="container my-4">
       <div className="product-path mb-5">
-        <p className='main-grey-text'>{product?.subCategory?.category.name} / {product?.subCategory?.name} / {product?.name}</p>
+        <p className='main-grey-text'>{product?.subCategory? product?.subCategory?.category.name + '/' + product?.subCategory?.name + '/': null} {product?.name}</p>
       </div>
       <div className="row mb-3">
         <div className="col-6 col-md-8">
@@ -132,8 +132,7 @@ export default function ProductDetails() {
         </div>
       </div>
       <div className="px-4">
-        <h6 className='main-orange-text mb-0'>Similar Products :</h6>
-        {product && <SimilarProduct subCategory={product?.subCategory?._id}/>}
+        {product && <SimilarProduct currentProduct={product?._id} cat={product?.category}/>}
       </div>
       <div className="reviews px-5">
         <TabView className='brdr p-2'>

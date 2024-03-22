@@ -32,15 +32,15 @@ export default function HeaderNavbar({ categories }) {
       color='danger'
       className={`text-danger ${activeLink === name ? 'active' : ''}`}
     >
-      {SubcategoriesNameResponse?.data.data.data
-        .filter(subcategory => subcategory?.category._id === to)
+      {SubcategoriesNameResponse?.data?.data.data
+        .filter(subcategory => subcategory?.category?._id === to)
         .map(subCat => (
-          <NavDropdown.Item key={subCat._id}>
+          <NavDropdown.Item key={subCat?._id}>
             <Link
-              to={`/CategoryProducts/${name}/${encodeURIComponent(to)}`}
+              to={`/SubCategoryProducts/${name}/${subCat?.name}/${encodeURIComponent(subCat?._id)}`}
               className="nav-link" 
             >
-              {subCat.name}
+              {subCat?.name}
             </Link>
           </NavDropdown.Item>
         ))}
