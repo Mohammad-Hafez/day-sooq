@@ -75,14 +75,14 @@ export default function ProductDetails() {
             <div className="col-md-7">
               <div className="product-details ps-2">
                 <div className="product-category mb-4">
-                  <p className='main-grey-text'>{product?.subCategory?.category?.name} / {product?.subCategory?.name}</p>
-                  {product?.isAction &&
+                  <p className='main-grey-text'>{product?.subCategory && product?.subCategory.category?.name + ' / '}{product?.subCategory?.name}</p>
+                  {product?.isAction ?
                     isBiddingEnded ? (
                       <h5>
                         <span className='badge dark-red-bg'>Bidding Ended <RiAuctionLine className='fs-6'/></span>
                       </h5>
                     ) : (
-                      !product?.startDate || new Date(product?.startDate) > new Date() ? (
+                      new Date(product?.startDate) > new Date() ? (
                         <h5>
                           <span className='badge dark-grey-bg'>Bidding Not Started Yet <RiAuctionLine className='fs-6'/></span>
                         </h5>
@@ -94,7 +94,7 @@ export default function ProductDetails() {
                         </>
                       )
                     )                  
-                  }
+                  : null }
                 </div>
                 <div className="product-data">
                   <div className="p-name">

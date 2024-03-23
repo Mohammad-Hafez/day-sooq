@@ -49,7 +49,7 @@ export default function HeaderNavbar({ categories }) {
         <Link
           to={`/CategoryProducts/${name}/${encodeURIComponent(to)}`}
           className="nav-link" 
-          onClick={() => handleNavItemClick(name)} // Update active link on click
+          onClick={() => handleNavItemClick(name)} 
         >
           All {name} Products
         </Link>
