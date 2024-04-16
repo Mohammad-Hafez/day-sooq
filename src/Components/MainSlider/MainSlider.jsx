@@ -30,11 +30,11 @@ export default function MainSlider({ setIsBannerLoading }) {
   const sliderData = data?.data?.data?.data.filter(item => item.type === 'slider');
 
   return (
-    <div className="container mainSlider position-relative mb-3">
+    <div className="container-fluid mainSlider position-relative mb-3">
       <Slider {...settings} className='rounded'>
         {sliderData && sliderData.map((item, index) => (
           <div key={index}>
-            <img src={ImgBaseURL + item.image} alt={`Slide ${index}`} />
+            <img src={ImgBaseURL + item.image} className='w-100' alt={`Slide ${index}`} />
           </div>
         ))}
       </Slider>
