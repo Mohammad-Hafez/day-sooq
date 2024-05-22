@@ -48,7 +48,7 @@ export default function BestSlider({ setIsBestSliderLoading }) {
   return (
     <div className="container mb-5 position-relative">
       <div className="header">
-        <h4>Bestsellers</h4>
+        <h4>Best sellers</h4>
       </div>
       <div className="BestSlider-container">
         <ProductsSlider products={products} settings={BestSettings} slider={'best-selling'}/>
