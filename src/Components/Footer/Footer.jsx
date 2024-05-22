@@ -1,8 +1,6 @@
 import React from 'react'
 import { Icon } from 'react-icons-kit'
-import {socialTwitter} from 'react-icons-kit/ionicons/socialTwitter' ;
 import {facebook_1} from 'react-icons-kit/ikons/facebook_1';
-import {youtube} from 'react-icons-kit/ikons/youtube'
 import {instagram} from 'react-icons-kit/entypo/instagram'
 import { Link } from 'react-router-dom';
 import { IoShieldCheckmark } from "react-icons/io5";
@@ -12,9 +10,13 @@ import { BiShieldQuarter } from "react-icons/bi";
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { ApiBaseUrl } from '../ApiBaseUrl';
+import { FaTiktok } from "react-icons/fa";
+import {linkedin} from 'react-icons-kit/ikons/linkedin'
 
 export default function Footer() {
-  const googleDrivePDFUrl = 'https://drive.google.com/uc?export=download&id=1APdBldNJBI2zVqZau8wopC-50QKfOCDZ';
+
+  const googleDrivePrivacyUrl = 'https://drive.google.com/file/d/13UKqATbbsOAUjCX9eB3EPqP9P1DbLd_i/view?usp=sharing';
+  const googleDriveTermsUrl = 'https://drive.google.com/file/d/1OWt1l2ik6zhLvdG4Mf27wjGI6lYqZ0gw/view?usp=sharing';
   const getAllCategories = () => axios.get(ApiBaseUrl + `categories`);
   const { data: CategoriesNameResponse } = useQuery(
     'get Categories', getAllCategories, { cacheTime: 100000 }
@@ -71,24 +73,24 @@ export default function Footer() {
               <span><h3 className='p-0 m-0 logo text-decoration-none font-quest dark-blue-text'> Day <span className='font-Rowdies main-orange-text'>Sooq</span> </h3></span> 
             </div>
             <h6 className='dark-grey-text'>Address</h6>
-            <p className='main-grey-text'>street, area Name, Jordan</p>
+            <p className='main-grey-text'>Jordan, Amman, 7th circle</p>
             <h6 className='dark-grey-text'>Email</h6>
             <p className='main-grey-text'>
-              <a href="mailto:contact@electrobilesouq.com" className="text-decoration-none">
-                contact@electrobilesouq.com
+              <a href="mailto:info@daysooq.com" className="text-decoration-none">
+                info@daysooq.com
               </a>
             </p>
             <h6 className='dark-grey-text'>Telephone</h6>
             <p className='main-grey-text'>
-              <a href="tel:+000000000" className="tel-link text-decoration-none">
-                (+00) 000 000 000
+              <a href="tel:+962792520259" className="tel-link text-decoration-none">
+                +962792520259
               </a>
             </p>
-            <div className="social light-grey-text">
-              <span><Icon className='mx-1 cursor-pointer' icon={facebook_1} size={16}></Icon></span>
-              <span><Icon className='mx-1 cursor-pointer' icon={instagram} size={16}></Icon></span>
-              <span><Icon className='mx-1 cursor-pointer' icon={socialTwitter} size={16}></Icon></span>
-              <span><Icon className='mx-1 cursor-pointer' icon={youtube} size={16}></Icon></span>
+            <div className="social light-grey-text d-flex">
+              <span><a href="https://www.facebook.com/profile.php?id=100079674895040" target='_blank' className='main-grey-text me-1 text-decoration-none my-2 d-block'><span><Icon className='mx-1 cursor-pointer' icon={facebook_1} size={16}></Icon></span></a></span>
+              <span><a href="https://www.instagram.com/daysooq.co/" target='_blank' className='main-grey-text me-1 text-decoration-none my-2 d-block'><span><Icon className='mx-1 cursor-pointer' icon={instagram} size={16}></Icon></span></a></span>
+              <span><a href="https://www.tiktok.com/@daysooq?is_from_webapp=1&sender_device=pc" target='_blank' className='main-grey-text me-1 text-decoration-none my-2 d-block'><span><FaTiktok size={16}/></span></a></span>
+              <span><a href="https://www.linkedin.com/company/daysooqjordan/" target='_blank' className='main-grey-text me-1 text-decoration-none my-2 d-block'><span><Icon className='mx-1 cursor-pointer' icon={linkedin} size={16}></Icon></span></a></span>
             </div>
           </div>  
         </div>
@@ -103,17 +105,16 @@ export default function Footer() {
         <div className="col-4 col-md-2">
           <div className="footer-item p-4 text-start">
             <h6 className='dark-grey-text'>Useful Links</h6>
-            <a href={googleDrivePDFUrl} download className='main-grey-text text-decoration-none my-2 d-block'>Contact</a>
-            <Link to={'/WishList'} className='main-grey-text text-decoration-none my-2 d-block'>Wishlist</Link>
-            <a href={googleDrivePDFUrl} download className='main-grey-text text-decoration-none my-2 d-block'>Terms & Conditions</a>
-            <a href={googleDrivePDFUrl} download className='main-grey-text text-decoration-none my-2 d-block'>Privacy Policy</a>
+            <a href={googleDriveTermsUrl} download target='_blank' className='main-grey-text text-decoration-none my-2 d-block'>Terms & Conditions</a>
+            <a href={googleDrivePrivacyUrl} download target='_blank' className='main-grey-text text-decoration-none my-2 d-block'>Privacy Policy</a>
           </div>
         </div>
         <div className="col-4 col-md-2">
           <div className="footer-item p-4 text-start">
             <h6 className='dark-grey-text'>Customer Service</h6>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>My Account</Link>
-            <Link to={''} className='main-grey-text text-decoration-none my-2 d-block'>My Cart</Link>
+            <Link to={'/MyCart'} className='main-grey-text text-decoration-none my-2 d-block'>My Cart</Link>
+            <Link to={'/WishList'} className='main-grey-text text-decoration-none my-2 d-block'>Wishlist</Link>
+            <Link to={'/MyOrders'} className='main-grey-text text-decoration-none my-2 d-block'>My Orders</Link>
           </div>
         </div>
       </div>
