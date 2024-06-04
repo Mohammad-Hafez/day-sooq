@@ -25,7 +25,7 @@ export default function StaticProducts() {
             </h4>
           </div>
           <div className="staticProductImg">
-            {ad ? <img src={ImgBaseURL + ad[0]?.image} alt="speaker"  /> : null}
+            {ad ? <img src={ImgBaseURL +`/${ad[0]?.image}`} alt="speaker"  /> : null}
           </div>
         </div>
       </div>

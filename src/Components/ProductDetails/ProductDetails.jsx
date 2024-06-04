@@ -68,7 +68,11 @@ export default function ProductDetails() {
             <div className="col-md-5">
               <div className="product-images p-2 pt-4">
                 <Slider {...settings}>
-                  {product?.variants[0]?.images?.map((img , index)=><img className='img-fluid rounded' key={index}  src={'https://electrobile-souq.onrender.com/' + img}  loading='lazy' alt={product?.name + ' image'} />)}
+                  { product?.variants[0]?.images?.length > 0 ?
+                  product?.variants[0]?.images?.map((img , index)=><img className='img-fluid rounded' key={index}  src={ImgBaseURL + img}  loading='lazy' alt={product?.name + ' image'} />)
+                  :
+                  <img className='img-fluid rounded' src={ImgBaseURL + product?.variants[0]?.imageCover}  loading='lazy' alt={product?.name + ' image'} />
+                  }
                 </Slider>  
               </div>
             </div>

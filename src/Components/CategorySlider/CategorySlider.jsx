@@ -41,6 +41,7 @@ export default function CategorySlider({ setIsFeaturedCategoriesLoading }) {
   const handleSelectCategory = (category) => {
     navigate(`CategoryProducts/${category?.name}/${category._id}`);
   };
+  console.log(data?.data?.data?.data);
   return (
     <div className="categoriesSec light-grey-bg p-3 mb-5">
       <div className="container">
@@ -64,8 +65,7 @@ export default function CategorySlider({ setIsFeaturedCategoriesLoading }) {
                     </div>
                   )}
                 />
-
-          </div>
+``          </div>
         </div>
       </div>
     </div>

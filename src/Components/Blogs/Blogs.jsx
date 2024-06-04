@@ -39,7 +39,7 @@ export default function Blogs({setIsBlogsLoading}) {
     return(
       <div key={blog._id} className='blogs my-2 d-flex justify-content-center align-item-center p-3 normal-blue-text h-100'>
        <div className="blogImage">
-         <img src={ImgBaseURL + blog.image} className='w-100 object-fit-contain rounded-start' alt={blog.title + 'image'} />
+         <img src={ImgBaseURL + `/${blog.image}`} className='w-100 object-fit-contain rounded-start' alt={blog.title + 'image'} />
        </div>
        <div className="blogInfo bg-light grey-brdr my-4 rounded p-4 d-flex flex-column">
          <span className="blogDate grey-brdr px-4 py-1 rounded-pill mb-3">

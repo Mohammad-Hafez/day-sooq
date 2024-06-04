@@ -86,13 +86,13 @@ export default function HeaderSearch({ UserToken , categories , Logout}) {
           <div className="col-6 col-lg-3 LogoConatiner">
             <div className="logo d-flex align-items-center justify-content-start">
               <span className='me-2'>
-                <IoFilterCircleSharp className="dark-blue-text fs-3 cursor-pointer zoom" onClick={()=>navigate('/AllProducts')}/>
+                <IoFilterCircleSharp className="dark-blue-text fs-2 cursor-pointer zoom" onClick={()=>navigate('/AllProducts')}/>
               </span>
               <span>
                 <h3 className="p-0 m-0">
                   <Link className="logo text-decoration-none font-quest dark-blue-text m-0 p-0" to={''} >
                     <img src={logo} className='w-50' alt="" />
-                  </Link>{' '}
+                  </Link>
                 </h3>
               </span>
             </div>
