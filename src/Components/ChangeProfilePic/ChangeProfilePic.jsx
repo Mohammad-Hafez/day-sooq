@@ -18,7 +18,6 @@ export default function ChangeProfilePic() {
 
   const handleimageChange = async (event, setFieldValue) => {
     const file = event.currentTarget.files[0];
-    console.log(file);
     // setFieldValue('image', file);
   };
 
@@ -33,7 +32,6 @@ export default function ChangeProfilePic() {
 
       // Refetch user profile after updating the profile picture
       refetch();
-      console.log('Profile picture updated successfully!');
     } catch (error) {
       console.error('Error updating profile picture:', error.message);
     }

@@ -36,7 +36,6 @@ export default function ProfileDetails() {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log(values);
       await axios.patch(ApiBaseUrl + 'users/updateProfile', values, { headers });
       refetch();
       toast.success('Updated Successfully.', {

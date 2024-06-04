@@ -41,7 +41,6 @@ export default function CategorySlider({ setIsFeaturedCategoriesLoading }) {
   const handleSelectCategory = (category) => {
     navigate(`CategoryProducts/${category?.name}/${category._id}`);
   };
-  console.log(data?.data?.data?.data);
   return (
     <div className="categoriesSec light-grey-bg p-3 mb-5">
       <div className="container">
@@ -59,7 +58,7 @@ export default function CategorySlider({ setIsFeaturedCategoriesLoading }) {
                     <div key={index} className='h-100 px-2'>
                       <div className="category-container bg-white text-center p-3 h-100 d-flex flex-column justify-content-center align-items-center" onClick={() => { handleSelectCategory(product) }}>
                         <h6 className='font-roboto fw-bold mb-3'>{product.name}</h6>
-                        <img src={ImgBaseURL + product?.image} loading='lazy' className='img-fluid flex-grow-1 mb-2 rounded' alt={product.name + 'image'} />
+                        <img src={ImgBaseURL + product?.image} loading='lazy' className='img-fluid flex-grow-1 mb-2 rounded object-fit-contain' alt={product.name + 'image'} />
                         <button className='go-Btn d-flex align-items-center justify-content-center ms-auto'><IoArrowForwardOutline /></button>
                       </div>
                     </div>

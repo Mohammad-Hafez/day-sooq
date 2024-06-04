@@ -19,7 +19,6 @@ export default function ProductCard({product , category , GridPage}) {
   const handleCardClick = ()=>{
     if (category === 'big-deals' || category ===  'bidding' || category ===  'similar' || category === 'any') {
       navigate(`/ProductDetails/${product._id}`)
-      console.log();
     }else{
       navigate(`/ProductDetails/${product.variant?.product._id}`)
     }
